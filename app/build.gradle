@@ -3,6 +3,9 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-android-extensions'
+    id "org.jlleitschuh.gradle.ktlint"
+    id "androidx.navigation.safeargs"
 }
 
 android {
@@ -32,13 +35,33 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding true
+    }
+    dynamicFeatures = [':features:home:subjects']
 }
 
 dependencies {
 
+    def nav_version = "2.3.2"
+
     //HiLt
-    implementation "com.google.dagger:hilt-android:2.29.1-alpha"
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+
+    //Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    api 'com.intuit.sdp:sdp-android:1.0.6'
+    api 'com.intuit.ssp:ssp-android:1.0.6'
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
