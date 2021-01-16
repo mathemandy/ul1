@@ -1,0 +1,13 @@
+:features:home:subjects::debug
+androidx.asynclayoutinflater:asynclayoutinflater
+androidx.constraintlayout:constraintlayout
+androidx.constraintlayout:constraintlayout-solver
+androidx.documentfile:documentfile
+androidx.legacy:legacy-support-core-ui
+androidx.legacy:legacy-support-core-utils
+androidx.legacy:legacy-support-v4
+androidx.localbroadcastmanager:localbroadcastmanager
+androidx.media:media
+androidx.print:print
+androidx.slidingpanelayout:slidingpanelayout
+androidx.swiperefreshlayout:swiperefreshlayout

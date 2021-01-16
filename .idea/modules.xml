@@ -4,6 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ulesson.iml" filepath="$PROJECT_DIR$/.idea/modules/ulesson.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ulesson.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ulesson.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/ulesson.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/ulesson.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/ulesson.features.iml" filepath="$PROJECT_DIR$/.idea/modules/features/ulesson.features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/home/ulesson.features.home.iml" filepath="$PROJECT_DIR$/.idea/modules/features/home/ulesson.features.home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/home/subjects/ulesson.features.home.subjects.iml" filepath="$PROJECT_DIR$/.idea/modules/features/home/subjects/ulesson.features.home.subjects.iml" />
     </modules>
   </component>
 </project>

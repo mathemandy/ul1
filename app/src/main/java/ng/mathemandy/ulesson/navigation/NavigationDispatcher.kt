@@ -1,6 +1,6 @@
 package ng.mathemandy.ulesson.navigation
 
-interface  NavigationDispatcher  {
+interface NavigationDispatcher {
 
     fun openChapters()
     fun openLessons()
