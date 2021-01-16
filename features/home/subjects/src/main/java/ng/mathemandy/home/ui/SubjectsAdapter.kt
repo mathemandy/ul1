@@ -5,27 +5,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ng.mathemandy.core.imageLoader.ImageLoader
 import ng.mathemandy.home.R
 import ng.mathemandy.ulesson.base.Subjects
 import java.util.*
+import javax.inject.Inject
 
-class SubjectsAdapter(private val interaction: Interaction? = null) :
-    ListAdapter<Subjects, SubjectsAdapter.SubjectsViewHolder>(SubjectsDC()) {
 
+typealias SubjectClickListener = (Subjects) -> Unit
+
+
+class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) :
+    ListAdapter<Subjects, SubjectsAdapter.SubjectsViewHolder>(
+        SubjectsDC()
+    ) {
 
     private var layoutId: Int = R.layout.subject_item
 
+    var clickListener: SubjectClickListener? = null
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SubjectsViewHolder(
         LayoutInflater.from(parent.context)
-            .inflate(layoutId, parent, false), interaction
+            .inflate(layoutId, parent, false)
     )
 
     override fun onBindViewHolder(holder: SubjectsViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(imageLoader, clickListener, getItem(position))
     }
 
 
@@ -37,48 +48,42 @@ class SubjectsAdapter(private val interaction: Interaction? = null) :
     }
 
     inner class SubjectsViewHolder(
-        itemView: View,
-        private val interaction: Interaction?
-    ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
 
         val cardColor = MutableList(10) {
             when (it) {
-                0, 5-> Color.parseColor("#2E2E2E")
-                1 , 6-> Color.parseColor("#0C5E35")
-                2 ,7-> Color.parseColor("#7A0C4C")
-                3, 8 -> Color.parseColor("#00326F")
-                4, 9 -> Color.parseColor("#7A4F01")
-                else -> Color.parseColor("#004883")
+                0, 5 -> Color.parseColor("#EA7052")
+                1, 6 -> Color.parseColor("#F9AD6D")
+                2, 7 -> Color.parseColor("#68BC98")
+                3, 8 -> Color.parseColor("#7B7FDA")
+                4, 9 -> Color.parseColor("#506AAC")
+                else -> Color.parseColor("#313848")
 
             }
         }
 
-        init {
-            itemView.setOnClickListener(this)
-        }
 
-        override fun onClick(v: View?) {
+        fun bind(imageLoader: ImageLoader, clickListener: SubjectClickListener?, item: Subjects) =
+            with(itemView) {
+                val rnd = Random()
+                val currentColor: Int = cardColor[rnd.nextInt(10)]
+                val imageView = itemView.findViewById<ImageView>(R.id.advert_track_image)
+                val progress = itemView.findViewById<ProgressBar>(R.id.progress)
+                imageView.setBackgroundColor(currentColor)
+                val subject =
+                    itemView.findViewById<TextView>(R.id.subject_tv)
 
-            if (adapterPosition == RecyclerView.NO_POSITION) return
+                subject.text = item.name
+                val uri = item.icon.replaceFirst("\\*$", "")
+                imageLoader.loadImage(imageView, progress, uri)
 
-            val clicked = getItem(adapterPosition)
+                itemView.setOnClickListener {
+                    clickListener?.invoke(item)
+                }
 
-            interaction?.itemClicked(clicked)
-        }
 
-        fun bind(item: Subjects) = with(itemView) {
-            val rnd = Random()
-           val currentColor: Int = cardColor[rnd.nextInt(10)]
-            val imageView  = itemView.findViewById<ImageView>(R.id.advert_track_image)
-            imageView.setBackgroundColor(currentColor)
-            val subject  =
-                itemView.findViewById<TextView>(R.id.subject_tv)
-
-            subject.text =  item.name
-            val uri  = item.icon.replaceFirst("\\*$", "")
-//            Glide.with(itemView).load(uri).into(imageView)
-
-        }
+            }
     }
 
     interface Interaction {

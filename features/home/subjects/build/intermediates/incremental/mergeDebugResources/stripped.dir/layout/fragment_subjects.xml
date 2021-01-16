@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+                                                                   
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:tag="layout/fragment_subjects_0" xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:background="@null"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:expandedTitleMarginStart="@dimen/_16sdp"
+                app:expandedTitleMarginTop="@dimen/_30sdp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:maxLines="2">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:title="Hello Simbi"
+                    app:titleTextColor="@color/primary_text_color" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/parent_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="@dimen/_30sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/subjectContainer"
+                android:paddingBottom="@dimen/_30sdp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/guideline_start"
+                    app:layout_constraintGuide_begin="@dimen/_16sdp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/guideline_end"
+                    app:layout_constraintGuide_end="@dimen/_16sdp"
+                    android:layout_height="wrap_content"/>
+
+                <ViewFlipper
+                    app:layout_constraintStart_toEndOf="@id/guideline_start"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_end"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/subject_rv"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        android:orientation="vertical"
+                        app:spanCount="2"
+                        android:layout_width="match_parent"
+                        tools:itemCount="3"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/subject_item" />
+
+                </ViewFlipper>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/subjectContainer"
+                android:id="@+id/recentlyWatchedVideos"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/_24sdp"
+                    android:id="@+id/recentHeader"
+                    android:text="Recently watched topics"
+                    android:textColor="@color/primary_text_color"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline_start_recent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/guideline_start_recent"
+                    app:layout_constraintGuide_begin="@dimen/_16sdp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/guideline_end_recent"
+                    app:layout_constraintGuide_end="@dimen/_16sdp"
+                    android:layout_height="wrap_content"/>
+
+                <ViewFlipper
+                    app:layout_constraintTop_toBottomOf="@id/recentHeader"
+                    app:layout_constraintStart_toEndOf="@id/guideline_start_recent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_end_recent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recently_watched_rv"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        tools:itemCount="1"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/recent_videos" />
+
+                </ViewFlipper>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_16sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recentlyWatchedVideos"
+                    android:layout_width="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clipToPadding="true"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:text="View All"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/mulish_bold"
+                        android:background="@drawable/ic_button_art"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/_45sdp"/>
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+         

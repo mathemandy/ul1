@@ -1,6 +1,8 @@
 package ng.mathemandy.home.ui
 
 
+import GridSpacingItemDecoration
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +14,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ng.mathemandy.home.R
 import ng.mathemandy.home.databinding.FragmentSubjectsBinding
+import ng.mathemandy.home.di.inject
+import ng.mathemandy.ulesson.base.Lessons
 import ng.mathemandy.ulesson.base.Subjects
+import javax.inject.Inject
 
-class SubjectsFragment : Fragment(), SubjectsAdapter.Interaction {
+class SubjectsFragment : Fragment(), SubjectsAdapter.Interaction, RecentVideosAdapter.Interaction {
 
     private lateinit var binding: FragmentSubjectsBinding
 
-    private val adapter: SubjectsAdapter by lazy { SubjectsAdapter(this) }
 
+    @Inject
+    lateinit var  subjectAdapter: SubjectsAdapter
+
+
+    private val recentVideosAdapter: RecentVideosAdapter by lazy {
+        RecentVideosAdapter(
+            this
+        )
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,17 +60,41 @@ class SubjectsFragment : Fragment(), SubjectsAdapter.Interaction {
 //            renderLoadingState()
 //        }
 
-        binding.subjectRv.adapter = adapter
-        binding.subjectRv.layoutManager =
-            GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
-        adapter.swapData(MutableList(5) {
+
+        val spanCount = 2
+        val spacing  = 50
+        val includeEdge = false
+
+        binding.subjectRv.apply {
+            adapter = subjectAdapter
+            addItemDecoration(GridSpacingItemDecoration(spanCount, spacing, includeEdge))
+           layoutManager  = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
+        }
+
+        subjectAdapter.swapData(MutableList(5) {
             Subjects(it, "Mathematics", "https://ulesson-staging.s3.eu-west-2.amazonaws.com/lesson_icons/icons/defaults/thumb/lesson.png", emptyList())
         }, null)
 //        renderSuccessState()
 
+        binding.recentlyWatchedRv.apply {
+            adapter = recentVideosAdapter
+            layoutManager  = LinearLayoutManager(context,  RecyclerView.VERTICAL, false)
+        }
+
+        recentVideosAdapter.swapData(MutableList(5) {
+            Lessons(it, "vvvffg",
+                "https://ulesson-staging.s3.eu-west-2.amazonaws.com/lesson_icons/icons/defaults/thumb/lesson.png",
+                "https:\\/\\/d2zjjckqo1cait.cloudfront.net\\/free_videos\\/70\\/original\\/stapler-bRXerd.MP4",
+                85, 85)
+        }, null)
+
     }
 
     override fun itemClicked(item: Subjects) {
+
+    }
+
+    override fun itemClicked(item: Lessons) {
 
     }
 }
