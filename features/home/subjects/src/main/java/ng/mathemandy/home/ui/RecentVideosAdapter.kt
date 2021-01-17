@@ -9,12 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ng.mathemandy.domain.model.Lesson
 import ng.mathemandy.home.R
-import ng.mathemandy.ulesson.base.Lessons
 import java.util.*
 
 class RecentVideosAdapter(private val interaction: Interaction? = null) :
-    ListAdapter<Lessons, RecentVideosAdapter.RecentVideosViewHolder>(
+    ListAdapter<Lesson, RecentVideosAdapter.RecentVideosViewHolder>(
         RecentVideosDC()
     ) {
 
@@ -31,7 +31,7 @@ class RecentVideosAdapter(private val interaction: Interaction? = null) :
     }
 
 
-    fun swapData(data: List<Lessons>, layoutId: Int?) {
+    fun swapData(data: List<Lesson>, layoutId: Int?) {
         if (layoutId != null) {
             this.layoutId = layoutId
         }
@@ -68,7 +68,7 @@ class RecentVideosAdapter(private val interaction: Interaction? = null) :
             interaction?.itemClicked(clicked)
         }
 
-        fun bind(item: Lessons) = with(itemView) {
+        fun bind(item: Lesson) = with(itemView) {
             val rnd = Random()
            val currentColor: Int = cardColor[rnd.nextInt(10)]
             val imageView  = itemView.findViewById<ImageView>(R.id.advert_track_image)
@@ -90,15 +90,15 @@ class RecentVideosAdapter(private val interaction: Interaction? = null) :
     }
 
     interface Interaction {
-        fun itemClicked(item: Lessons)
+        fun itemClicked(item: Lesson)
     }
 
-    private class RecentVideosDC : DiffUtil.ItemCallback<Lessons>() {
+    private class RecentVideosDC : DiffUtil.ItemCallback<Lesson>() {
 
-        override fun areContentsTheSame(oldItem: Lessons, newItem: Lessons): Boolean =
+        override fun areContentsTheSame(oldItem: Lesson, newItem: Lesson): Boolean =
             oldItem == newItem
 
-        override fun areItemsTheSame(oldItem: Lessons, newItem: Lessons): Boolean =
+        override fun areItemsTheSame(oldItem: Lesson, newItem: Lesson): Boolean =
             oldItem.id == newItem.id
 
     }

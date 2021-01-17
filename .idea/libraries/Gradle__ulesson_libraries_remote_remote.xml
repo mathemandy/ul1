@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ulesson.libraries.remote.remote">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libraries/remote/build/libs/remote.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

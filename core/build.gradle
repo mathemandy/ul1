@@ -24,7 +24,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -38,8 +37,14 @@ android {
 
 dependencies {
 
+    def retrofit  = "2.9.0"
+    def moshi  = "1.9.2"
 
-    //HiILt
+    implementation(project(":libraries:domain"))
+    implementation(project(":libraries:data"))
+    implementation(project(":libraries:remote"))
+
+    //Hilt
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 
@@ -49,6 +54,16 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //network
+    implementation(platform ("com.squareup.okhttp3:okhttp-bom:4.9.0"))
+    implementation "com.squareup.okhttp3:okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi"
+
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -10,8 +10,10 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
+            app:elevation="0dp"
             android:background="@null"
-            app:liftOnScroll="true">
+            app:liftOnScroll="true"
+            >
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbar"
@@ -39,7 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+            >
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,10 +76,17 @@
                     android:layout_height="wrap_content"/>
 
                 <ViewFlipper
+                    android:id="@+id/subjectsFlipper"
                     app:layout_constraintStart_toEndOf="@id/guideline_start"
                     app:layout_constraintEnd_toStartOf="@id/guideline_end"
                     android:layout_width="0dp"
+                    android:minHeight="@dimen/_150sdp"
                     android:layout_height="match_parent">
+                    <ProgressBar
+                        android:layout_gravity="center"
+                        style="@style/progressbarStyle"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/subject_rv"

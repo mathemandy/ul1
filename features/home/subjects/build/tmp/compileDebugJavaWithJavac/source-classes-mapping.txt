@@ -1,13 +1,18 @@
-ng/mathemandy/home/databinding/FragmentSubjectsBinding.java
- ng.mathemandy.home.databinding.FragmentSubjectsBinding
 ng/mathemandy/home/ui/SubjectsAdapter_Factory.java
  ng.mathemandy.home.ui.SubjectsAdapter_Factory
+ng/mathemandy/model/mapper/ChapterModelMapper_Factory.java
+ ng.mathemandy.model.mapper.ChapterModelMapper_Factory
 ng/mathemandy/home/di/components/DaggerSubjectsComponent.java
  ng.mathemandy.home.di.components.DaggerSubjectsComponent
  ng.mathemandy.home.di.components.DaggerSubjectsComponent$1
  ng.mathemandy.home.di.components.DaggerSubjectsComponent$Factory
+ ng.mathemandy.home.di.components.DaggerSubjectsComponent$SwitchingProvider
 ng/mathemandy/home/BR.java
  ng.mathemandy.home.BR
+ng/mathemandy/model/mapper/SubjectModelMapper_Factory.java
+ ng.mathemandy.model.mapper.SubjectModelMapper_Factory
+ng/mathemandy/domain/usecase/FetchSubjects_Factory.java
+ ng.mathemandy.domain.usecase.FetchSubjects_Factory
 ng/mathemandy/home/DataBinderMapperImpl.java
  ng.mathemandy.home.DataBinderMapperImpl
  ng.mathemandy.home.DataBinderMapperImpl$InnerBrLookup
@@ -18,5 +23,12 @@ ng/mathemandy/home/ui/SubjectsFragment_MembersInjector.java
  ng.mathemandy.home.ui.SubjectsFragment_MembersInjector
 ng/mathemandy/home/DataBindingTriggerClass.java
  ng.mathemandy.home.DataBindingTriggerClass
+ng/mathemandy/home/databinding/FragmentSubjectsBinding.java
+ ng.mathemandy.home.databinding.FragmentSubjectsBinding
+ng/mathemandy/home/presentation/SubjectsViewModel_Factory.java
+ ng.mathemandy.home.presentation.SubjectsViewModel_Factory
+ng/mathemandy/model/mapper/LessonModelMapper_Factory.java
+ ng.mathemandy.model.mapper.LessonModelMapper_Factory
+ ng.mathemandy.model.mapper.LessonModelMapper_Factory$InstanceHolder
 ng/mathemandy/home/databinding/FragmentSubjectsBindingImpl.java
  ng.mathemandy.home.databinding.FragmentSubjectsBindingImpl

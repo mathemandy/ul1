@@ -28,7 +28,7 @@
             <ImageView
                 android:id="@+id/advert_track_image"
                 android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_75sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -7,7 +7,15 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/ulesson.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/ulesson.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/ulesson.features.iml" filepath="$PROJECT_DIR$/.idea/modules/features/ulesson.features.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/home/ulesson.features.home.iml" filepath="$PROJECT_DIR$/.idea/modules/features/home/ulesson.features.home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/home/lessondetail/ulesson.features.home.lessondetail.iml" filepath="$PROJECT_DIR$/.idea/modules/features/home/lessondetail/ulesson.features.home.lessondetail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/home/lessons/ulesson.features.home.lessons.iml" filepath="$PROJECT_DIR$/.idea/modules/features/home/lessons/ulesson.features.home.lessons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/home/model/ulesson.features.home.model.iml" filepath="$PROJECT_DIR$/.idea/modules/features/home/model/ulesson.features.home.model.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/home/subjects/ulesson.features.home.subjects.iml" filepath="$PROJECT_DIR$/.idea/modules/features/home/subjects/ulesson.features.home.subjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/features/videoPlayer/ulesson.features.videoPlayer.iml" filepath="$PROJECT_DIR$/.idea/modules/features/videoPlayer/ulesson.features.videoPlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/ulesson.libraries.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/ulesson.libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/data/ulesson.libraries.data.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/data/ulesson.libraries.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/domain/ulesson.libraries.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/domain/ulesson.libraries.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/remote/ulesson.libraries.remote.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/remote/ulesson.libraries.remote.iml" />
     </modules>
   </component>
 </project>

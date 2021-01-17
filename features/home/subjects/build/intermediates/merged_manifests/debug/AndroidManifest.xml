@@ -20,8 +20,6 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application
-        android:debuggable="true"
-        android:testOnly="true" />
+    <application />
 
 </manifest>

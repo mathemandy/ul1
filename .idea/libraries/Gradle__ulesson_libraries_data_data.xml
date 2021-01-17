@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ulesson.libraries.data.data">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libraries/data/build/libs/data.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

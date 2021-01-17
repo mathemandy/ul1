@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ng.mathemandy.core.imageLoader.ImageLoader
+import ng.mathemandy.domain.model.Subject
 import ng.mathemandy.home.R
-import ng.mathemandy.ulesson.base.Subjects
+import ng.mathemandy.model.SubjectModel
 import java.util.*
 import javax.inject.Inject
 
 
-typealias SubjectClickListener = (Subjects) -> Unit
+typealias SubjectClickListener = (SubjectModel) -> Unit
 
 
 class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) :
-    ListAdapter<Subjects, SubjectsAdapter.SubjectsViewHolder>(
+    ListAdapter<SubjectModel, SubjectsAdapter.SubjectsViewHolder>(
         SubjectsDC()
     ) {
 
@@ -40,7 +41,7 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
     }
 
 
-    fun swapData(data: List<Subjects>, layoutId: Int?) {
+    fun swapData(data: List<SubjectModel>, layoutId: Int?) {
         if (layoutId != null) {
             this.layoutId = layoutId
         }
@@ -64,7 +65,7 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
         }
 
 
-        fun bind(imageLoader: ImageLoader, clickListener: SubjectClickListener?, item: Subjects) =
+        fun bind(imageLoader: ImageLoader, clickListener: SubjectClickListener?, item: SubjectModel) =
             with(itemView) {
                 val rnd = Random()
                 val currentColor: Int = cardColor[rnd.nextInt(10)]
@@ -87,15 +88,15 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
     }
 
     interface Interaction {
-        fun itemClicked(item: Subjects)
+        fun itemClicked(item: Subject)
     }
 
-    private class SubjectsDC : DiffUtil.ItemCallback<Subjects>() {
+    private class SubjectsDC : DiffUtil.ItemCallback<SubjectModel>() {
 
-        override fun areContentsTheSame(oldItem: Subjects, newItem: Subjects): Boolean =
+        override fun areContentsTheSame(oldItem: SubjectModel, newItem: SubjectModel): Boolean =
             oldItem == newItem
 
-        override fun areItemsTheSame(oldItem: Subjects, newItem: Subjects): Boolean =
+        override fun areItemsTheSame(oldItem: SubjectModel, newItem: SubjectModel): Boolean =
             oldItem.id == newItem.id
 
     }

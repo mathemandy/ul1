@@ -11,8 +11,28 @@
         android:label="Subject Fragment"
         app:moduleName="subjects"
         tools:layout="@layout/fragment_subjects">
+        <action
+            android:id="@+id/open_lesson"
+            app:destination="@id/lessonFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </fragment>
 
+    <fragment
+        android:id="@+id/lessonFragment"
+        android:name="ng.mathemandy.lessons.ui.LessonsFragment"
+        android:label="Lesson Fragment"
+        app:moduleName="lessons"
+        tools:layout="@layout/fragment_lesson">
+
+        <argument
+            app:nullable="false"
+            android:name="subject"
+            app:argType="ng.mathemandy.model.SubjectModel" />
+    </fragment>
 
 
 </navigation>

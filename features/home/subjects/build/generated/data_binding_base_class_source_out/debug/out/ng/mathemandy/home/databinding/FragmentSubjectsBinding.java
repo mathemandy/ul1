@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -58,6 +59,9 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
   public final RecyclerView subjectRv;
 
   @NonNull
+  public final ViewFlipper subjectsFlipper;
+
+  @NonNull
   public final Toolbar toolbar;
 
   protected FragmentSubjectsBinding(Object _bindingComponent, View _root, int _localFieldCount,
@@ -65,7 +69,7 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
       Guideline guidelineEndRecent, Guideline guidelineStart, Guideline guidelineStartRecent,
       NestedScrollView parentScroll, TextView recentHeader, RecyclerView recentlyWatchedRv,
       ConstraintLayout recentlyWatchedVideos, ConstraintLayout subjectContainer,
-      RecyclerView subjectRv, Toolbar toolbar) {
+      RecyclerView subjectRv, ViewFlipper subjectsFlipper, Toolbar toolbar) {
     super(_bindingComponent, _root, _localFieldCount);
     this.appbar = appbar;
     this.collapsingToolbar = collapsingToolbar;
@@ -79,6 +83,7 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
     this.recentlyWatchedVideos = recentlyWatchedVideos;
     this.subjectContainer = subjectContainer;
     this.subjectRv = subjectRv;
+    this.subjectsFlipper = subjectsFlipper;
     this.toolbar = toolbar;
   }
 

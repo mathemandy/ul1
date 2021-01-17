@@ -22,12 +22,13 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
         sViewsWithIds.put(R.id.subjectContainer, 5);
         sViewsWithIds.put(R.id.guideline_start, 6);
         sViewsWithIds.put(R.id.guideline_end, 7);
-        sViewsWithIds.put(R.id.subject_rv, 8);
-        sViewsWithIds.put(R.id.recentlyWatchedVideos, 9);
-        sViewsWithIds.put(R.id.recentHeader, 10);
-        sViewsWithIds.put(R.id.guideline_start_recent, 11);
-        sViewsWithIds.put(R.id.guideline_end_recent, 12);
-        sViewsWithIds.put(R.id.recently_watched_rv, 13);
+        sViewsWithIds.put(R.id.subjectsFlipper, 8);
+        sViewsWithIds.put(R.id.subject_rv, 9);
+        sViewsWithIds.put(R.id.recentlyWatchedVideos, 10);
+        sViewsWithIds.put(R.id.recentHeader, 11);
+        sViewsWithIds.put(R.id.guideline_start_recent, 12);
+        sViewsWithIds.put(R.id.guideline_end_recent, 13);
+        sViewsWithIds.put(R.id.recently_watched_rv, 14);
     }
     // views
     @NonNull
@@ -38,22 +39,23 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentSubjectsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 14, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 15, sIncludes, sViewsWithIds));
     }
     private FragmentSubjectsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (com.google.android.material.appbar.AppBarLayout) bindings[1]
             , (com.google.android.material.appbar.CollapsingToolbarLayout) bindings[2]
             , (androidx.constraintlayout.widget.Guideline) bindings[7]
-            , (androidx.constraintlayout.widget.Guideline) bindings[12]
+            , (androidx.constraintlayout.widget.Guideline) bindings[13]
             , (androidx.constraintlayout.widget.Guideline) bindings[6]
-            , (androidx.constraintlayout.widget.Guideline) bindings[11]
+            , (androidx.constraintlayout.widget.Guideline) bindings[12]
             , (androidx.core.widget.NestedScrollView) bindings[4]
-            , (android.widget.TextView) bindings[10]
-            , (androidx.recyclerview.widget.RecyclerView) bindings[13]
-            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[9]
+            , (android.widget.TextView) bindings[11]
+            , (androidx.recyclerview.widget.RecyclerView) bindings[14]
+            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[10]
             , (androidx.constraintlayout.widget.ConstraintLayout) bindings[5]
-            , (androidx.recyclerview.widget.RecyclerView) bindings[8]
+            , (androidx.recyclerview.widget.RecyclerView) bindings[9]
+            , (android.widget.ViewFlipper) bindings[8]
             , (androidx.appcompat.widget.Toolbar) bindings[3]
             );
         this.mboundView0 = (androidx.coordinatorlayout.widget.CoordinatorLayout) bindings[0];

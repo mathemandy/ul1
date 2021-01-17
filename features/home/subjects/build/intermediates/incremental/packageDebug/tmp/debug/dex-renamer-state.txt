@@ -1,4 +1,4 @@
-#Sat Jan 16 14:15:00 WAT 2021
+#Sun Jan 17 13:34:44 WAT 2021
 base.0=/Users/o/Development/ulesson/features/home/subjects/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

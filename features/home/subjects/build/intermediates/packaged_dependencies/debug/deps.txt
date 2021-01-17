@@ -1,7 +1,5 @@
 :features:home:subjects::debug
 androidx.asynclayoutinflater:asynclayoutinflater
-androidx.constraintlayout:constraintlayout
-androidx.constraintlayout:constraintlayout-solver
 androidx.documentfile:documentfile
 androidx.legacy:legacy-support-core-ui
 androidx.legacy:legacy-support-core-utils
