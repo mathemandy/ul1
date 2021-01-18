@@ -6,7 +6,6 @@ INJECTED from /Users/o/Development/ulesson/features/home/subjects/src/main/Andro
 INJECTED from /Users/o/Development/ulesson/features/home/subjects/src/main/AndroidManifest.xml:2:1-14:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/e5622e75a495041efdc94aea4e907097/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/b999cfb6f9e1a03e5ede3de534b82621/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/6df793c80caed06ba86ac117d7aa3b15/media-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/d622956458638e5a7a39813698392fa2/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/4731304422e846a78162924e782fd9e1/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/b626c795fcc93b9deb24776ab36662aa/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -55,8 +54,6 @@ MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/o/.gradle/caches/tr
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/e5622e75a495041efdc94aea4e907097/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/b999cfb6f9e1a03e5ede3de534b82621/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/b999cfb6f9e1a03e5ede3de534b82621/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/6df793c80caed06ba86ac117d7aa3b15/media-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/6df793c80caed06ba86ac117d7aa3b15/media-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/d622956458638e5a7a39813698392fa2/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/d622956458638e5a7a39813698392fa2/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/o/.gradle/caches/transforms-2/files-2.1/4731304422e846a78162924e782fd9e1/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44

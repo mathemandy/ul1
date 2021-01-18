@@ -19,7 +19,10 @@ class NavigationDispatcherImpl @Inject constructor(
     }
 
     override fun watchLesson(model: LessonModel) {
-
+        navController.get().navigate(
+            R.id.lessonDetailFragment,
+            bundleOf(LESSON_ARG to model)
+        )
     }
 
     override fun goBack() {
@@ -28,6 +31,6 @@ class NavigationDispatcherImpl @Inject constructor(
 
     companion object {
         const val SUBJECT_ARG: String = "subject"
-
+        const val LESSON_ARG: String = "lesson"
     }
 }

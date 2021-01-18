@@ -22,10 +22,7 @@ android {
     }
 
     buildTypes {
-        staging {
-            debuggable true
-            matchingFallbacks = ['release', 'debug']
-        }
+
     }
 
     compileOptions {

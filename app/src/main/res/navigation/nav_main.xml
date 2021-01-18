@@ -28,10 +28,31 @@
         app:moduleName="lessons"
         tools:layout="@layout/fragment_lesson">
 
+        <action
+            android:id="@+id/open_lesson_detail"
+            app:destination="@id/lessonDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
         <argument
-            app:nullable="false"
             android:name="subject"
-            app:argType="ng.mathemandy.model.SubjectModel" />
+            app:argType="ng.mathemandy.model.SubjectModel"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/lessonDetailFragment"
+        android:name="ng.mathemandy.lessondetail.ui.LessonDetailFragment"
+        android:label="Lesson Details Fragment"
+        app:moduleName="lessondetail"
+        tools:layout="@layout/fragment_lesson_detail">
+
+        <argument
+            android:name="lesson"
+            app:argType="ng.mathemandy.model.LessonModel"
+            app:nullable="false" />
     </fragment>
 
 
