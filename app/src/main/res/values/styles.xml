@@ -37,4 +37,28 @@
         <item name="android:layout_width">@dimen/_12sdp</item>
         <item name="android:layout_height">@dimen/_12sdp</item>
     </style>
+
+
+    <style name="Ulesson.TextAppearance.CollapsingToolbar.Expanded" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="fontFamily">@font/mulish_bold</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="fontWeight">800</item>
+        <item name="android:textSize">@dimen/headline_text_size</item>
+    </style>
+
+    <style name="Ulesson.TextAppearance.CollapsingToolbar.Collapsed" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="fontFamily">@font/mulish_bold</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="fontWeight">700</item>
+        <item name="android:textSize">@dimen/sub_headline_text_size</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@color/primary_text_color</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/mulish_bold</item>
+        <item name="fontWeight">800</item>
+        <item name="android:textSize">@dimen/sub_headline_text_size</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+    </style>
 </resources>

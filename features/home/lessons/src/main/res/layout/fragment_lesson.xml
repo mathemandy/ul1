@@ -10,7 +10,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_16sdp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_100sdp"
             android:background="@null"
             app:elevation="0dp"
             app:liftOnScroll="true">
@@ -20,11 +20,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:elevation="0dp"
+                app:expandedTitleMarginTop="@dimen/_20sdp"
+                app:expandedTitleTextAppearance="@style/Ulesson.TextAppearance.CollapsingToolbar.Expanded"
+                app:collapsedTitleTextAppearance="@style/Ulesson.TextAppearance.CollapsingToolbar.Collapsed"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
+                    app:theme="@style/ToolbarTheme"
                     android:layout_marginStart="@dimen/_4sdp"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"

@@ -56,8 +56,12 @@ class LessonsFragment : Fragment() {
         setupRecyclerview()
         initdataListener()
         setupClickEvent()
+        setupToolBar()
     }
 
+    fun setupToolBar(){
+        binding.toolbar.title  =  subject.name
+    }
     private fun setupClickEvent(){
         binding.toolbar.setNavigationOnClickListener {
             navigator.get().goBack()
