@@ -15,7 +15,13 @@
         android:theme="@style/AppTheme" >
 
 
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:configChanges="orientation|keyboard|screenSize"
+            android:launchMode="singleTop"
+            android:name=".ui.MainActivity"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

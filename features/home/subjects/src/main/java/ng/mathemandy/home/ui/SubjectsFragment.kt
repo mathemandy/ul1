@@ -23,13 +23,14 @@ import ng.mathemandy.home.R
 import ng.mathemandy.home.databinding.FragmentSubjectsBinding
 import ng.mathemandy.home.di.inject
 import ng.mathemandy.home.presentation.SubjectsViewModel
+import ng.mathemandy.model.LessonModel
 import ng.mathemandy.model.SubjectModel
 import ng.mathemandy.ulesson.navigation.NavigationDispatcher
 import javax.inject.Inject
 import javax.inject.Provider
 
 
-class SubjectsFragment : Fragment(), SubjectsAdapter.Interaction, RecentVideosAdapter.Interaction {
+class SubjectsFragment : Fragment(){
 
     private lateinit var binding: FragmentSubjectsBinding
 
@@ -45,12 +46,8 @@ class SubjectsFragment : Fragment(), SubjectsAdapter.Interaction, RecentVideosAd
 
     private val viewModel: SubjectsViewModel by viewModels { factory }
 
-
-    private val recentVideosAdapter: RecentVideosAdapter by lazy {
-        RecentVideosAdapter(
-            this
-        )
-    }
+    @Inject
+    lateinit var recentVideosAdapter: RecentVideosAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -111,26 +108,21 @@ class SubjectsFragment : Fragment(), SubjectsAdapter.Interaction, RecentVideosAd
         }
 
         binding.recentlyWatchedRv.apply {
-            adapter = recentVideosAdapter
+            adapter = recentVideosAdapter.apply {
+                clickListener = navigator.get()::watchLesson
+            }
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
 
+
         recentVideosAdapter.swapData(MutableList(5) {
-            Lesson(
+            LessonModel(
                 it, "vvvffg",
                 "https://ulesson-staging.s3.eu-west-2.amazonaws.com/lesson_icons/icons/defaults/thumb/lesson.png",
                 "https:\\/\\/d2zjjckqo1cait.cloudfront.net\\/free_videos\\/70\\/original\\/stapler-bRXerd.MP4",
                 85, 85
             )
         }, null)
-
-    }
-
-    override fun itemClicked(item: Subject) {
-
-    }
-
-    override fun itemClicked(item: Lesson) {
 
     }
 }

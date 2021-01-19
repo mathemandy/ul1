@@ -10,6 +10,7 @@
         layout="@layout/exo_playback_controller_top"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toTopOf="@id/exo_player_controller_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/exo_player_controller_top">
@@ -83,7 +84,7 @@
         android:id="@id/exo_player_controller_bottom"
         layout="@layout/exo_playback_controller_bottom"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

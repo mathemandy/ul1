@@ -10,6 +10,7 @@ import ng.mathemandy.core.di.components.CoreComponent;
 import ng.mathemandy.core.factory.ViewModelFactory;
 import ng.mathemandy.domain.usecase.FetchSubjects;
 import ng.mathemandy.home.presentation.SubjectsViewModel;
+import ng.mathemandy.home.ui.RecentVideosAdapter;
 import ng.mathemandy.home.ui.SubjectsAdapter;
 import ng.mathemandy.home.ui.SubjectsFragment;
 import ng.mathemandy.home.ui.SubjectsFragment_MembersInjector;
@@ -86,6 +87,9 @@ public final class DaggerSubjectsComponent implements SubjectsComponent {
   private ViewModelFactory getViewModelFactory() {
     return new ViewModelFactory(getMapOfClassOfAndProviderOfViewModel());}
 
+  private RecentVideosAdapter getRecentVideosAdapter() {
+    return new RecentVideosAdapter(Preconditions.checkNotNull(coreComponent.getImageLoader(), "Cannot return null from a non-@Nullable component method"));}
+
   @Override
   public void inject(SubjectsFragment subjectFragment) {
     injectSubjectsFragment(subjectFragment);}
@@ -94,6 +98,7 @@ public final class DaggerSubjectsComponent implements SubjectsComponent {
     SubjectsFragment_MembersInjector.injectSubjectAdapter(instance, getSubjectsAdapter());
     SubjectsFragment_MembersInjector.injectNavigator(instance, getNavigationDispatcherProvider());
     SubjectsFragment_MembersInjector.injectFactory(instance, getViewModelFactory());
+    SubjectsFragment_MembersInjector.injectRecentVideosAdapter(instance, getRecentVideosAdapter());
     return instance;
   }
 

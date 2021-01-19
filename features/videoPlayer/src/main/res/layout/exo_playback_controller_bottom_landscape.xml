@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
+    android:layout_height="@dimen/_100sdp"
     android:background="@color/default_playback_background"
     android:paddingBottom="5dp"
     android:paddingTop="0dp">
@@ -29,30 +29,33 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="8dp"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@drawable/ic_bg_play"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exo_player_progress_landscape"
-        app:srcCompat="@drawable/ic_play_arrow_white_36dp">
+        app:srcCompat="@drawable/ic_video_play">
 
         <ImageButton
             android:id="@id/exo_player_play_landscape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/ic_bg_play"
+            android:foreground="?android:attr/selectableItemBackground"
             android:contentDescription="@string/exo_controls_play_description"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_play_arrow_white_36dp" />
+            app:srcCompat="@drawable/ic_video_play" />
 
         <ImageButton
             android:id="@id/exo_player_pause_landscape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/ic_bg_play"
+            android:foreground="?android:attr/selectableItemBackground"
             android:contentDescription="@string/exo_controls_pause_description"
             android:scaleType="centerInside"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_pause_white_36dp" />
+            app:srcCompat="@drawable/ic_player_pause" />
     </FrameLayout>
 
 
@@ -102,6 +105,7 @@
         android:gravity="center"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
+        app:fontFamily="@font/mulish_bold"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/exo_player_exit_fullscreen"
@@ -118,6 +122,7 @@
         android:gravity="center_vertical"
         android:padding="3dp"
         android:text="00:00"
+        app:fontFamily="@font/mulish_bold"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/exo_player_play_wrapper_landscape"
         app:layout_constraintEnd_toStartOf="@id/exo_player_controller_bottom_custom_view_landscape"

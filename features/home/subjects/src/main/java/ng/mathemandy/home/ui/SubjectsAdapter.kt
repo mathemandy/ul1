@@ -87,9 +87,6 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
             }
     }
 
-    interface Interaction {
-        fun itemClicked(item: Subject)
-    }
 
     private class SubjectsDC : DiffUtil.ItemCallback<SubjectModel>() {
 

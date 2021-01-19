@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":libraries:domain"))
     implementation(project(":libraries:remote"))
     implementation(project(":features:home:model"))
+    implementation(project(":features:videoPlayer"))
 
 
     //HiLt
@@ -71,6 +72,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-rc01"
     //moshi
     implementation "com.squareup.moshi:moshi-kotlin:$moshi"
+
+    //fragment ext
+
+    implementation "com.google.android.exoplayer:exoplayer:2.12.1"
+    implementation "com.google.android.exoplayer:exoplayer-ui:2.12.1"
 
 
     api 'com.intuit.sdp:sdp-android:1.0.6'

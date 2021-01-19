@@ -22,25 +22,31 @@ public final class SubjectsFragment_MembersInjector implements MembersInjector<S
 
   private final Provider<ViewModelProvider.Factory> factoryProvider;
 
+  private final Provider<RecentVideosAdapter> recentVideosAdapterProvider;
+
   public SubjectsFragment_MembersInjector(Provider<SubjectsAdapter> subjectAdapterProvider,
       Provider<NavigationDispatcher> navigatorProvider,
-      Provider<ViewModelProvider.Factory> factoryProvider) {
+      Provider<ViewModelProvider.Factory> factoryProvider,
+      Provider<RecentVideosAdapter> recentVideosAdapterProvider) {
     this.subjectAdapterProvider = subjectAdapterProvider;
     this.navigatorProvider = navigatorProvider;
     this.factoryProvider = factoryProvider;
+    this.recentVideosAdapterProvider = recentVideosAdapterProvider;
   }
 
   public static MembersInjector<SubjectsFragment> create(
       Provider<SubjectsAdapter> subjectAdapterProvider,
       Provider<NavigationDispatcher> navigatorProvider,
-      Provider<ViewModelProvider.Factory> factoryProvider) {
-    return new SubjectsFragment_MembersInjector(subjectAdapterProvider, navigatorProvider, factoryProvider);}
+      Provider<ViewModelProvider.Factory> factoryProvider,
+      Provider<RecentVideosAdapter> recentVideosAdapterProvider) {
+    return new SubjectsFragment_MembersInjector(subjectAdapterProvider, navigatorProvider, factoryProvider, recentVideosAdapterProvider);}
 
   @Override
   public void injectMembers(SubjectsFragment instance) {
     injectSubjectAdapter(instance, subjectAdapterProvider.get());
     injectNavigator(instance, navigatorProvider);
     injectFactory(instance, factoryProvider.get());
+    injectRecentVideosAdapter(instance, recentVideosAdapterProvider.get());
   }
 
   @InjectedFieldSignature("ng.mathemandy.home.ui.SubjectsFragment.subjectAdapter")
@@ -58,5 +64,11 @@ public final class SubjectsFragment_MembersInjector implements MembersInjector<S
   @InjectedFieldSignature("ng.mathemandy.home.ui.SubjectsFragment.factory")
   public static void injectFactory(SubjectsFragment instance, ViewModelProvider.Factory factory) {
     instance.factory = factory;
+  }
+
+  @InjectedFieldSignature("ng.mathemandy.home.ui.SubjectsFragment.recentVideosAdapter")
+  public static void injectRecentVideosAdapter(SubjectsFragment instance,
+      RecentVideosAdapter recentVideosAdapter) {
+    instance.recentVideosAdapter = recentVideosAdapter;
   }
 }

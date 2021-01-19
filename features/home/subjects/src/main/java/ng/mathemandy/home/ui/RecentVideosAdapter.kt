@@ -9,29 +9,37 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ng.mathemandy.domain.model.Lesson
+import ng.mathemandy.core.imageLoader.ImageLoader
 import ng.mathemandy.home.R
+import ng.mathemandy.model.LessonModel
 import java.util.*
+import javax.inject.Inject
 
-class RecentVideosAdapter(private val interaction: Interaction? = null) :
-    ListAdapter<Lesson, RecentVideosAdapter.RecentVideosViewHolder>(
+
+typealias RecentVideoClickListener = (LessonModel) -> Unit
+
+
+class RecentVideosAdapter @Inject constructor(private val imageLoader: ImageLoader) :
+    ListAdapter<LessonModel, RecentVideosAdapter.RecentVideosViewHolder>(
         RecentVideosDC()
     ) {
 
 
     private var layoutId: Int = R.layout.recent_videos
 
+    var clickListener: RecentVideoClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = RecentVideosViewHolder(
         LayoutInflater.from(parent.context)
-            .inflate(layoutId, parent, false), interaction
+            .inflate(layoutId, parent, false)
     )
 
     override fun onBindViewHolder(holder: RecentVideosViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(imageLoader, clickListener, getItem(position))
     }
 
 
-    fun swapData(data: List<Lesson>, layoutId: Int?) {
+    fun swapData(data: List<LessonModel>, layoutId: Int?) {
         if (layoutId != null) {
             this.layoutId = layoutId
         }
@@ -39,9 +47,8 @@ class RecentVideosAdapter(private val interaction: Interaction? = null) :
     }
 
     inner class RecentVideosViewHolder(
-        itemView: View,
-        private val interaction: Interaction?
-    ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
 
         val cardColor = MutableList(10) {
             when (it) {
@@ -55,20 +62,8 @@ class RecentVideosAdapter(private val interaction: Interaction? = null) :
             }
         }
 
-        init {
-            itemView.setOnClickListener(this)
-        }
 
-        override fun onClick(v: View?) {
-
-            if (adapterPosition == RecyclerView.NO_POSITION) return
-
-            val clicked = getItem(adapterPosition)
-
-            interaction?.itemClicked(clicked)
-        }
-
-        fun bind(item: Lesson) = with(itemView) {
+        fun bind(imageLoader: ImageLoader, clickListener: RecentVideoClickListener?, item: LessonModel) = with(itemView) {
             val rnd = Random()
            val currentColor: Int = cardColor[rnd.nextInt(10)]
             val imageView  = itemView.findViewById<ImageView>(R.id.advert_track_image)
@@ -84,21 +79,21 @@ class RecentVideosAdapter(private val interaction: Interaction? = null) :
             subjectTitle.setTextColor(currentColor)
 
             val uri  = item.icon.replaceFirst("\\*$", "")
-//            Glide.with(itemView).load(uri).into(imageView)
+            imageLoader.loadImage(imageView, uri)
+
+            itemView.setOnClickListener {
+                clickListener?.invoke(item)
+            }
 
         }
     }
 
-    interface Interaction {
-        fun itemClicked(item: Lesson)
-    }
+    private class RecentVideosDC : DiffUtil.ItemCallback<LessonModel>() {
 
-    private class RecentVideosDC : DiffUtil.ItemCallback<Lesson>() {
-
-        override fun areContentsTheSame(oldItem: Lesson, newItem: Lesson): Boolean =
+        override fun areContentsTheSame(oldItem: LessonModel, newItem: LessonModel): Boolean =
             oldItem == newItem
 
-        override fun areItemsTheSame(oldItem: Lesson, newItem: Lesson): Boolean =
+        override fun areItemsTheSame(oldItem: LessonModel, newItem: LessonModel): Boolean =
             oldItem.id == newItem.id
 
     }

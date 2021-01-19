@@ -303,8 +303,7 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
                 fastForwardMs = a.getInt(R.styleable.ExoVideoPlaybackControlView_fastforward_increment,
                         fastForwardMs)
                 showTimeoutMs = a.getInt(R.styleable.ExoVideoPlaybackControlView_show_timeout, showTimeoutMs)
-                controllerLayoutId = a.getResourceId(R.styleable.ExoVideoPlaybackControlView_controller_layout_id,
-                        controllerLayoutId)
+                controllerLayoutId = a.getResourceId(R.styleable.ExoVideoPlaybackControlView_controller_layout_id, controllerLayoutId)
                 repeatToggleModes = getRepeatToggleModes(a, repeatToggleModes)
                 showShuffleButton = a.getBoolean(R.styleable.ExoVideoPlaybackControlView_show_shuffle_button,
                         showShuffleButton)
@@ -1590,11 +1589,11 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         /**
          * The default fast forward increment, in milliseconds.
          */
-        val DEFAULT_FAST_FORWARD_MS = 15000
+        val DEFAULT_FAST_FORWARD_MS = 10000
         /**
          * The default rewind increment, in milliseconds.
          */
-        val DEFAULT_REWIND_MS = 5000
+        val DEFAULT_REWIND_MS = 10000
         /**
          * The default show timeout, in milliseconds.
          */

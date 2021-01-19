@@ -4,19 +4,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:id="@+id/videoContainer"
+        android:background="@drawable/ic_video_player_bg"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/toolbar"
-            android:layout_width="@dimen/_37sdp"
-            android:layout_height="@dimen/_37sdp"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="@dimen/_13sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
@@ -47,8 +39,22 @@
             android:layout_width="0dp"
             app:resize_mode="fit"
             android:id="@+id/video_view"
-            app:use_controller="false"
             android:layout_height="0dp"/>
+
+
+        <ImageButton
+            android:layout_marginTop="@dimen/_16sdp"
+            android:id="@+id/toolbar"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="@dimen/_13sdp"
+            app:tint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/lessonTitle"
@@ -72,13 +78,19 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
             android:layout_width="0dp"
             android:maxLines="1"
-            android:backgroundTintMode="add"
             android:text="The number line representation"
             android:textColor="@color/primary_text_color_fifty"
             android:ellipsize="end"
             android:textSize="@dimen/_14ssp"
             app:fontFamily="@font/mulish_regular"
             app:layout_constraintTop_toBottomOf="@id/lessonTitle"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/other_view"
+            app:constraint_referenced_ids="lessonTitle, lessonSubtitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
 

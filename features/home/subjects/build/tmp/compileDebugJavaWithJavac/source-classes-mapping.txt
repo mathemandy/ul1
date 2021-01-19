@@ -30,5 +30,7 @@ ng/mathemandy/home/presentation/SubjectsViewModel_Factory.java
 ng/mathemandy/model/mapper/LessonModelMapper_Factory.java
  ng.mathemandy.model.mapper.LessonModelMapper_Factory
  ng.mathemandy.model.mapper.LessonModelMapper_Factory$InstanceHolder
+ng/mathemandy/home/ui/RecentVideosAdapter_Factory.java
+ ng.mathemandy.home.ui.RecentVideosAdapter_Factory
 ng/mathemandy/home/databinding/FragmentSubjectsBindingImpl.java
  ng.mathemandy.home.databinding.FragmentSubjectsBindingImpl
