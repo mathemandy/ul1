@@ -38,6 +38,9 @@ This abstraction enables me to separate concern of the project into separate Mod
 
   
 #### Data
+- This layer holds the repository class. Its holds the logic that combines the data from the remote layer and the local layer. 
+- A inline function  `networkBoundResource` is responsible for handling the logic of offline first, then remote. 
+- The function emits a Loading signal first, the tries to get data from local and emits it to the UI. After that it tries to fetch new content from the remote source based on the result in ``shouldFetch` block.
+- This data received from the network is stored directly to the db and emitted back to the UI again. 
 
- 
 
