@@ -16,7 +16,8 @@ To build this project, you require:
 - Android Studio 4.2 beta or higher
 - Gradle 6.5
 
-
+- ##NB: 
+  The Icon field in the object was used throughout the app for the images which seemed different from what was on the design.  
 
 - The App is broken down into four main modules 
 * app
@@ -53,9 +54,6 @@ This abstraction enables me to separate concern of the project into separate Mod
 - the appropriate Ui is shown depending on the state of the data. 
 - Navigation Component is used to open the next Screen  - Lessons and the object is passed as a bundle. 
 - Two Recyclerviews were used in this  Screen. 
-- ##NB: 
-  The Icon field was also used here for the images which seemed different from what was on the design.  
-
 
 
 #### Feature/home/Lessons 
@@ -64,4 +62,19 @@ This abstraction enables me to separate concern of the project into separate Mod
 - `Groupie` library is used in this screen to render the sections based on the objects that was provided. 
 - A viewmodel was used here, since its always guaranteed that we get data as a bundle from the previous screen. 
 - But this is open for improvement as time was a constraint for the task. 
+- One Recyclerview was used in this screen and the library handled how smaller components were added on the screen. 
+- Coordinate Layout was used as parent layout to give the toolbar animation on this screen and is subject to change based on preference. 
+- The Lesson Object is passed to the LessonDetail screen as a bundle using Navigation Component. 
+
+
+#### Feature/home/LessonDetail 
+- This is a Dynamic Feature Module that holds only a fragment (LessonDetailFragment).
+- Data to this Screen is gotten as a bundle from Lessons Fragment. 
+- The Component for the Player was a library which i added as a module to be able to customize correctly.  
+- I chose to save the `Lesson` data to the database on oncreate, so that happens only once except if the app is left and android decides to kill the fragment. 
+- I added support for landscape for the video. 
+- The user has to switch on auto rotation on the device and then switch to fullscreen  by rotating the device. 
+- Video Playback does not stop while switching which is a big plus. 
+- More improvement can be done on this. 
+
 
