@@ -53,3 +53,10 @@ This abstraction enables me to separate concern of the project into separate Mod
 - the appropriate Ui is shown depending on the state of the data. 
 - Navigation Component is used to open the next Screen  - Lessons and the object is passed as a bundle. 
 
+#### Feature/home/Lessons 
+- This is a Dynamic Feature Module that holds only a fragment (SubjectFragment). 
+- Data to this Screen is gotten as a bundle from the previous screen. 
+- `Groupie` library is used in this screen to render the sections based on the objects that was provided. 
+- A viewmodel was used here, since its always guaranteed that we get data as a bundle from the previous screen. 
+- But this is open for improvement as time was a constraint for the task. 
+
