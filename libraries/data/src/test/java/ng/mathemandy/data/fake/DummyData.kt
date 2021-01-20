@@ -36,7 +36,6 @@ internal object DummyData {
             lessons = listOf(lessonEntity1)
         )
 
-
     val lessonEntity: LessonEntity
         get() = LessonEntity(
             id = 1168,
@@ -70,7 +69,7 @@ internal object DummyData {
         icon = "https:\\/\\/ulesson-staging.s3.eu-west-2.amazonaws.com\\/subject_icons\\/icons\\/defaults\\/thumb\\/subject.png",
         chapters = listOf(chapter1),
 
-        )
+    )
 
     val chapter: Chapter
         get() = Chapter(

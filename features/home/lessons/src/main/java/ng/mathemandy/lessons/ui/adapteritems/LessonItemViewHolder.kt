@@ -9,7 +9,6 @@ import ng.mathemandy.lessons.R
 import ng.mathemandy.lessons.databinding.ItemSectionCustomRowLayoutBinding
 import ng.mathemandy.model.ChapterModel
 
-
 class LessonItemViewHolder(
     private val chapter: ChapterModel,
     private val sectionAdapter: GroupAdapter<GroupieViewHolder>
@@ -25,7 +24,6 @@ class LessonItemViewHolder(
             text = chapter.name
         }
     }
-
 
     override fun getId(): Long {
         return chapter.id.toLong()
@@ -45,7 +43,4 @@ class LessonItemViewHolder(
         result *= 31 * sectionAdapter.hashCode()
         return result
     }
-
-
 }
-

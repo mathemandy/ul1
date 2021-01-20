@@ -11,18 +11,21 @@ class FakeLocalAndSubjectLocal : LessonAndSubjectLocal {
     private var subJectcache = listOf(DummyData.subjectEntity, DummyData.subjectEntity2)
     private var lessonCache = mutableListOf<LessonEntity>()
 
-
     override suspend fun saveRecentlyWatched(lesson: LessonEntity) {
         lessonCache.add(lesson)
-
     }
 
     override fun getRecentlyWatchedLessons(limit: Int): Flow<List<LessonAndSubjectEntity>> {
         return flow {
             val lessonAndSubject = mutableListOf<LessonAndSubjectEntity>()
             lessonCache.forEach { lessonEntity ->
-                lessonAndSubject.add(LessonAndSubjectEntity(subJectcache.filter { it.id == lessonEntity.subject_id }
-                    .first(), lessonEntity))
+                lessonAndSubject.add(
+                    LessonAndSubjectEntity(
+                        subJectcache.filter { it.id == lessonEntity.subject_id }
+                            .first(),
+                        lessonEntity
+                    )
+                )
             }
             emit(lessonAndSubject)
         }
@@ -31,6 +34,5 @@ class FakeLocalAndSubjectLocal : LessonAndSubjectLocal {
     override suspend fun clearRecentlyWatchedLesson() {
         lessonCache = mutableListOf()
         subJectcache = mutableListOf()
-
     }
 }

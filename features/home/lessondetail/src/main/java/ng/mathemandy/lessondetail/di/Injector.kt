@@ -6,7 +6,6 @@ import ng.mathemandy.lessondetail.di.component.DaggerLessonDetailComponent
 import ng.mathemandy.lessondetail.ui.LessonDetailFragment
 import ng.mathemandy.ulesson.di.AppComponent
 
-
 fun inject(fragment: LessonDetailFragment) {
     DaggerLessonDetailComponent
         .factory()

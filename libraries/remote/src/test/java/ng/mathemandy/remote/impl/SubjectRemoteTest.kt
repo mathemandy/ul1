@@ -21,7 +21,6 @@ class SubjectRemoteTest {
     private lateinit var subjectRemote: SubjectsRemote
     private val subjectRemoteMapper = SubjectRemoteMapper(ChapterRemoteMapper(LessonRemoteMapper()))
 
-
     @Before
     fun setup() {
         mockWebServer = MockWebServer()
@@ -30,13 +29,11 @@ class SubjectRemoteTest {
         subjectRemote = SubjectRemoteImpl(makeTestApiService(mockWebServer), subjectRemoteMapper)
     }
 
-
     @Test
     fun `check that calling fetchSubjects returns subjects list`() = runBlocking {
         val subjects: List<SubjectEntity> = subjectRemote.fetchSubjects()
         assertThat(subjects).isNotEmpty()
     }
-
 
     @Test
     fun `check that calling fetchSubjects returns correct data`() = runBlocking {
@@ -50,8 +47,6 @@ class SubjectRemoteTest {
         assertThat(REQUEST_PATH).isEqualTo(mockWebServer.takeRequest().path)
     }
 
-
-
     @Test
     fun `check that calling fetchRecipes makes a GET request`() = runBlocking {
         subjectRemote.fetchSubjects()
@@ -62,6 +57,4 @@ class SubjectRemoteTest {
     fun tearDown() {
         mockWebServer.shutdown()
     }
-
-
 }

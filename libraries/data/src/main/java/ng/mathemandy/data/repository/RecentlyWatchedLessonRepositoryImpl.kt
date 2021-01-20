@@ -11,13 +11,13 @@ import ng.mathemandy.domain.model.LessonAndSubject
 import ng.mathemandy.domain.repository.RecentlyWatchedLessonRepository
 import javax.inject.Inject
 
-class RecentlyWatchedLessonRepositoryImpl  @Inject constructor(
-    private  val lessonAndSubjectLocal: LessonAndSubjectLocal,
+class RecentlyWatchedLessonRepositoryImpl @Inject constructor(
+    private val lessonAndSubjectLocal: LessonAndSubjectLocal,
     private val lessonEntityMapper: LessonEntityMapper,
     private val lessonAndSubjectEntityMapper: LessonAndSubjectEntityMapper
-)  : RecentlyWatchedLessonRepository  {
+) : RecentlyWatchedLessonRepository {
 
-    override fun fetchRecentlyWatchedLessons(limit : Int): Flow<List<LessonAndSubject>> {
+    override fun fetchRecentlyWatchedLessons(limit: Int): Flow<List<LessonAndSubject>> {
         return lessonAndSubjectLocal.getRecentlyWatchedLessons(limit).flatMapConcat {
             flow {
                 emit(lessonAndSubjectEntityMapper.mapFromEntityList(it))
@@ -26,8 +26,9 @@ class RecentlyWatchedLessonRepositoryImpl  @Inject constructor(
     }
 
     override fun saveRecentlyWatchedLesson(lesson: Lesson): Flow<Unit> {
-       return flow {
-            emit(  lessonAndSubjectLocal.saveRecentlyWatched(lessonEntityMapper.mapToEntity(lesson))
+        return flow {
+            emit(
+                lessonAndSubjectLocal.saveRecentlyWatched(lessonEntityMapper.mapToEntity(lesson))
             )
         }
     }

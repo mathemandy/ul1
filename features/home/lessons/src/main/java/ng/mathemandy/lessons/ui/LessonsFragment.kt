@@ -33,14 +33,12 @@ class LessonsFragment : Fragment() {
     private lateinit var groupLayoutManager: GridLayoutManager
 
     private val async = OnAsyncUpdateListener {
-
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         inject(this)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,14 +57,13 @@ class LessonsFragment : Fragment() {
         setupToolBar()
     }
 
-    fun setupToolBar(){
-        binding.toolbar.title  =  subject.name
+    fun setupToolBar() {
+        binding.toolbar.title = subject.name
     }
-    private fun setupClickEvent(){
+    private fun setupClickEvent() {
         binding.toolbar.setNavigationOnClickListener {
             navigator.get().goBack()
         }
-
     }
 
     private fun setupRecyclerview() {
@@ -85,6 +82,5 @@ class LessonsFragment : Fragment() {
             lessonClickListener = navigator.get()::watchLesson
             setItems(subject.chapters, async)
         }
-
     }
 }

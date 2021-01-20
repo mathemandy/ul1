@@ -9,7 +9,8 @@ import javax.inject.Inject
 
 class LessonAndSubjectModelMapper @Inject constructor(
     private val subjectModelMapper: SubjectModelMapper,
-    private val lessonModelMapper: LessonModelMapper) :
+    private val lessonModelMapper: LessonModelMapper
+) :
     ModelMapper<LessonAndSubjectModel, LessonAndSubject> {
 
     override fun mapToModel(domain: LessonAndSubject): LessonAndSubjectModel {

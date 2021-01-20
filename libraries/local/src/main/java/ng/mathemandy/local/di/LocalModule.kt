@@ -26,7 +26,6 @@ interface LocalModule {
     @get:[Binds Singleton]
     val LessonAndSubjectLocalImpl.bindLASLocal: LessonAndSubjectLocal
 
-
     companion object {
         @[Provides Singleton]
         fun provideDatabase(@ApplicationContext context: Context): UlessonDatabase {
@@ -42,8 +41,5 @@ interface LocalModule {
         fun provideRecentLessonDao(uLessonDatabase: UlessonDatabase): LessonAndSubjectDao {
             return uLessonDatabase.lessonAndSubjectDao
         }
-
-
     }
-
 }

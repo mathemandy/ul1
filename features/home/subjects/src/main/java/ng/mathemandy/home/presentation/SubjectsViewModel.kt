@@ -14,8 +14,8 @@ import ng.mathemandy.domain.resource.RepositoryResource
 import ng.mathemandy.domain.resource.Status
 import ng.mathemandy.domain.usecase.FetchRecentlyWatchedLessons
 import ng.mathemandy.domain.usecase.FetchSubjects
-import ng.mathemandy.model.SubjectModel
 import ng.mathemandy.model.LessonAndSubjectModel
+import ng.mathemandy.model.SubjectModel
 import ng.mathemandy.model.mapper.LessonAndSubjectModelMapper
 import ng.mathemandy.model.mapper.SubjectModelMapper
 import javax.inject.Inject
@@ -24,25 +24,20 @@ class SubjectsViewModel @Inject constructor(
     private val subjectModelMapper: SubjectModelMapper,
     private val fetchSubjectsUseCase: FetchSubjects,
     private val recentlyWatchedLessonsUseCase: FetchRecentlyWatchedLessons,
-    private val lessonAndSubjectModel : LessonAndSubjectModelMapper
+    private val lessonAndSubjectModel: LessonAndSubjectModelMapper
 ) : ViewModel() {
 
-
-    private  var DEFAULT_LIMIT =  3
+    private var DEFAULT_LIMIT = 3
 
     private val _subjectsLiveData = MutableLiveData<AppResource<List<SubjectModel>>>()
     val subjectsLiveData = _subjectsLiveData as LiveData<AppResource<List<SubjectModel>>>
-
 
     private val _recentTopicsLiveData = MutableLiveData<AppResource<List<LessonAndSubjectModel>>>()
     val recentTopicsLiveData =
         _recentTopicsLiveData as LiveData<AppResource<List<LessonAndSubjectModel>>>
 
-
-    private  val _viewMoreLiveData  = MutableLiveData<Boolean>(false)
-    val viewMoreLiveData  =  _viewMoreLiveData as  LiveData<Boolean>
-
-
+    private val _viewMoreLiveData = MutableLiveData<Boolean>(false)
+    val viewMoreLiveData = _viewMoreLiveData as LiveData<Boolean>
 
     private val subjects: Flow<RepositoryResource<List<Subject>>>
         get() = fetchSubjectsUseCase()
@@ -53,7 +48,6 @@ class SubjectsViewModel @Inject constructor(
     init {
         getSubjects()
         getRecentlyWatchedLessons()
-
     }
 
     private fun getSubjects() {
@@ -79,14 +73,13 @@ class SubjectsViewModel @Inject constructor(
                                 AppResource.offline(
                                     subjectModelMapper.mapToModelList(
                                         it.data!!
-                                    ), it.cause?.errorMessage
+                                    ),
+                                    it.cause?.errorMessage
                                 )
                             )
                         } else {
                             _subjectsLiveData.postValue(AppResource.failed(it.cause?.errorMessage))
-
                         }
-
                     }
                     Status.LOADING -> {
                         if (it.data?.isNotEmpty() == true) {
@@ -110,10 +103,8 @@ class SubjectsViewModel @Inject constructor(
         viewModelScope.launch {
             recentlyWatchedLessons.onStart {
                 _recentTopicsLiveData.postValue(AppResource.loading())
-
             }.catch { cause: Throwable ->
                 _recentTopicsLiveData.postValue(AppResource.failed(cause.errorMessage))
-
             }.collect {
 
                 if (it.isEmpty()) {
@@ -127,10 +118,10 @@ class SubjectsViewModel @Inject constructor(
         }
     }
 
-    fun viewMoreClicked(showingViewMore  : Boolean){
-        DEFAULT_LIMIT = if(showingViewMore){
+    fun viewMoreClicked(showingViewMore: Boolean) {
+        DEFAULT_LIMIT = if (showingViewMore) {
             3
-        }else {
+        } else {
             -1
         }
 

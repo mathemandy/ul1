@@ -8,11 +8,10 @@ import ng.mathemandy.domain.executor.PostExecutionThread
 import ng.mathemandy.domain.repository.RecentlyWatchedLessonRepository
 import ng.mathemandy.domain.repository.SubjectRepository
 
-
 @EntryPoint
 @InstallIn(ApplicationComponent::class)
 interface CoreComponent {
-    val imageLoader : ImageLoader
+    val imageLoader: ImageLoader
     val subjectRepository: SubjectRepository
     val recentlyWatchedLessonRepository: RecentlyWatchedLessonRepository
     val postExecutionThread: PostExecutionThread

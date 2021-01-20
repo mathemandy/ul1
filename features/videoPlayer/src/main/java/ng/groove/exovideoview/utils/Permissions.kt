@@ -15,7 +15,6 @@ object Permissions {
     val PERMISSION_STORAGE_TAG = 255
     val PERMISSION_SETTINGS_TAG = 254
 
-
     val PERMISSION_SYSTEM_RINGTONE = 42
     val PERMISSION_SYSTEM_BRIGHTNESS = 43
     val PERMISSION_SYSTEM_DRAW_OVRLAYS = 44
@@ -35,14 +34,17 @@ object Permissions {
     }
 
     fun canReadStorage(context: Context): Boolean {
-        return !AndroidUtil.isMarshMallowOrLater() || ContextCompat.checkSelfPermission(context,
-                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        return !AndroidUtil.isMarshMallowOrLater() || ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
-
     private fun requestStoragePermission(activity: Activity) {
-        ActivityCompat.requestPermissions(activity,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                PERMISSION_STORAGE_TAG)
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            PERMISSION_STORAGE_TAG
+        )
     }
 }

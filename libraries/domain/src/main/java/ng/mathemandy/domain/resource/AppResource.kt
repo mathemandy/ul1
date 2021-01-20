@@ -5,7 +5,7 @@ class AppResource <out D> constructor(
     val message: String? = null,
     val data: D? = null,
     val field: String? = null
-){
+) {
     companion object {
         @JvmStatic
         fun <D> success(
@@ -71,13 +71,12 @@ class AppResource <out D> constructor(
         )
 
         @JvmStatic
-        fun <D> empty(msg : String? = null): AppResource<D> = AppResource(
+        fun <D> empty(msg: String? = null): AppResource<D> = AppResource(
             status = AppStatus.EMPTY,
             data = null,
             message = msg
         )
     }
-
 }
 
 enum class AppStatus {

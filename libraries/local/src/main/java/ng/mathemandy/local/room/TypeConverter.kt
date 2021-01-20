@@ -1,6 +1,5 @@
 package ng.mathemandy.local.room
 
-
 import androidx.room.TypeConverter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -29,13 +28,11 @@ class TypeConverter {
         moshi.adapter<List<ChapterLocalModel>>(type)
     }
 
-
     private val subjectModelAdapter: JsonAdapter<SubjectLocalModel> by lazy {
         val type: ParameterizedType =
             Types.newParameterizedType(List::class.java, SubjectLocalModel::class.java)
         moshi.adapter<SubjectLocalModel>(type)
     }
-
 
     private val lessonAndSubjectAdapter: JsonAdapter<List<LessonAndSubject>> by lazy {
         val type: ParameterizedType =
@@ -43,35 +40,33 @@ class TypeConverter {
         moshi.adapter<List<LessonAndSubject>>(type)
     }
 
-
     @TypeConverter
-    fun toLessonAndSubjectList(value : String) : List<LessonAndSubject>? {
+    fun toLessonAndSubjectList(value: String): List<LessonAndSubject>? {
         return lessonAndSubjectAdapter.fromJson(value)
     }
 
     @TypeConverter
-    fun fromLessonAndSubjectList(value: List<LessonAndSubject>): String  {
+    fun fromLessonAndSubjectList(value: List<LessonAndSubject>): String {
         return lessonAndSubjectAdapter.toJson(value)
     }
 
-
     @TypeConverter
-    fun toChapterList(value : String) : List<ChapterLocalModel>? {
+    fun toChapterList(value: String): List<ChapterLocalModel>? {
         return chapterModelAdapter.fromJson(value)
     }
 
     @TypeConverter
-    fun fromChapterList(value: List<ChapterLocalModel>): String  {
+    fun fromChapterList(value: List<ChapterLocalModel>): String {
         return chapterModelAdapter.toJson(value)
     }
 
     @TypeConverter
-    fun toSubjectList(value : String) : SubjectLocalModel? {
+    fun toSubjectList(value: String): SubjectLocalModel? {
         return subjectModelAdapter.fromJson(value)
     }
 
     @TypeConverter
-    fun fromSubjectList(value: SubjectLocalModel): String  {
+    fun fromSubjectList(value: SubjectLocalModel): String {
         return subjectModelAdapter.toJson(value)
     }
 

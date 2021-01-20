@@ -14,14 +14,16 @@ import ng.mathemandy.domain.model.Lesson
 import ng.mathemandy.domain.model.LessonAndSubject
 import org.junit.Test
 
-class RecentylyWatchedLessonRepositoryImplTest () {
+class RecentylyWatchedLessonRepositoryImplTest() {
 
-    private  val lessonEntityMapper  = LessonEntityMapper()
-    private  val subjectEntityMapper  = SubjectEntityMapper(ChapterEntityMapper(lessonEntityMapper))
+    private val lessonEntityMapper = LessonEntityMapper()
+    private val subjectEntityMapper = SubjectEntityMapper(ChapterEntityMapper(lessonEntityMapper))
 
-    private val recentlyWatchedLessonRepository  = RecentlyWatchedLessonRepositoryImpl(
-        FakeLocalAndSubjectLocal() ,lessonEntityMapper,  LessonAndSubjectEntityMapper(lessonEntityMapper, subjectEntityMapper) )
-
+    private val recentlyWatchedLessonRepository = RecentlyWatchedLessonRepositoryImpl(
+        FakeLocalAndSubjectLocal(),
+        lessonEntityMapper,
+        LessonAndSubjectEntityMapper(lessonEntityMapper, subjectEntityMapper)
+    )
 
     @Test
     fun saveLesson() = runBlockingTest {
@@ -54,6 +56,4 @@ class RecentylyWatchedLessonRepositoryImplTest () {
         val result: List<LessonAndSubject> = recentlyWatchedLessonRepository.fetchRecentlyWatchedLessons(-1).first()
         assertThat(allItems).containsExactlyElementsIn(result).inOrder()
     }
-
-
 }

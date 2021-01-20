@@ -6,7 +6,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ng.mathemandy.local.BuildConfig
-import ng.mathemandy.local.entity.LessonAndSubject
 import ng.mathemandy.local.entity.LessonLocalModel
 import ng.mathemandy.local.entity.SubjectLocalModel
 

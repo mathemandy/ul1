@@ -5,7 +5,7 @@ import ng.mathemandy.local.entity.ChapterLocalModel
 import ng.mathemandy.local.mapper.base.LocalModelMapper
 import javax.inject.Inject
 
-class ChapterLocalMapper @Inject constructor(private val localMapper: LessonLocalMapper) : LocalModelMapper<ChapterLocalModel, ChapterEntity>{
+class ChapterLocalMapper @Inject constructor(private val localMapper: LessonLocalMapper) : LocalModelMapper<ChapterLocalModel, ChapterEntity> {
     override fun mapToModel(entity: ChapterEntity): ChapterLocalModel {
         return ChapterLocalModel(
             entity.id,

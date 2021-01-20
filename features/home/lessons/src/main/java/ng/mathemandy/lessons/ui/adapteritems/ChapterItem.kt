@@ -8,7 +8,6 @@ import ng.mathemandy.model.LessonModel
 
 typealias LessonClickListener = (LessonModel) -> Unit
 
-
 class LessonCardItem constructor(
     private val lessonModel: LessonModel,
     private val imageLoader: ImageLoader,
@@ -23,11 +22,9 @@ class LessonCardItem constructor(
         viewBinding.root.setOnClickListener {
             lessonClickListener?.invoke(lessonModel)
         }
-
     }
 
     override fun getId(): Long {
         return lessonModel.id.hashCode().toLong()
     }
-
 }

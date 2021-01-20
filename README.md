@@ -48,7 +48,7 @@ This abstraction enables me to separate concern of the project into separate Mod
 - This layer holds interfaces  of implementation classes, models  and  useCases.
 
 #### Feature/home/subjects 
-- This is a Dynamic Feature Module that holds only a fragment. 
+- This is a Dynamic Feature Module that holds only a fragment (SubjectFragment). 
 - The data that shows on the UI is gotten from the cache. 
 - It shows data based on statistic - EMPTY , LOADING , OFFLINE,  LOADING_WIH_DATA and FAILED
 - the appropriate Ui is shown depending on the state of the data. 
@@ -57,8 +57,8 @@ This abstraction enables me to separate concern of the project into separate Mod
 
 
 #### Feature/home/Lessons 
-- This is a Dynamic Feature Module that holds only a fragment (SubjectFragment). 
-- Data to this Screen is gotten as a bundle from the previous screen. 
+- This is a Dynamic Feature Module that holds only a fragment (LessonsFragment). 
+- Data to this Screen is gotten as a bundle from the SubjectFragment. 
 - `Groupie` library is used in this screen to render the sections based on the objects that was provided. 
 - A viewmodel was used here, since its always guaranteed that we get data as a bundle from the previous screen. 
 - But this is open for improvement as time was a constraint for the task. 

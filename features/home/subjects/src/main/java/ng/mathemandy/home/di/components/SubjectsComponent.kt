@@ -11,8 +11,10 @@ import ng.mathemandy.ulesson.di.AppComponent
 @FeatureScope
 @Component(
     dependencies = [CoreComponent::class, AppComponent::class],
-    modules = [FactoryModule::class,
-        ViewModelModule::class]
+    modules = [
+        FactoryModule::class,
+        ViewModelModule::class
+    ]
 )
 interface SubjectsComponent {
 

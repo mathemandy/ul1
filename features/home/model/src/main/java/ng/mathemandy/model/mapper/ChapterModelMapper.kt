@@ -22,6 +22,5 @@ class ChapterModelMapper @Inject constructor(private val lessonModelMapper: Less
             model.name,
             lessonModelMapper.mapToDomainList(model.lessons)
         )
-
     }
 }

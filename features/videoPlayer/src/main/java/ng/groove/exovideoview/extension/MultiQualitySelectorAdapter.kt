@@ -7,15 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ng.groove.exovideoview.R
 import ng.groove.exovideoview.media.ExoMediaSource
-
-
 import java.util.ArrayList
 
-
 class MultiQualitySelectorAdapter(
-        qualities: List<ExoMediaSource.Quality>,
-        private val navigator: MultiQualitySelectorNavigator)
-    : RecyclerView.Adapter<MultiQualitySelectorAdapter.MultiQualitySelectorViewHolder>() {
+    qualities: List<ExoMediaSource.Quality>,
+    private val navigator: MultiQualitySelectorNavigator
+) :
+    RecyclerView.Adapter<MultiQualitySelectorAdapter.MultiQualitySelectorViewHolder>() {
 
     private val qualities = ArrayList<ExoMediaSource.Quality>()
 
@@ -27,11 +25,9 @@ class MultiQualitySelectorAdapter(
         fun onQualitySelected(quality: ExoMediaSource.Quality): Boolean
     }
 
-
     interface VisibilityCallback {
         fun shouldChangeVisibility(visibility: Int)
     }
-
 
     init {
         this.qualities.addAll(qualities)
@@ -53,7 +49,5 @@ class MultiQualitySelectorAdapter(
 
     inner class MultiQualitySelectorViewHolder(var rootView: View) : RecyclerView.ViewHolder(rootView) {
         var qualityDes: TextView = rootView.findViewById(R.id.qualityDes)
-
     }
-
 }

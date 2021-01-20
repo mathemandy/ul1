@@ -26,6 +26,4 @@ class FakeSubjectLocalImpl : SubjectsLocal {
     override suspend fun clearSubjects() {
         cache = mutableListOf()
     }
-
-
 }

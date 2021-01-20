@@ -1,6 +1,5 @@
 package ng.groove.exovideoview.ui
 
-
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
@@ -76,7 +75,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
      */
     var overlayFrameLayout: FrameLayout?
 
-
     private var player: SimpleExoPlayer? = null
     private var useController: Boolean = false
     private var useArtwork: Boolean = false
@@ -94,7 +92,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
      */
     var controllerAutoShow: Boolean = false
     private var controllerHideOnTouch: Boolean = false
-
 
     private var pausedFromPlayer = false
 
@@ -118,13 +115,11 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             if (controller != null) {
                 controller!!.isPortrait = portrait
             }
-
         }
 
     init {
 
         audioManager = context.applicationContext.getSystemService(AUDIO_SERVICE) as AudioManager
-
 
         if (isInEditMode) {
             contentFrame = null
@@ -156,26 +151,42 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
         var controllerHideOnTouch = true
         var controllerAutoShow = true
         if (attrs != null) {
-            val a = context.theme.obtainStyledAttributes(attrs,
-                    R.styleable.ExoVideoView, 0, 0)
+            val a = context.theme.obtainStyledAttributes(
+                attrs,
+                R.styleable.ExoVideoView,
+                0,
+                0
+            )
             try {
                 shutterColorSet = a.hasValue(R.styleable.ExoVideoView_shutter_background_color)
-                shutterColor = a.getColor(R.styleable.ExoVideoView_shutter_background_color,
-                        shutterColor)
-                playerLayoutId = a.getResourceId(R.styleable.ExoVideoView_player_layout_id,
-                        playerLayoutId)
+                shutterColor = a.getColor(
+                    R.styleable.ExoVideoView_shutter_background_color,
+                    shutterColor
+                )
+                playerLayoutId = a.getResourceId(
+                    R.styleable.ExoVideoView_player_layout_id,
+                    playerLayoutId
+                )
                 useArtwork = a.getBoolean(R.styleable.ExoVideoView_use_artwork, useArtwork)
-                defaultArtworkId = a.getResourceId(R.styleable.ExoVideoView_default_artwork,
-                        defaultArtworkId)
+                defaultArtworkId = a.getResourceId(
+                    R.styleable.ExoVideoView_default_artwork,
+                    defaultArtworkId
+                )
                 useController = a.getBoolean(R.styleable.ExoVideoView_use_controller, useController)
                 surfaceType = a.getInt(R.styleable.ExoVideoView_surface_type, surfaceType)
                 resizeMode = a.getInt(R.styleable.ExoVideoView_resize_mode, resizeMode)
-                controllerShowTimeoutMs = a.getInt(R.styleable.ExoVideoView_show_timeout,
-                        controllerShowTimeoutMs)
-                controllerHideOnTouch = a.getBoolean(R.styleable.ExoVideoView_hide_on_touch,
-                        controllerHideOnTouch)
-                controllerAutoShow = a.getBoolean(R.styleable.ExoVideoView_auto_show,
-                        controllerAutoShow)
+                controllerShowTimeoutMs = a.getInt(
+                    R.styleable.ExoVideoView_show_timeout,
+                    controllerShowTimeoutMs
+                )
+                controllerHideOnTouch = a.getBoolean(
+                    R.styleable.ExoVideoView_hide_on_touch,
+                    controllerHideOnTouch
+                )
+                controllerAutoShow = a.getBoolean(
+                    R.styleable.ExoVideoView_auto_show,
+                    controllerAutoShow
+                )
                 enableMultiQuality = a.getBoolean(R.styleable.ExoVideoView_enable_multi_quality, true)
 
                 controllerBackgroundId = a.getResourceId(R.styleable.ExoVideoView_controller_background, 0)
@@ -203,7 +214,9 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
         // Create a surface view and insert it into the content frame, if there is one.
         if (contentFrame != null && surfaceType != SURFACE_TYPE_NONE) {
             val params = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
             videoSurfaceView = if (surfaceType == SURFACE_TYPE_TEXTURE_VIEW)
                 TextureView(context)
             else
@@ -232,7 +245,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             subtitleView!!.setUserDefaultTextSize()
         }
 
-
         // Playback control view.
         val customController = findViewById<ExoVideoPlaybackControlView>(R.id.exo_player_controller)
         val controllerPlaceholder = findViewById<View>(R.id.exo_player_controller_placeholder)
@@ -255,7 +267,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
         this.controllerAutoShow = controllerAutoShow
         this.useController = useController && controller != null
 
-
         if (useController && controller != null) {
             controller?.show()
             controller?.setVideoViewAccessor(this)
@@ -275,12 +286,10 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
                     audioManager!!.abandonAudioFocus(this)
                     // Stop playback
                     stop()
-
                 }
             }
         }
     }
-
 
     /**
      * Returns the player currently set on this view, or null if no player is set.
@@ -455,8 +464,10 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             overlayFrameLayout!!.requestFocus()
             return super.dispatchKeyEvent(event)
         }
-        val isDpadWhenControlHidden = (isDpadKey(event.keyCode) && useController
-                && !controller!!.isVisible)
+        val isDpadWhenControlHidden = (
+            isDpadKey(event.keyCode) && useController &&
+                !controller!!.isVisible
+            )
         maybeShowController(true)
         return isDpadWhenControlHidden || dispatchMediaKeyEvent(event) || super.dispatchKeyEvent(event)
     }
@@ -617,7 +628,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             if (v != null && overlayFrameLayout!!.visibility == View.VISIBLE) {
                 return true
             }
-
         }
 
         if (!controller!!.isVisible) {
@@ -658,8 +668,10 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             return true
         }
         val playbackState = player!!.playbackState
-        return controllerAutoShow && (playbackState == Player.STATE_IDLE
-                || playbackState == Player.STATE_ENDED || !player!!.playWhenReady)
+        return controllerAutoShow && (
+            playbackState == Player.STATE_IDLE ||
+                playbackState == Player.STATE_ENDED || !player!!.playWhenReady
+            )
     }
 
     private fun showController(showIndefinitely: Boolean) {
@@ -745,11 +757,13 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
 
     @SuppressLint("InlinedApi")
     private fun isDpadKey(keyCode: Int): Boolean {
-        return (keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_DPAD_UP_RIGHT
-                || keyCode == KeyEvent.KEYCODE_DPAD_RIGHT || keyCode == KeyEvent.KEYCODE_DPAD_DOWN_RIGHT
-                || keyCode == KeyEvent.KEYCODE_DPAD_DOWN || keyCode == KeyEvent.KEYCODE_DPAD_DOWN_LEFT
-                || keyCode == KeyEvent.KEYCODE_DPAD_LEFT || keyCode == KeyEvent.KEYCODE_DPAD_UP_LEFT
-                || keyCode == KeyEvent.KEYCODE_DPAD_CENTER)
+        return (
+            keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_DPAD_UP_RIGHT ||
+                keyCode == KeyEvent.KEYCODE_DPAD_RIGHT || keyCode == KeyEvent.KEYCODE_DPAD_DOWN_RIGHT ||
+                keyCode == KeyEvent.KEYCODE_DPAD_DOWN || keyCode == KeyEvent.KEYCODE_DPAD_DOWN_LEFT ||
+                keyCode == KeyEvent.KEYCODE_DPAD_LEFT || keyCode == KeyEvent.KEYCODE_DPAD_UP_LEFT ||
+                keyCode == KeyEvent.KEYCODE_DPAD_CENTER
+            )
     }
 
     fun play(mediaSource: ExoMediaSource, where: Long) {
@@ -766,7 +780,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
         if (enableMultiQuality && mediaSource.qualities().isNotEmpty()) {
             addMultiQualitySelector(mediaSource)
         }
-
 
         playInternal(mediaSource, playWhenReady, where, creator)
     }
@@ -798,7 +811,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             player!!.seekTo(if (lastPlayedPosition - 500 < 0) 0 else lastPlayedPosition - 500)
             player!!.playWhenReady = true
         }
-
     }
 
     fun stop() {
@@ -834,7 +846,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
         setPlayer(internalPlayer)
     }
 
-
     fun releasePlayer() {
         if (player != null) {
             player!!.release()
@@ -843,31 +854,29 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
         player = null
     }
 
-
     private fun requestAudioFocus(): Boolean {
 
         if (audioManager == null) {
             return true
         }
         // Request audio focus for playback
-        val result = audioManager.requestAudioFocus(afChangeListener,
-                // Use the music stream.
-                AudioManager.STREAM_MUSIC,
-                // Request permanent focus.
-                AudioManager.AUDIOFOCUS_GAIN)
+        val result = audioManager.requestAudioFocus(
+            afChangeListener,
+            // Use the music stream.
+            AudioManager.STREAM_MUSIC,
+            // Request permanent focus.
+            AudioManager.AUDIOFOCUS_GAIN
+        )
         return result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
     }
-
 
     fun setBackListener(backListener: ExoVideoPlaybackControlView.ExoClickListener) {
         controller?.setBackListener(backListener)
     }
 
-
     fun setOrientationListener(orientationListener: ExoVideoPlaybackControlView.OrientationListener) {
         controller?.setOrientationListener(orientationListener)
     }
-
 
     fun setMultiQualitySelectorNavigator(navigator: MultiQualitySelectorAdapter.MultiQualitySelectorNavigator) {
         this.multiQualitySelectorNavigator = navigator
@@ -881,7 +890,6 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
         controller?.setControllerDisplayMode(displayMode)
     }
 
-
     private fun addMultiQualitySelector(mediaSource: ExoMediaSource) {
         for (quality in mediaSource.qualities()) {
             if (TextUtils.equals(quality.uri.toString(), mediaSource.uri().toString())) {
@@ -890,45 +898,46 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             }
         }
 
-        controller?.setVisibilityCallback(object : MultiQualitySelectorAdapter.VisibilityCallback {
-            override fun shouldChangeVisibility(visibility: Int) {
-                overlayFrameLayout!!.visibility = visibility
-                if (visibility !== View.VISIBLE) {
-                    controller?.show()
+        controller?.setVisibilityCallback(
+            object : MultiQualitySelectorAdapter.VisibilityCallback {
+                override fun shouldChangeVisibility(visibility: Int) {
+                    overlayFrameLayout!!.visibility = visibility
+                    if (visibility !== View.VISIBLE) {
+                        controller?.show()
+                    }
                 }
             }
-        })
+        )
 
-        val adapter = MultiQualitySelectorAdapter(mediaSource.qualities(), object : MultiQualitySelectorAdapter.MultiQualitySelectorNavigator {
+        val adapter = MultiQualitySelectorAdapter(
+            mediaSource.qualities(),
+            object : MultiQualitySelectorAdapter.MultiQualitySelectorNavigator {
 
-            override fun onQualitySelected(quality: ExoMediaSource.Quality): Boolean {
-                if (player == null) {
+                override fun onQualitySelected(quality: ExoMediaSource.Quality): Boolean {
+                    if (player == null) {
+                        return false
+                    }
+
+                    if (multiQualitySelectorNavigator == null || !multiQualitySelectorNavigator!!.onQualitySelected(quality)) {
+                        val current = player!!.currentPosition
+                        val playWhenReady = player!!.playWhenReady
+                        val creator = MediaSourceCreator(context.applicationContext)
+                        val tmp = creator.buildMediaSource(quality.uri, null)
+                        player!!.playWhenReady = requestAudioFocus() && playWhenReady
+                        player!!.prepare(tmp)
+                        player!!.seekTo(current)
+                    }
+
+                    if (controller != null) {
+                        controller!!.updateQualityDes(quality.displayName)
+                    }
+
+                    overlayFrameLayout!!.visibility = View.GONE
+
                     return false
                 }
-
-
-                if (multiQualitySelectorNavigator == null || !multiQualitySelectorNavigator!!.onQualitySelected(quality)) {
-                    val current = player!!.currentPosition
-                    val playWhenReady = player!!.playWhenReady
-                    val creator = MediaSourceCreator(context.applicationContext)
-                    val tmp = creator.buildMediaSource(quality.uri, null)
-                    player!!.playWhenReady = requestAudioFocus() && playWhenReady
-                    player!!.prepare(tmp)
-                    player!!.seekTo(current)
-                }
-
-                if (controller != null) {
-                    controller!!.updateQualityDes(quality.displayName)
-                }
-
-                overlayFrameLayout!!.visibility = View.GONE
-
-                return false
-
             }
-
-        })
-
+        )
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
@@ -969,8 +978,12 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
 
         // SimpleExoPlayer.VideoInfoListener implementation
 
-        override fun onVideoSizeChanged(width: Int, height: Int, unappliedRotationDegrees: Int,
-                                        pixelWidthHeightRatio: Float) {
+        override fun onVideoSizeChanged(
+            width: Int,
+            height: Int,
+            unappliedRotationDegrees: Int,
+            pixelWidthHeightRatio: Float
+        ) {
             if (contentFrame != null) {
                 val aspectRatio = if (height == 0) 1F else (width * pixelWidthHeightRatio / height)
                 contentFrame!!.setAspectRatio(aspectRatio)
@@ -1002,11 +1015,9 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
                 hideController()
             }
         }
-
     }
 
     companion object {
-
 
         private val SURFACE_TYPE_NONE = 0
         private val SURFACE_TYPE_SURFACE_VIEW = 1
@@ -1019,8 +1030,11 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
          * @param oldPlayerView The old view to detach from the player.
          * @param newPlayerView The new view to attach to the player.
          */
-        fun switchTargetView(player: SimpleExoPlayer,
-                             oldPlayerView: ExoVideoView?, newPlayerView: ExoVideoView?) {
+        fun switchTargetView(
+            player: SimpleExoPlayer,
+            oldPlayerView: ExoVideoView?,
+            newPlayerView: ExoVideoView?
+        ) {
             if (oldPlayerView === newPlayerView) {
                 return
             }
@@ -1047,5 +1061,4 @@ class ExoVideoView @JvmOverloads constructor(context: Context, attrs: AttributeS
             aspectRatioFrame.resizeMode = resizeMode
         }
     }
-
 }
