@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:layout_marginStart="@dimen/_2sdp"
+        app:cardCornerRadius="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_width="wrap_content"
+        android:clipToPadding="true"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="@dimen/_16sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:background="@color/colorAccent"
+                android:id="@+id/lessonImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/lessonTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="@dimen/_95sdp"
+                android:layout_height="@dimen/_93sdp"/>
+
+            <TextView
+
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textAlignment="center"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/primary_text_color"
+                app:fontFamily="@font/mulish_bold"
+                tools:text="Living and Non-living"
+                android:maxLines="2"
+                android:minLines="2"
+                android:ellipsize="end"
+                android:id="@+id/lessonTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lessonImage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

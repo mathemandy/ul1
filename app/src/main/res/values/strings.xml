@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ulesson</string>
+    <string name="empty_state_icon">empty state icon</string>
+    <string name="retry">Retry</string>
+    <string name="title_home">Home</string>
+    <string name="title_lessons">Lessons</string>
+    <string name="title_lessondetail">LessonDetails</string>
 </resources>

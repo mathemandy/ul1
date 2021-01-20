@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    def okHttp  = "4.7.2"
+    def retrofit  = "2.9.0"
+    def moshi  = "1.9.2"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation(project(":libraries:data"))
+
+    implementation(platform ("com.squareup.okhttp3:okhttp-bom:4.9.0"))
+    implementation "com.squareup.okhttp3:okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi"
+
+    implementation  "javax.inject:javax.inject:1"
+
+
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
+
+}

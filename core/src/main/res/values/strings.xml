@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="please_connect_and_try_again">Please connect to the internet \nand try again</string>
+    <string name="you_seem_ofline">You seems to be offline</string>
+    <string name="empty_layout_title">Oops! This looks empty</string>
+</resources>

@@ -1,2 +1,12 @@
+include ':libraries:local'
+include ':features:home:lessondetail'
+include ':features:home:model'
+include ':features:home:lessons'
+include ':libraries:remote'
+include ':libraries:domain'
+include ':libraries:data'
+include ':core'
+include ':features:home:subjects'
+include ':features:videoPlayer'
 include ':app'
 rootProject.name = "ulesson"

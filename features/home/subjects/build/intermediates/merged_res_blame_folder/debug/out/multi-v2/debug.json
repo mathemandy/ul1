@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/o/Development/ulesson/features/home/subjects/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/o/Development/ulesson/features/home/subjects/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "69",
+                        "endOffsets": "81"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "69",
+                        "endOffsets": "120"
+                    }
+                }
+            ]
+        }
+    ]
+}
