@@ -90,7 +90,8 @@ This abstraction enables me to separate concern of the project into separate Mod
 
 #### Linting 
 - Linting was setup for the app Module using https://github.com/jlleitschuh/ktlint-gradle
--  I still need to configure it for other Modules 
+- Configured in all modules.
+
 
 #### Hilt 
 - Hilt was chosen as the DI choice for this project with time being a factor as it has easy setup with less code and easy to use. 
