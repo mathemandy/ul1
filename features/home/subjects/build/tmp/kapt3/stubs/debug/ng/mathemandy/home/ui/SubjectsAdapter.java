@@ -41,15 +41,8 @@ public final class SubjectsAdapter extends androidx.recyclerview.widget.ListAdap
         super(null);
     }
     
-    @kotlin.Metadata(mv = {1, 4, 1}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000:\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010!\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0086\u0004\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J2\u0010\n\u001a\u00020\u000b2\u0006\u0010\f\u001a\u00020\r2\u001a\u0010\u000e\u001a\u0016\u0012\u0004\u0012\u00020\u0010\u0012\u0004\u0012\u00020\u000b\u0018\u00010\u000fj\u0004\u0018\u0001`\u00112\u0006\u0010\u0012\u001a\u00020\u0010R\u0017\u0010\u0005\u001a\b\u0012\u0004\u0012\u00020\u00070\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b\b\u0010\t\u00a8\u0006\u0013"}, d2 = {"Lng/mathemandy/home/ui/SubjectsAdapter$SubjectsViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "itemView", "Landroid/view/View;", "(Lng/mathemandy/home/ui/SubjectsAdapter;Landroid/view/View;)V", "cardColor", "", "", "getCardColor", "()Ljava/util/List;", "bind", "", "imageLoader", "Lng/mathemandy/core/imageLoader/ImageLoader;", "clickListener", "Lkotlin/Function1;", "Lng/mathemandy/model/SubjectModel;", "Lng/mathemandy/home/ui/SubjectClickListener;", "item", "subjects_debug"})
+    @kotlin.Metadata(mv = {1, 4, 1}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000.\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0086\u0004\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J2\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\b2\u001a\u0010\t\u001a\u0016\u0012\u0004\u0012\u00020\u000b\u0012\u0004\u0012\u00020\u0006\u0018\u00010\nj\u0004\u0018\u0001`\f2\u0006\u0010\r\u001a\u00020\u000b\u00a8\u0006\u000e"}, d2 = {"Lng/mathemandy/home/ui/SubjectsAdapter$SubjectsViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "itemView", "Landroid/view/View;", "(Lng/mathemandy/home/ui/SubjectsAdapter;Landroid/view/View;)V", "bind", "", "imageLoader", "Lng/mathemandy/core/imageLoader/ImageLoader;", "clickListener", "Lkotlin/Function1;", "Lng/mathemandy/model/SubjectModel;", "Lng/mathemandy/home/ui/SubjectClickListener;", "item", "subjects_debug"})
     public final class SubjectsViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
-        @org.jetbrains.annotations.NotNull()
-        private final java.util.List<java.lang.Integer> cardColor = null;
-        
-        @org.jetbrains.annotations.NotNull()
-        public final java.util.List<java.lang.Integer> getCardColor() {
-            return null;
-        }
         
         public final void bind(@org.jetbrains.annotations.NotNull()
         ng.mathemandy.core.imageLoader.ImageLoader imageLoader, @org.jetbrains.annotations.Nullable()

@@ -1,19 +1,21 @@
 package ng.mathemandy.home.ui
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ng.mathemandy.core.imageLoader.ImageLoader
 import ng.mathemandy.home.R
-import ng.mathemandy.model.LessonModel
 import ng.mathemandy.model.LessonAndSubjectModel
-import java.util.*
+import ng.mathemandy.model.LessonModel
+import ng.mathemandy.ulesson.ui.getSubjectColor
 import javax.inject.Inject
 
 
@@ -51,33 +53,24 @@ class RecentVideosAdapter @Inject constructor(private val imageLoader: ImageLoad
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
-        val cardColor = MutableList(10) {
-            when (it) {
-                0, 5-> Color.parseColor("#2E2E2E")
-                1 , 6-> Color.parseColor("#0C5E35")
-                2 ,7-> Color.parseColor("#7A0C4C")
-                3, 8 -> Color.parseColor("#00326F")
-                4, 9 -> Color.parseColor("#7A4F01")
-                else -> Color.parseColor("#004883")
 
-            }
-        }
 
 
         fun bind(imageLoader: ImageLoader, clickListener: RecentVideoClickListener?, item: LessonAndSubjectModel) = with(itemView) {
-            val rnd = Random()
-           val currentColor: Int = cardColor[rnd.nextInt(10)]
-            val imageView  = itemView.findViewById<ImageView>(R.id.advert_track_image)
-            imageView.setBackgroundColor(currentColor)
-            val lessonTitle  =
-                itemView.findViewById<TextView>(R.id.lesson_title)
-
-            val subjectTitle  =
-                itemView.findViewById<TextView>(R.id.subject_title)
-
             val lesson = item.lesson
             val subject = item.subject
 
+            val currentColor: Int = getSubjectColor(subject.id)
+
+            val imageView  = itemView.findViewById<ImageView>(R.id.advert_track_image)
+            val bg  = itemView.findViewById<ConstraintLayout>(R.id.imageView_bg)
+            val playBtn  = itemView.findViewById<ImageButton>(R.id.play_btn)
+            playBtn.setColorFilter(currentColor)
+            bg.setBackgroundColor(currentColor)
+
+
+            val lessonTitle  = itemView.findViewById<TextView>(R.id.lesson_title)
+            val subjectTitle  = itemView.findViewById<TextView>(R.id.subject_title)
             lessonTitle.text =  lesson?.name
             subjectTitle.text =  subject.name
             subjectTitle.setTextColor(currentColor)

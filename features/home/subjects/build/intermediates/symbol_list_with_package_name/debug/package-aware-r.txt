@@ -14,6 +14,7 @@ id guideline_end
 id guideline_end_recent
 id guideline_start
 id guideline_start_recent
+id imageView_bg
 id image_card
 id lesson_title
 id parent_scroll

@@ -23,10 +23,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:id="@+id/imageView_bg"
+            tools:background="@color/primary_text_color"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:src="@drawable/mask_group"
+                android:alpha="0.7"
+                tools:src="@drawable/mask_group"
                 android:id="@+id/advert_track_image"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_80sdp"
@@ -34,8 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@color/colorAccent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:layout_height="wrap_content"
@@ -81,7 +83,7 @@
         app:layout_constraintStart_toStartOf="@id/subject_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:fontFamily="@font/mulish_bold"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_15ssp"
         android:textAllCaps="false"
         android:maxLines="2"
         android:textColor="@color/primary_text_color"

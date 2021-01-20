@@ -14,6 +14,7 @@ import ng.mathemandy.core.imageLoader.ImageLoader
 import ng.mathemandy.domain.model.Subject
 import ng.mathemandy.home.R
 import ng.mathemandy.model.SubjectModel
+import ng.mathemandy.ulesson.ui.getSubjectColor
 import java.util.*
 import javax.inject.Inject
 
@@ -52,23 +53,11 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
-        val cardColor = MutableList(10) {
-            when (it) {
-                0, 5 -> Color.parseColor("#EA7052")
-                1, 6 -> Color.parseColor("#F9AD6D")
-                2, 7 -> Color.parseColor("#68BC98")
-                3, 8 -> Color.parseColor("#7B7FDA")
-                4, 9 -> Color.parseColor("#506AAC")
-                else -> Color.parseColor("#313848")
-
-            }
-        }
-
 
         fun bind(imageLoader: ImageLoader, clickListener: SubjectClickListener?, item: SubjectModel) =
             with(itemView) {
-                val rnd = Random()
-                val currentColor: Int = cardColor[rnd.nextInt(10)]
+
+                val currentColor: Int = getSubjectColor(item.id)
                 val imageView = itemView.findViewById<ImageView>(R.id.advert_track_image)
                 val progress = itemView.findViewById<ProgressBar>(R.id.progress)
                 imageView.setBackgroundColor(currentColor)
