@@ -15,6 +15,11 @@ interface LessonAndSubjectDao {
     fun getLessonAndOwner(): Flow<List<LessonAndSubject>>
 
 
+    @Transaction
+    @Query("SELECT * FROM Lessons ORDER BY lastUpdated DESC LIMIT :limit")
+    fun getLessonAndOwner(limit: Int): Flow<List<LessonAndSubject>>
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLesson(lessonLocalModel: LessonLocalModel)
 

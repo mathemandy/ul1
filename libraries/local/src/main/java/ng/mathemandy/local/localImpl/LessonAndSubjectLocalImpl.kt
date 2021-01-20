@@ -24,12 +24,20 @@ class LessonAndSubjectLocalImpl  @Inject constructor(
 
     }
 
-    override fun getRecentlyWatchedLessons(): Flow<List<LessonAndSubjectEntity>> {
-       return lessonAndSubjectDao.getLessonAndOwner().flatMapConcat {
-           flow {
-               emit(lessonAndSubjectLocalMapper.mapToEntityList(it))
-           }
-       }
+    override fun getRecentlyWatchedLessons(limit: Int): Flow<List<LessonAndSubjectEntity>> {
+        if (limit < 0 ){
+            return lessonAndSubjectDao.getLessonAndOwner().flatMapConcat {
+                flow {
+                    emit(lessonAndSubjectLocalMapper.mapToEntityList(it))
+                }
+            }
+        }else{
+            return lessonAndSubjectDao.getLessonAndOwner(limit).flatMapConcat {
+                flow {
+                    emit(lessonAndSubjectLocalMapper.mapToEntityList(it))
+                }
+            }
+        }
     }
 
     override suspend fun clearRecentlyWatchedLesson() {

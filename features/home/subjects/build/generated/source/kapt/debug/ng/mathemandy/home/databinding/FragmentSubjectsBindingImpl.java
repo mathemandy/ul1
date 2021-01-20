@@ -13,18 +13,18 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
     @Nullable
     private static final android.util.SparseIntArray sViewsWithIds;
     static {
-        sIncludes = new androidx.databinding.ViewDataBinding.IncludedLayouts(20);
+        sIncludes = new androidx.databinding.ViewDataBinding.IncludedLayouts(22);
         sIncludes.setIncludes(1, 
-            new String[] {"error_content_layout"},
-            new int[] {5},
-            new int[] {ng.mathemandy.core.R.layout.error_content_layout});
+            new String[] {"empty_content_layout", "error_content_layout"},
+            new int[] {3, 4},
+            new int[] {ng.mathemandy.core.R.layout.empty_content_layout,
+                ng.mathemandy.core.R.layout.error_content_layout});
         sIncludes.setIncludes(2, 
-            new String[] {"error_content_layout"},
-            new int[] {6},
-            new int[] {ng.mathemandy.core.R.layout.error_content_layout});
+            new String[] {"empty_content_layout", "error_content_layout"},
+            new int[] {5, 6},
+            new int[] {ng.mathemandy.core.R.layout.empty_content_layout,
+                ng.mathemandy.core.R.layout.error_content_layout});
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.empty_content_Layout_home, 3);
-        sViewsWithIds.put(R.id.empty_content_Layout_recentlyWatched, 4);
         sViewsWithIds.put(R.id.appbar, 7);
         sViewsWithIds.put(R.id.collapsingToolbar, 8);
         sViewsWithIds.put(R.id.toolbar, 9);
@@ -38,6 +38,8 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
         sViewsWithIds.put(R.id.guideline_start_recent, 17);
         sViewsWithIds.put(R.id.guideline_end_recent, 18);
         sViewsWithIds.put(R.id.recently_watched_rv, 19);
+        sViewsWithIds.put(R.id.viewMoreContainer, 20);
+        sViewsWithIds.put(R.id.viewAllButton, 21);
     }
     // views
     @NonNull
@@ -48,15 +50,15 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentSubjectsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 20, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 22, sIncludes, sViewsWithIds));
     }
     private FragmentSubjectsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
-        super(bindingComponent, root, 2
+        super(bindingComponent, root, 4
             , (com.google.android.material.appbar.AppBarLayout) bindings[7]
             , (com.google.android.material.appbar.CollapsingToolbarLayout) bindings[8]
-            , (android.view.View) bindings[3]
-            , (android.view.View) bindings[4]
-            , (ng.mathemandy.core.databinding.ErrorContentLayoutBinding) bindings[5]
+            , (ng.mathemandy.core.databinding.EmptyContentLayoutBinding) bindings[3]
+            , (ng.mathemandy.core.databinding.EmptyContentLayoutBinding) bindings[5]
+            , (ng.mathemandy.core.databinding.ErrorContentLayoutBinding) bindings[4]
             , (ng.mathemandy.core.databinding.ErrorContentLayoutBinding) bindings[6]
             , (androidx.constraintlayout.widget.Guideline) bindings[13]
             , (androidx.constraintlayout.widget.Guideline) bindings[18]
@@ -71,7 +73,11 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
             , (androidx.recyclerview.widget.RecyclerView) bindings[14]
             , (android.widget.ViewFlipper) bindings[1]
             , (androidx.appcompat.widget.Toolbar) bindings[9]
+            , (androidx.appcompat.widget.AppCompatButton) bindings[21]
+            , (androidx.cardview.widget.CardView) bindings[20]
             );
+        setContainedBinding(this.emptyContentLayoutHome);
+        setContainedBinding(this.emptyContentLayoutRecentlyWatched);
         setContainedBinding(this.errorContentLayoutHome);
         setContainedBinding(this.errorContentLayoutRecentlyWatched);
         this.mboundView0 = (androidx.coordinatorlayout.widget.CoordinatorLayout) bindings[0];
@@ -86,9 +92,11 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x4L;
+                mDirtyFlags = 0x10L;
         }
+        emptyContentLayoutHome.invalidateAll();
         errorContentLayoutHome.invalidateAll();
+        emptyContentLayoutRecentlyWatched.invalidateAll();
         errorContentLayoutRecentlyWatched.invalidateAll();
         requestRebind();
     }
@@ -100,7 +108,13 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
                 return true;
             }
         }
+        if (emptyContentLayoutHome.hasPendingBindings()) {
+            return true;
+        }
         if (errorContentLayoutHome.hasPendingBindings()) {
+            return true;
+        }
+        if (emptyContentLayoutRecentlyWatched.hasPendingBindings()) {
             return true;
         }
         if (errorContentLayoutRecentlyWatched.hasPendingBindings()) {
@@ -118,7 +132,9 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
     @Override
     public void setLifecycleOwner(@Nullable androidx.lifecycle.LifecycleOwner lifecycleOwner) {
         super.setLifecycleOwner(lifecycleOwner);
+        emptyContentLayoutHome.setLifecycleOwner(lifecycleOwner);
         errorContentLayoutHome.setLifecycleOwner(lifecycleOwner);
+        emptyContentLayoutRecentlyWatched.setLifecycleOwner(lifecycleOwner);
         errorContentLayoutRecentlyWatched.setLifecycleOwner(lifecycleOwner);
     }
 
@@ -128,7 +144,11 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
             case 0 :
                 return onChangeErrorContentLayoutRecentlyWatched((ng.mathemandy.core.databinding.ErrorContentLayoutBinding) object, fieldId);
             case 1 :
+                return onChangeEmptyContentLayoutRecentlyWatched((ng.mathemandy.core.databinding.EmptyContentLayoutBinding) object, fieldId);
+            case 2 :
                 return onChangeErrorContentLayoutHome((ng.mathemandy.core.databinding.ErrorContentLayoutBinding) object, fieldId);
+            case 3 :
+                return onChangeEmptyContentLayoutHome((ng.mathemandy.core.databinding.EmptyContentLayoutBinding) object, fieldId);
         }
         return false;
     }
@@ -141,10 +161,28 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
         }
         return false;
     }
-    private boolean onChangeErrorContentLayoutHome(ng.mathemandy.core.databinding.ErrorContentLayoutBinding ErrorContentLayoutHome, int fieldId) {
+    private boolean onChangeEmptyContentLayoutRecentlyWatched(ng.mathemandy.core.databinding.EmptyContentLayoutBinding EmptyContentLayoutRecentlyWatched, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x2L;
+            }
+            return true;
+        }
+        return false;
+    }
+    private boolean onChangeErrorContentLayoutHome(ng.mathemandy.core.databinding.ErrorContentLayoutBinding ErrorContentLayoutHome, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x4L;
+            }
+            return true;
+        }
+        return false;
+    }
+    private boolean onChangeEmptyContentLayoutHome(ng.mathemandy.core.databinding.EmptyContentLayoutBinding EmptyContentLayoutHome, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x8L;
             }
             return true;
         }
@@ -159,7 +197,9 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
             mDirtyFlags = 0;
         }
         // batch finished
+        executeBindingsOn(emptyContentLayoutHome);
         executeBindingsOn(errorContentLayoutHome);
+        executeBindingsOn(emptyContentLayoutRecentlyWatched);
         executeBindingsOn(errorContentLayoutRecentlyWatched);
     }
     // Listener Stub Implementations
@@ -168,8 +208,10 @@ public class FragmentSubjectsBindingImpl extends FragmentSubjectsBinding  {
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
         flag 0 (0x1L): errorContentLayoutRecentlyWatched
-        flag 1 (0x2L): errorContentLayoutHome
-        flag 2 (0x3L): null
+        flag 1 (0x2L): emptyContentLayoutRecentlyWatched
+        flag 2 (0x3L): errorContentLayoutHome
+        flag 3 (0x4L): emptyContentLayoutHome
+        flag 4 (0x5L): null
     flag mapping end*/
     //end
 }

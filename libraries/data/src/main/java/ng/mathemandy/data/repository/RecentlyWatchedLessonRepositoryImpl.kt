@@ -17,8 +17,8 @@ class RecentlyWatchedLessonRepositoryImpl  @Inject constructor(
     private val lessonAndSubjectEntityMapper: LessonAndSubjectEntityMapper
 )  : RecentlyWatchedLessonRepository  {
 
-    override fun fetchRecentlyWatchedLessons(): Flow<List<LessonAndSubject>> {
-        return lessonAndSubjectLocal.getRecentlyWatchedLessons().flatMapConcat {
+    override fun fetchRecentlyWatchedLessons(limit : Int): Flow<List<LessonAndSubject>> {
+        return lessonAndSubjectLocal.getRecentlyWatchedLessons(limit).flatMapConcat {
             flow {
                 emit(lessonAndSubjectEntityMapper.mapFromEntityList(it))
             }

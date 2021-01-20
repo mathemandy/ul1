@@ -30,6 +30,8 @@ id subject_title
 id subject_tv
 id subjectsFlipper
 id toolbar
+id viewAllButton
+id viewMoreContainer
 layout fragment_subjects
 layout recent_videos
 layout subject_item

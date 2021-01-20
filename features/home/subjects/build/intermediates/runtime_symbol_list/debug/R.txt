@@ -29,6 +29,8 @@ int id subject_title 0x7e020017
 int id subject_tv 0x7e020018
 int id subjectsFlipper 0x7e020019
 int id toolbar 0x7e02001a
+int id viewAllButton 0x7e02001b
+int id viewMoreContainer 0x7e02001c
 int layout fragment_subjects 0x7e030000
 int layout recent_videos 0x7e030001
 int layout subject_item 0x7e030002

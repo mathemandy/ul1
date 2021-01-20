@@ -27,6 +27,9 @@ class SubjectsViewModel @Inject constructor(
     private val lessonAndSubjectModel : LessonAndSubjectModelMapper
 ) : ViewModel() {
 
+
+    private  var DEFAULT_LIMIT =  3
+
     private val _subjectsLiveData = MutableLiveData<AppResource<List<SubjectModel>>>()
     val subjectsLiveData = _subjectsLiveData as LiveData<AppResource<List<SubjectModel>>>
 
@@ -36,11 +39,16 @@ class SubjectsViewModel @Inject constructor(
         _recentTopicsLiveData as LiveData<AppResource<List<LessonAndSubjectModel>>>
 
 
+    private  val _viewMoreLiveData  = MutableLiveData<Boolean>(false)
+    val viewMoreLiveData  =  _viewMoreLiveData as  LiveData<Boolean>
+
+
+
     private val subjects: Flow<RepositoryResource<List<Subject>>>
         get() = fetchSubjectsUseCase()
 
     private val recentlyWatchedLessons: Flow<List<LessonAndSubject>>
-        get() = recentlyWatchedLessonsUseCase()
+        get() = recentlyWatchedLessonsUseCase(DEFAULT_LIMIT)
 
     init {
         getSubjects()
@@ -96,7 +104,6 @@ class SubjectsViewModel @Inject constructor(
                 }
             }
         }
-
     }
 
     private fun getRecentlyWatchedLessons() {
@@ -111,11 +118,22 @@ class SubjectsViewModel @Inject constructor(
 
                 if (it.isEmpty()) {
                     _recentTopicsLiveData.postValue(AppResource.empty())
+                    _viewMoreLiveData.postValue(false)
                 } else {
+                    _viewMoreLiveData.postValue(true)
                     _recentTopicsLiveData.postValue(AppResource.success(lessonAndSubjectModel.mapToModelList(it)))
                 }
             }
         }
+    }
 
+    fun viewMoreClicked(showingViewMore  : Boolean){
+        DEFAULT_LIMIT = if(showingViewMore){
+            3
+        }else {
+            -1
+        }
+
+        getRecentlyWatchedLessons()
     }
 }

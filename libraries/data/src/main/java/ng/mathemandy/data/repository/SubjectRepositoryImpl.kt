@@ -38,8 +38,8 @@ class SubjectRepositoryImpl @Inject constructor(
                 subjectsLocal.clearSubjects()
             },
             shouldClear = { requestType, resultType ->
-                requestType != resultType
-
+//                requestType != resultType
+                    false
 
             }
         )

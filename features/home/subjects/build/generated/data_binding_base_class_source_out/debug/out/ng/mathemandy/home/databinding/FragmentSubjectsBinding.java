@@ -8,7 +8,9 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.widget.NestedScrollView;
@@ -19,6 +21,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import java.lang.Deprecated;
 import java.lang.Object;
+import ng.mathemandy.core.databinding.EmptyContentLayoutBinding;
 import ng.mathemandy.core.databinding.ErrorContentLayoutBinding;
 import ng.mathemandy.home.R;
 
@@ -30,10 +33,10 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
   public final CollapsingToolbarLayout collapsingToolbar;
 
   @NonNull
-  public final View emptyContentLayoutHome;
+  public final EmptyContentLayoutBinding emptyContentLayoutHome;
 
   @NonNull
-  public final View emptyContentLayoutRecentlyWatched;
+  public final EmptyContentLayoutBinding emptyContentLayoutRecentlyWatched;
 
   @NonNull
   public final ErrorContentLayoutBinding errorContentLayoutHome;
@@ -80,15 +83,23 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
   @NonNull
   public final Toolbar toolbar;
 
+  @NonNull
+  public final AppCompatButton viewAllButton;
+
+  @NonNull
+  public final CardView viewMoreContainer;
+
   protected FragmentSubjectsBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      AppBarLayout appbar, CollapsingToolbarLayout collapsingToolbar, View emptyContentLayoutHome,
-      View emptyContentLayoutRecentlyWatched, ErrorContentLayoutBinding errorContentLayoutHome,
+      AppBarLayout appbar, CollapsingToolbarLayout collapsingToolbar,
+      EmptyContentLayoutBinding emptyContentLayoutHome,
+      EmptyContentLayoutBinding emptyContentLayoutRecentlyWatched,
+      ErrorContentLayoutBinding errorContentLayoutHome,
       ErrorContentLayoutBinding errorContentLayoutRecentlyWatched, Guideline guidelineEnd,
       Guideline guidelineEndRecent, Guideline guidelineStart, Guideline guidelineStartRecent,
       NestedScrollView parentScroll, TextView recentHeader, ViewFlipper recentlyWatchedFlipper,
       RecyclerView recentlyWatchedRv, ConstraintLayout recentlyWatchedVideos,
       ConstraintLayout subjectContainer, RecyclerView subjectRv, ViewFlipper subjectsFlipper,
-      Toolbar toolbar) {
+      Toolbar toolbar, AppCompatButton viewAllButton, CardView viewMoreContainer) {
     super(_bindingComponent, _root, _localFieldCount);
     this.appbar = appbar;
     this.collapsingToolbar = collapsingToolbar;
@@ -109,6 +120,8 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
     this.subjectRv = subjectRv;
     this.subjectsFlipper = subjectsFlipper;
     this.toolbar = toolbar;
+    this.viewAllButton = viewAllButton;
+    this.viewMoreContainer = viewMoreContainer;
   }
 
   @NonNull

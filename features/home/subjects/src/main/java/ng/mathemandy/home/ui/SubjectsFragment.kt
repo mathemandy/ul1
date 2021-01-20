@@ -65,6 +65,21 @@ class SubjectsFragment : Fragment(){
         super.onActivityCreated(savedInstanceState)
         setUpRecyclerview()
         initDataListener()
+        clickEvent()
+    }
+
+
+    private fun clickEvent(){
+        binding.viewAllButton.setOnClickListener {
+            val text  = binding.viewAllButton.text
+            if (text == "View All"){
+                binding.viewAllButton.text =  "View Less"
+                viewModel.viewMoreClicked(false)
+            }else {
+                binding.viewAllButton.text =  "View All"
+                viewModel.viewMoreClicked(true)
+            }
+        }
     }
 
     private fun initDataListener() {
@@ -108,10 +123,17 @@ class SubjectsFragment : Fragment(){
 
                 AppStatus.EMPTY -> {
                     binding.recentlyWatchedFlipper.displayedChild  = 2
+                    binding.emptyContentLayoutRecentlyWatched.description.text  =  "Lessons you watched will Appear here"
 
                 }
             }
         }
+
+        viewModel.viewMoreLiveData.observe(viewLifecycleOwner){
+            binding.viewMoreContainer.visibility  = if (it) View.VISIBLE else View.GONE
+
+        }
+
     }
 
     fun showSnackBar(message: String, isError: Boolean){
