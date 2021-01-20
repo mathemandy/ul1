@@ -77,4 +77,28 @@ This abstraction enables me to separate concern of the project into separate Mod
 - Video Playback does not stop while switching which is a big plus. 
 - More improvement can be done on this. 
 
+#### videoPlayer
+- This module was adapted from here - https://github.com/JarvanMo/ExoVideoView
+- Updated to Kotlin and uses latest exoplayer version
+
+#### UNit Testing 
+- i was able to test only the remote, data layer based on time constaints. 
+ 
+#### CI/CD
+- A Simple Pipeline was created to run build, run the test. 
+- Achieved using Github Actions 
+
+#### Linting 
+- Linting was setup for the app Module using https://github.com/jlleitschuh/ktlint-gradle
+-  I still need to configure it for other Modules 
+
+#### Hilt 
+- Hilt was chosen as the DI choice for this project with time being a factor as it has easy setup with less code and easy to use. 
+i Prefer to use Koin though. 
+
+#### Kotlin Coroutines 
+- This was used in the projects for our network calls and aysnc task. 
+- their Usage can be found in the viewmodel class.  
+
+ 
 
