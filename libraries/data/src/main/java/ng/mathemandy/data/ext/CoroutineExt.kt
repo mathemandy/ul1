@@ -34,4 +34,3 @@ inline fun <ResultType, RequestType> networkBoundResource(
 
     emitAll(flow)
 }
-

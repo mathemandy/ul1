@@ -17,7 +17,6 @@ import ng.mathemandy.ulesson.databinding.ActivityDashboardBinding
 import javax.inject.Inject
 import javax.inject.Provider
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -54,7 +53,6 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp()
     }
 
-
     fun showSnackBar(
         rootView: View,
         text: String,
@@ -87,5 +85,4 @@ class MainActivity : AppCompatActivity() {
         snackBar.duration = Snackbar.LENGTH_LONG
         snackBar.show()
     }
-
 }

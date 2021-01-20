@@ -2,7 +2,6 @@ package ng.groove.exovideoview.media
 
 import android.net.Uri
 
-
 interface ExoMediaSource {
 
     interface Quality {
@@ -11,7 +10,6 @@ interface ExoMediaSource {
         var uri: Uri
 
         var quality: String
-
     }
 
     fun uri(): Uri

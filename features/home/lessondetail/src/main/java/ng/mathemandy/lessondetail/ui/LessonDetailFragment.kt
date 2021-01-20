@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.Renderer
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
 import ng.groove.exovideoview.orientation.OnOrientationChangedListener.Companion.SENSOR_LANDSCAPE
 import ng.groove.exovideoview.orientation.OnOrientationChangedListener.Companion.SENSOR_PORTRAIT
 import ng.groove.exovideoview.ui.ExoVideoPlaybackControlView
@@ -27,9 +25,7 @@ import ng.mathemandy.ulesson.navigation.NavigationDispatcher
 import javax.inject.Inject
 import javax.inject.Provider
 
-
 class LessonDetailFragment : Fragment() {
-
 
     private lateinit var binding: FragmentLessonDetailBinding
     private var orientation: Int = 0
@@ -52,7 +48,6 @@ class LessonDetailFragment : Fragment() {
 
     private val viewModel: LessonDetailViewModel by viewModels { factory }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.saveLesson(lesson)
@@ -68,7 +63,6 @@ class LessonDetailFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initVideoView()
@@ -79,13 +73,14 @@ class LessonDetailFragment : Fragment() {
     }
 
     private fun startListener() {
-        ExoplayerVideoManager.getInstance().getPlayer()?.addListener(object : Player.EventListener {
-            override fun onPlaybackStateChanged(state: Int) {
-                binding.videoView.keepScreenOn =
-                    !(state == Player.STATE_IDLE || state == Player.STATE_ENDED)
+        ExoplayerVideoManager.getInstance().getPlayer()?.addListener(
+            object : Player.EventListener {
+                override fun onPlaybackStateChanged(state: Int) {
+                    binding.videoView.keepScreenOn =
+                        !(state == Player.STATE_IDLE || state == Player.STATE_ENDED)
+                }
             }
-        })
-
+        )
     }
 
     override fun onAttach(context: Context) {
@@ -96,9 +91,11 @@ class LessonDetailFragment : Fragment() {
     private fun startVideo() {
         ExoplayerVideoManager.getInstance().onNewIntent()
         ExoplayerVideoManager.getInstance().init(
-            requireContext(), listOf(
+            requireContext(),
+            listOf(
                 lesson.media_url ?: ""
-            ), 0
+            ),
+            0
         )
         ExoplayerVideoManager.getInstance().prepareExoplayer(binding.videoView)
         ExoplayerVideoManager.getInstance().gotoForeground()
@@ -109,7 +106,6 @@ class LessonDetailFragment : Fragment() {
         binding.lessonSubtitle.text = "Rational Numbers"
     }
 
-
     private fun initVideoView() {
 
         binding.videoView.isPortrait =
@@ -117,43 +113,45 @@ class LessonDetailFragment : Fragment() {
 
         with(binding.videoView) {
             setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT)
-            setBackListener(object : ExoVideoPlaybackControlView.ExoClickListener {
-                override fun onClick(view: View?, isPortrait: Boolean): Boolean {
-                    if (isPortrait) {
-                        navigator.get().goBack()
-                    }
-                    return false
-                }
-            })
-            setOrientationListener(object : ExoVideoPlaybackControlView.OrientationListener {
-                override fun onOrientationChanged(orientation: Int) {
-                    if (orientation == SENSOR_PORTRAIT) {
-                        changeToPortrait()
-                        binding.videoView.showController()
-                    } else if (orientation == SENSOR_LANDSCAPE) {
-                        changeToLandscape()
+            setBackListener(
+                object : ExoVideoPlaybackControlView.ExoClickListener {
+                    override fun onClick(view: View?, isPortrait: Boolean): Boolean {
+                        if (isPortrait) {
+                            navigator.get().goBack()
+                        }
+                        return false
                     }
                 }
-            })
-
-            setControllerVisibilityListener(object :
-                ExoVideoPlaybackControlView.VisibilityListener {
-                override fun onVisibilityChange(visibility: Int) {
-                    if (visibility == View.VISIBLE) {
-                        binding.toolbar.visibility = View.VISIBLE
-                    } else {
-                        if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                            binding.toolbar.visibility = View.INVISIBLE
-
+            )
+            setOrientationListener(
+                object : ExoVideoPlaybackControlView.OrientationListener {
+                    override fun onOrientationChanged(orientation: Int) {
+                        if (orientation == SENSOR_PORTRAIT) {
+                            changeToPortrait()
+                            binding.videoView.showController()
+                        } else if (orientation == SENSOR_LANDSCAPE) {
+                            changeToLandscape()
                         }
                     }
                 }
-            })
+            )
 
+            setControllerVisibilityListener(
+                object :
+                    ExoVideoPlaybackControlView.VisibilityListener {
+                    override fun onVisibilityChange(visibility: Int) {
+                        if (visibility == View.VISIBLE) {
+                            binding.toolbar.visibility = View.VISIBLE
+                        } else {
+                            if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+                                binding.toolbar.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+                }
+            )
         }
-
     }
-
 
     fun changeToLandscape() {
         val lp = window.attributes
@@ -161,7 +159,6 @@ class LessonDetailFragment : Fragment() {
         window.attributes = lp
         window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         hideViewsOnConfigChanges()
-
     }
 
     private fun changeToPortrait() {
@@ -170,7 +167,6 @@ class LessonDetailFragment : Fragment() {
         window.attributes = attr
         window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         showViewsOnConfigChanges()
-
     }
 
     private fun hideViewsOnConfigChanges() {
@@ -178,7 +174,7 @@ class LessonDetailFragment : Fragment() {
         val constraintSet = ConstraintSet()
         constraintSet.clone(binding.videoContainer)
         constraintSet.clear(R.id.video_view, ConstraintSet.BOTTOM)
-        //video_view
+        // video_view
         constraintSet.connect(
             R.id.video_view,
             ConstraintSet.BOTTOM,
@@ -193,7 +189,7 @@ class LessonDetailFragment : Fragment() {
         val constraintSet = ConstraintSet()
         constraintSet.clone(binding.videoContainer)
         constraintSet.clear(R.id.video_view, ConstraintSet.BOTTOM)
-        //video_view
+        // video_view
         constraintSet.connect(
             R.id.video_view,
             ConstraintSet.BOTTOM,
@@ -202,7 +198,6 @@ class LessonDetailFragment : Fragment() {
         )
         constraintSet.applyTo(binding.videoContainer)
     }
-
 
     private fun setupClickEvents() {
         binding.toolbar.setOnClickListener {
@@ -235,7 +230,6 @@ class LessonDetailFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         ExoplayerVideoManager.getInstance().onStop()
-
     }
 
     companion object {

@@ -15,5 +15,4 @@ class ChapterRemoteMapper @Inject constructor(private val lessonRemoteMapper: Le
             lessonRemoteMapper.mapModelList(model.lessons)
         )
     }
-
 }

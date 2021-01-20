@@ -8,12 +8,12 @@ import ng.mathemandy.domain.repository.RecentlyWatchedLessonRepository
 import ng.mathemandy.domain.usecase.base.FlowUseCase
 import javax.inject.Inject
 
-class FetchRecentlyWatchedLessons  @Inject constructor(
+class FetchRecentlyWatchedLessons @Inject constructor(
     private val recentlyWatchedLessonsRepository: RecentlyWatchedLessonRepository,
     postExecutionThread: PostExecutionThread
 ) : FlowUseCase<Int, List<LessonAndSubject>> (postExecutionThread) {
 
     override fun execute(params: Int?): Flow<List<LessonAndSubject>> {
-        return params?.let { recentlyWatchedLessonsRepository.fetchRecentlyWatchedLessons(it) }  ?: throw  NoParamsException("limit is null")
+        return params?.let { recentlyWatchedLessonsRepository.fetchRecentlyWatchedLessons(it) } ?: throw NoParamsException("limit is null")
     }
 }

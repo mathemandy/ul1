@@ -21,6 +21,7 @@ interface LessonDetailComponent {
     interface Factory {
         fun create(
             coreComponent: CoreComponent,
-            appComponent: AppComponent): LessonDetailComponent
+            appComponent: AppComponent
+        ): LessonDetailComponent
     }
 }

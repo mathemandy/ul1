@@ -6,6 +6,6 @@ data class BaseRemoteModel(
 
 data class RemoteModel(
     val status: String?,
-    val message : String?,
-    val subjects : List<SubjectRemoteModel> = emptyList()
+    val message: String?,
+    val subjects: List<SubjectRemoteModel> = emptyList()
 )

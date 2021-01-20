@@ -17,8 +17,6 @@ internal class FakeErrorSubjectRemote : SubjectsRemote {
         throw UnknownHostException(ERROR)
     }
 
-
-
     companion object {
         const val ERROR: String = "jackiechanbruteforce.ulesson.com"
     }

@@ -10,7 +10,6 @@ import ng.mathemandy.local.mapper.SubjectLocalMapper
 import ng.mathemandy.local.room.SubjectDao
 import javax.inject.Inject
 
-
 class SubjectLocalImpl @Inject constructor(
     private val subjectDao: SubjectDao,
     private val subjectLocalMapper: SubjectLocalMapper
@@ -21,13 +20,12 @@ class SubjectLocalImpl @Inject constructor(
         subjectDao.insertSubject(subjectModel)
     }
 
-
     override fun getSubjects(): Flow<List<SubjectEntity>> {
         val subjectModels = subjectDao.getSubjects()
         return subjectModels.flatMapConcat {
-           flow {
-             emit( subjectLocalMapper.mapToEntityList(it)  )
-           }
+            flow {
+                emit(subjectLocalMapper.mapToEntityList(it))
+            }
         }
     }
 
@@ -38,6 +36,5 @@ class SubjectLocalImpl @Inject constructor(
 
     override suspend fun clearSubjects() {
         subjectDao.clearData()
-
     }
 }

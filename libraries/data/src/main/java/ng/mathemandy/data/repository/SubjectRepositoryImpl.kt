@@ -7,7 +7,6 @@ import ng.mathemandy.data.contract.local.SubjectsLocal
 import ng.mathemandy.data.contract.remote.SubjectsRemote
 import ng.mathemandy.data.ext.networkBoundResource
 import ng.mathemandy.data.mapper.SubjectEntityMapper
-import ng.mathemandy.domain.model.LessonAndSubject
 import ng.mathemandy.domain.model.Subject
 import ng.mathemandy.domain.repository.SubjectRepository
 import ng.mathemandy.domain.resource.RepositoryResource
@@ -23,9 +22,9 @@ class SubjectRepositoryImpl @Inject constructor(
         return networkBoundResource(
             query = {
                 subjectsLocal.getSubjects().flatMapConcat {
-                        flow {
-                            emit(subjectMapper.mapFromEntityList(it))
-                        }
+                    flow {
+                        emit(subjectMapper.mapFromEntityList(it))
+                    }
                 }
             },
             saveFetchResult = { items ->
@@ -39,11 +38,8 @@ class SubjectRepositoryImpl @Inject constructor(
             },
             shouldClear = { requestType, resultType ->
 //                requestType != resultType
-                    false
-
+                false
             }
         )
-
     }
-
 }

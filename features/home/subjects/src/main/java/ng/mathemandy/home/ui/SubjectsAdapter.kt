@@ -1,6 +1,5 @@
 package ng.mathemandy.home.ui
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ng.mathemandy.core.imageLoader.ImageLoader
-import ng.mathemandy.domain.model.Subject
 import ng.mathemandy.home.R
 import ng.mathemandy.model.SubjectModel
 import ng.mathemandy.ulesson.ui.getSubjectColor
 import java.util.*
 import javax.inject.Inject
 
-
 typealias SubjectClickListener = (SubjectModel) -> Unit
-
 
 class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) :
     ListAdapter<SubjectModel, SubjectsAdapter.SubjectsViewHolder>(
@@ -31,7 +27,6 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
 
     var clickListener: SubjectClickListener? = null
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SubjectsViewHolder(
         LayoutInflater.from(parent.context)
             .inflate(layoutId, parent, false)
@@ -40,7 +35,6 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
     override fun onBindViewHolder(holder: SubjectsViewHolder, position: Int) {
         holder.bind(imageLoader, clickListener, getItem(position))
     }
-
 
     fun swapData(data: List<SubjectModel>, layoutId: Int?) {
         if (layoutId != null) {
@@ -52,7 +46,6 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
     inner class SubjectsViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
-
 
         fun bind(imageLoader: ImageLoader, clickListener: SubjectClickListener?, item: SubjectModel) =
             with(itemView) {
@@ -71,11 +64,8 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
                 itemView.setOnClickListener {
                     clickListener?.invoke(item)
                 }
-
-
             }
     }
-
 
     private class SubjectsDC : DiffUtil.ItemCallback<SubjectModel>() {
 
@@ -84,6 +74,5 @@ class SubjectsAdapter @Inject constructor(private val imageLoader: ImageLoader) 
 
         override fun areItemsTheSame(oldItem: SubjectModel, newItem: SubjectModel): Boolean =
             oldItem.id == newItem.id
-
     }
 }

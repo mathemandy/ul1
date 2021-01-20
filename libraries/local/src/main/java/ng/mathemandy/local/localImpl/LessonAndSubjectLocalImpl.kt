@@ -12,26 +12,25 @@ import ng.mathemandy.local.mapper.LessonLocalMapper
 import ng.mathemandy.local.room.LessonAndSubjectDao
 import javax.inject.Inject
 
-class LessonAndSubjectLocalImpl  @Inject constructor(
-    private  val lessonAndSubjectDao: LessonAndSubjectDao,
+class LessonAndSubjectLocalImpl @Inject constructor(
+    private val lessonAndSubjectDao: LessonAndSubjectDao,
     private val lessonLocalMapper: LessonLocalMapper,
     private val lessonAndSubjectLocalMapper: LessonAndSubjectLocalMapper
-): LessonAndSubjectLocal {
+) : LessonAndSubjectLocal {
     override suspend fun saveRecentlyWatched(lesson: LessonEntity) {
         val lessonLocalModel: LessonLocalModel = lessonLocalMapper.mapToModel(lesson)
         lessonLocalModel.lastUpdated = System.currentTimeMillis()
         lessonAndSubjectDao.insertLesson(lessonLocalModel)
-
     }
 
     override fun getRecentlyWatchedLessons(limit: Int): Flow<List<LessonAndSubjectEntity>> {
-        if (limit < 0 ){
+        if (limit < 0) {
             return lessonAndSubjectDao.getLessonAndOwner().flatMapConcat {
                 flow {
                     emit(lessonAndSubjectLocalMapper.mapToEntityList(it))
                 }
             }
-        }else{
+        } else {
             return lessonAndSubjectDao.getLessonAndOwner(limit).flatMapConcat {
                 flow {
                     emit(lessonAndSubjectLocalMapper.mapToEntityList(it))

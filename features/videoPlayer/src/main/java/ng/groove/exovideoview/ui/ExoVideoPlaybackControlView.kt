@@ -48,7 +48,6 @@ import ng.groove.exovideoview.orientation.OnOrientationChangedListener.Companion
 import ng.groove.exovideoview.orientation.SensorOrientation
 import java.util.*
 
-
 /**
  *
  *
@@ -64,10 +63,10 @@ import java.util.*
  */
 
 class ExoVideoPlaybackControlView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0,
-        playbackAttrs: AttributeSet? = attrs
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    playbackAttrs: AttributeSet? = attrs
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val componentListener: ComponentListener
@@ -83,15 +82,13 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
     private val positionView: TextView?
     private val positionViewLandscape: TextView?
 
-    private var isAttachedToWindow: Boolean?= false
-
+    private var isAttachedToWindow: Boolean? = false
 
     private val timeBar: TimeBar?
     private val formatBuilder: StringBuilder
     private val formatter: Formatter
     private val period: Timeline.Period
     private val window: Timeline.Window
-
 
     private val repeatOffButtonDrawable: Drawable
     private val repeatOneButtonDrawable: Drawable
@@ -123,7 +120,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         }
     private var controlDispatcher: com.google.android.exoplayer2.ControlDispatcher? = null
     private var visibilityListener: VisibilityListener? = null
-
 
     private var showMultiWindowTimeBar: Boolean = false
     private var multiWindowTimeBar: Boolean = false
@@ -158,14 +154,12 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
 
     private val hideAction = Runnable { this.hide() }
 
-
     private val timeBarLandscape: TimeBar?
     private val playButtonLandScape: View?
     private val pauseButtonLandScape: View?
     private val durationViewLandscape: TextView?
     private val enterFullscreen: View?
     private val exitFullscreen: View?
-
 
     private val exoPlayerControllerTop: View?
     private val exoPlayerControllerTopLandscape: View?
@@ -188,10 +182,8 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
     private val topCustomViewLandscape: ViewGroup?
     private val bottomCustomViewLandscape: ViewGroup?
 
-
     private val centerError: TextView?
     private val loadingBar: ProgressBar?
-
 
     private val back: View?
     private val backLandscape: View?
@@ -202,12 +194,10 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             showControllerByDisplayMode()
         }
 
-
     private val sensorOrientation: SensorOrientation
 
     private var orientationListener: OrientationListener? = null
     private var backListener: ExoClickListener? = null
-
 
     private var isHls: Boolean = false
 
@@ -232,7 +222,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         fun attachVideoView(): View
     }
 
-
     /**
      * to get  [Player]
      */
@@ -241,7 +230,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
 
         fun attachPlayer(): Player
     }
-
 
     /**
      * Listener to be notified about changes of the visibility of the UI control.
@@ -254,9 +242,7 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
          * @param visibility The new visibility. Either [View.VISIBLE] or [View.GONE].
          */
         fun onVisibilityChange(visibility: Int)
-
     }
-
 
     interface ExoClickListener {
 
@@ -267,9 +253,7 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
          * @return will interrupt operation in controller if return true
          */
         fun onClick(view: View?, isPortrait: Boolean): Boolean
-
     }
-
 
     interface OrientationListener {
         fun onOrientationChanged(@OnOrientationChangedListener.SensorOrientationType orientation: Int)
@@ -283,7 +267,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
     @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class CustomViewType
 
-
     init {
         var controllerLayoutId = R.layout.exo_video_playback_control_view
         rewindMs = DEFAULT_REWIND_MS
@@ -296,17 +279,25 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         var controllerBackgroundId = 0
 
         if (playbackAttrs != null) {
-            val a = context.theme.obtainStyledAttributes(playbackAttrs,
-                    R.styleable.ExoVideoPlaybackControlView, 0, 0)
+            val a = context.theme.obtainStyledAttributes(
+                playbackAttrs,
+                R.styleable.ExoVideoPlaybackControlView,
+                0,
+                0
+            )
             try {
                 rewindMs = a.getInt(R.styleable.ExoVideoPlaybackControlView_rewind_increment, rewindMs)
-                fastForwardMs = a.getInt(R.styleable.ExoVideoPlaybackControlView_fastforward_increment,
-                        fastForwardMs)
+                fastForwardMs = a.getInt(
+                    R.styleable.ExoVideoPlaybackControlView_fastforward_increment,
+                    fastForwardMs
+                )
                 showTimeoutMs = a.getInt(R.styleable.ExoVideoPlaybackControlView_show_timeout, showTimeoutMs)
                 controllerLayoutId = a.getResourceId(R.styleable.ExoVideoPlaybackControlView_controller_layout_id, controllerLayoutId)
                 repeatToggleModes = getRepeatToggleModes(a, repeatToggleModes)
-                showShuffleButton = a.getBoolean(R.styleable.ExoVideoPlaybackControlView_show_shuffle_button,
-                        showShuffleButton)
+                showShuffleButton = a.getBoolean(
+                    R.styleable.ExoVideoPlaybackControlView_show_shuffle_button,
+                    showShuffleButton
+                )
                 displayMode = a.getInt(R.styleable.ExoVideoPlaybackControlView_controller_display_mode, CONTROLLER_MODE_ALL)
 
                 controllerBackgroundId = a.getResourceId(R.styleable.ExoVideoPlaybackControlView_controller_background, 0)
@@ -315,7 +306,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
                 a.recycle()
             }
         }
-
 
         period = Timeline.Period()
         window = Timeline.Window()
@@ -336,14 +326,11 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         timeBar = findViewById<DefaultTimeBar>(R.id.exo_player_progress)
         timeBar?.addListener(componentListener)
 
-
         playButton = findViewById(R.id.exo_player_play)
         playButton?.setOnClickListener(componentListener)
 
-
         pauseButton = findViewById(R.id.exo_player_pause)
         pauseButton?.setOnClickListener(componentListener)
-
 
         previousButton = findViewById(R.id.exo_prev)
         previousButton?.setOnClickListener(componentListener)
@@ -362,12 +349,14 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         repeatOneButtonDrawable = resources.getDrawable(R.drawable.exo_controls_repeat_one)
         repeatAllButtonDrawable = resources.getDrawable(R.drawable.exo_controls_repeat_all)
         repeatOffButtonContentDescription = resources.getString(
-                R.string.exo_controls_repeat_off_description)
+            R.string.exo_controls_repeat_off_description
+        )
         repeatOneButtonContentDescription = resources.getString(
-                R.string.exo_controls_repeat_one_description)
+            R.string.exo_controls_repeat_one_description
+        )
         repeatAllButtonContentDescription = resources.getString(
-                R.string.exo_controls_repeat_all_description)
-
+            R.string.exo_controls_repeat_all_description
+        )
 
         durationViewLandscape = findViewById(R.id.exo_player_duration_landscape)
         positionViewLandscape = findViewById(R.id.exo_player_position_landscape)
@@ -395,14 +384,11 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         enterFullscreen = findViewById(R.id.exo_player_enter_fullscreen)
         enterFullscreen?.setOnClickListener(componentListener)
 
-
         exitFullscreen = findViewById(R.id.exo_player_exit_fullscreen)
         exitFullscreen?.setOnClickListener(componentListener)
 
-
         centerInfoWrapper = findViewById(R.id.exo_player_center_info_wrapper)
         centerInfo = findViewById(R.id.exo_player_center_text)
-
 
         exoPlayerControllerTop = findViewById(R.id.exo_player_controller_top)
         if (exoPlayerControllerTop != null && controllerBackgroundId != 0) {
@@ -424,7 +410,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             exoPlayerControllerBottomLandscape.setBackgroundResource(controllerBackgroundId)
         }
 
-
         exoPlayerVideoName = findViewById(R.id.exo_player_video_name)
         exoPlayerVideoName?.setOnClickListener(componentListener)
 
@@ -444,25 +429,25 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         exoPlayerCurrentQualityLandscape = findViewById(R.id.exo_player_current_quality_landscape)
         exoPlayerCurrentQualityLandscape?.setOnClickListener(componentListener)
 
-
         topCustomView = findViewById(R.id.exo_player_controller_top_custom_view)
         topCustomViewLandscape = findViewById(R.id.exo_player_controller_top_custom_view_landscape)
         bottomCustomViewLandscape = findViewById(R.id.exo_player_controller_bottom_custom_view_landscape)
 
         centerError = findViewById(R.id.exo_player_center_error)
         loadingBar = findViewById(R.id.exo_player_loading)
-        sensorOrientation = SensorOrientation(getContext(), object : OnOrientationChangedListener {
-            override fun onChanged(orientation: Int) {
-                changeOrientation(orientation)
+        sensorOrientation = SensorOrientation(
+            getContext(),
+            object : OnOrientationChangedListener {
+                override fun onChanged(orientation: Int) {
+                    changeOrientation(orientation)
+                }
             }
-        })
-
+        )
 
         showControllerByDisplayMode()
 
         showUtilHideCalled()
     }
-
 
     private fun setupVideoGesture(enableGesture: Boolean) {
         val onVideoGestureChangeListener = object : OnVideoGestureChangeListener {
@@ -515,22 +500,22 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             }
         }
 
-
-        videoGesture = VideoGesture(context, onVideoGestureChangeListener, object : PlayerAccessor {
-            override fun attachPlayer(): Player {
-                return player!!
+        videoGesture = VideoGesture(
+            context,
+            onVideoGestureChangeListener,
+            object : PlayerAccessor {
+                override fun attachPlayer(): Player {
+                    return player!!
+                }
             }
-        })
-
+        )
 
         if (!enableGesture) {
             videoGesture!!.disable()
         }
         centerInfoWrapper!!.setOnClickListener(componentListener)
         centerInfoWrapper.setOnTouchListener(videoGesture)
-
     }
-
 
     private fun generateFastForwardOrRewindTxt(changingTime: Long): CharSequence {
 
@@ -542,7 +527,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         val index = result.indexOf("/")
 
         val spannableString = SpannableString(result)
-
 
         val typedValue = TypedValue()
         val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(R.attr.colorAccent))
@@ -564,7 +548,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             brightnessInt <= 90 -> R.drawable.ic_brightness_6_white_36dp
             else -> R.drawable.ic_brightness_7_white_36dp
         }
-
     }
 
     private fun setVolumeOrBrightnessInfo(txt: String, @DrawableRes drawableId: Int) {
@@ -605,8 +588,10 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
      * @param extraPlayedAdGroups Whether each ad has been played, or `null` to show no extra ad
      * markers.
      */
-    fun setExtraAdGroupMarkers(extraAdGroupTimesMs: LongArray?,
-                               extraPlayedAdGroups: BooleanArray?) {
+    fun setExtraAdGroupMarkers(
+        extraAdGroupTimesMs: LongArray?,
+        extraPlayedAdGroups: BooleanArray?
+    ) {
         if (extraAdGroupTimesMs == null) {
             this.extraAdGroupTimesMs = LongArray(0)
             this.extraPlayedAdGroups = BooleanArray(0)
@@ -634,9 +619,10 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
      * to use [com.google.android.exoplayer2.DefaultControlDispatcher].
      */
     fun setControlDispatcher(
-            controlDispatcher: com.google.android.exoplayer2.ControlDispatcher?) {
+        controlDispatcher: com.google.android.exoplayer2.ControlDispatcher?
+    ) {
         this.controlDispatcher = controlDispatcher
-                ?: com.google.android.exoplayer2.DefaultControlDispatcher()
+            ?: com.google.android.exoplayer2.DefaultControlDispatcher()
     }
 
     /**
@@ -722,13 +708,11 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
 
             changeSystemUiVisibilityPortrait()
 
-
             updateAll()
             requestPlayPauseFocus()
         }
         // Call hideAfterTimeout even if already visible to reset the timeout.
         hideAfterTimeout()
-
     }
 
     /**
@@ -783,8 +767,10 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             val windowIndex = this.player!!.currentWindowIndex
             timeline!!.getWindow(windowIndex, window)
             isSeekable = window.isSeekable
-            enablePrevious = (isSeekable || !window.isDynamic
-                    || this.player!!.previousWindowIndex != C.INDEX_UNSET)
+            enablePrevious = (
+                isSeekable || !window.isDynamic ||
+                    this.player!!.previousWindowIndex != C.INDEX_UNSET
+                )
             enableNext = window.isDynamic || this.player!!.nextWindowIndex != C.INDEX_UNSET
         }
         setButtonEnabled(enablePrevious, previousButton)
@@ -815,7 +801,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             pauseButton.visibility = if (!playing) View.GONE else View.VISIBLE
         }
 
-
         if (playButtonLandScape != null) {
             requestPlayPauseFocus = requestPlayPauseFocus or (playing && playButtonLandScape.isFocused)
             playButtonLandScape.visibility = if (playing) View.GONE else View.VISIBLE
@@ -824,7 +809,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             requestPlayPauseFocus = requestPlayPauseFocus or (!playing && pauseButtonLandScape.isFocused)
             pauseButtonLandScape.visibility = if (!playing) View.GONE else View.VISIBLE
         }
-
 
         if (requestPlayPauseFocus) {
             requestPlayPauseFocus()
@@ -973,11 +957,9 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             positionViewLandscape.text = positionStr
         }
 
-
         if (positionView != null && !scrubbing && !isHls) {
             positionView.text = Util.getStringForTime(formatBuilder, formatter, position)
         }
-
 
         if (timeBar != null && !isHls) {
             timeBar.setPosition(position)
@@ -990,7 +972,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             timeBarLandscape.setBufferedPosition(bufferedPosition)
             timeBarLandscape.setDuration(duration)
         }
-
 
         // Cancel any pending updates and schedule a new one if necessary.
         removeCallbacks(updateProgressAction)
@@ -1027,14 +1008,12 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             playButton.requestFocus()
         } else if (playing && pauseButton != null) {
             pauseButton.requestFocus()
-
         }
 
         if (!playing && playButtonLandScape != null) {
             playButtonLandScape.requestFocus()
         } else if (playing && pauseButtonLandScape != null) {
             pauseButtonLandScape.requestFocus()
-
         }
     }
 
@@ -1192,7 +1171,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         return true
     }
 
-
     fun setBackListener(backListener: ExoClickListener) {
         this.backListener = backListener
     }
@@ -1203,14 +1181,11 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         } else {
             changeOrientation(if (isPortrait) SENSOR_LANDSCAPE else SENSOR_PORTRAIT)
         }
-
     }
-
 
     fun setOrientationListener(orientationListener: OrientationListener) {
         this.orientationListener = orientationListener
     }
-
 
     fun setMediaSource(exoMediaSource: ExoMediaSource) {
         exoPlayerVideoName?.setText(exoMediaSource.name())
@@ -1222,7 +1197,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             centerError.visibility = View.GONE
         }
     }
-
 
     fun setControllerDisplayMode(displayMode: Int) {
         this.displayMode = displayMode
@@ -1239,7 +1213,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             } else {
                 exoPlayerControllerTop.visibility = View.INVISIBLE
             }
-
         }
 
         if (exoPlayerControllerTopLandscape != null) {
@@ -1273,7 +1246,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             }
         }
 
-
         if (qualityVisibilityCallback != null) {
             qualityVisibilityCallback!!.shouldChangeVisibility(View.GONE)
         }
@@ -1290,7 +1262,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         if (orientationListener == null) {
             return
         }
-
 
         activity = context
         when (orientation) {
@@ -1313,20 +1284,21 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         orientationListener!!.onOrientationChanged(orientation)
     }
 
-
     private fun changeSystemUiVisibilityPortrait() {
         videoViewAccessor?.attachVideoView()?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
     }
 
     private fun changeSystemUiVisibilityLandscape() {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-                ?: return
+            ?: return
 
-        var flag = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+        var flag = (
+            View.SYSTEM_UI_FLAG_LOW_PROFILE
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             flag = flag or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -1334,7 +1306,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
 
         videoViewAccessor?.attachVideoView()?.systemUiVisibility = flag
     }
-
 
     fun setVideoViewAccessor(videoViewAccessor: VideoViewAccessor) {
         this.videoViewAccessor = videoViewAccessor
@@ -1349,7 +1320,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             exoPlayerCurrentQualityLandscape.text = qualityDes
         }
     }
-
 
     /**
      * add your view to controller
@@ -1375,7 +1345,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             }
             viewGroup.addView(customView)
         }
-
     }
 
     fun changeWidgetVisibility(id: Int, visibility: Int) {
@@ -1422,7 +1391,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         }
     }
 
-
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
 
         if (event.keyCode == KeyEvent.KEYCODE_BACK) {
@@ -1434,7 +1402,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
                         changeOrientation(SENSOR_PORTRAIT)
                         return true
                     }
-
                 }
             }
         }
@@ -1506,12 +1473,10 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
                 isHls = false
             }
 
-
             updateNavigation()
             updateTimeBarMode()
             updateProgress()
         }
-
 
         override fun onPlayerError(error: ExoPlaybackException) {
             if (loadingBar != null) {
@@ -1539,8 +1504,13 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
                 } else if (pauseButton === view || pauseButtonLandScape === view) {
                     controlDispatcher!!.dispatchSetPlayWhenReady(player!!, false)
                 } else if (repeatToggleButton === view) {
-                    controlDispatcher!!.dispatchSetRepeatMode(player!!, RepeatModeUtil.getNextRepeatMode(
-                            player!!.repeatMode, repeatToggleModes))
+                    controlDispatcher!!.dispatchSetRepeatMode(
+                        player!!,
+                        RepeatModeUtil.getNextRepeatMode(
+                            player!!.repeatMode,
+                            repeatToggleModes
+                        )
+                    )
                 } else if (shuffleButton === view) {
                     controlDispatcher!!.dispatchSetShuffleModeEnabled(player!!, !player!!.shuffleModeEnabled)
                 } else if (enterFullscreen === view) {
@@ -1577,14 +1547,10 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             if (500 > SystemClock.uptimeMillis() - mHits[0]) {
                 player?.let { controlDispatcher?.dispatchSetPlayWhenReady(it, !player!!.playWhenReady) }
             }
-
         }
-
-
     }
 
     companion object {
-
 
         /**
          * The default fast forward increment, in milliseconds.
@@ -1611,7 +1577,6 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
 
         private val MAX_POSITION_FOR_SEEK_TO_PREVIOUS: Long = 3000
 
-
         //        <!--<enum getDisplayName="all" value="0b1111"/>-->
         //    <!--<enum getDisplayName="top" value="0b1000"/>-->
         //    <!--<enum getDisplayName="top_landscape" value="0b0100"/>-->
@@ -1628,22 +1593,25 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
         const val CUSTOM_VIEW_TOP_LANDSCAPE = CUSTOM_VIEW_TOP + 1
         const val CUSTOM_VIEW_BOTTOM_LANDSCAPE = CUSTOM_VIEW_TOP_LANDSCAPE + 1
 
-
         @RepeatModeUtil.RepeatToggleModes
-        private fun getRepeatToggleModes(a: TypedArray,
-                                         @RepeatModeUtil.RepeatToggleModes repeatToggleModes: Int): Int {
+        private fun getRepeatToggleModes(
+            a: TypedArray,
+            @RepeatModeUtil.RepeatToggleModes repeatToggleModes: Int
+        ): Int {
             return a.getInt(R.styleable.ExoVideoPlaybackControlView_repeat_toggle_modes, repeatToggleModes)
         }
 
         @SuppressLint("InlinedApi")
         private fun isHandledMediaKey(keyCode: Int): Boolean {
-            return (keyCode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD
-                    || keyCode == KeyEvent.KEYCODE_MEDIA_REWIND
-                    || keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE
-                    || keyCode == KeyEvent.KEYCODE_MEDIA_PLAY
-                    || keyCode == KeyEvent.KEYCODE_MEDIA_PAUSE
-                    || keyCode == KeyEvent.KEYCODE_MEDIA_NEXT
-                    || keyCode == KeyEvent.KEYCODE_MEDIA_PREVIOUS)
+            return (
+                keyCode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD ||
+                    keyCode == KeyEvent.KEYCODE_MEDIA_REWIND ||
+                    keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE ||
+                    keyCode == KeyEvent.KEYCODE_MEDIA_PLAY ||
+                    keyCode == KeyEvent.KEYCODE_MEDIA_PAUSE ||
+                    keyCode == KeyEvent.KEYCODE_MEDIA_NEXT ||
+                    keyCode == KeyEvent.KEYCODE_MEDIA_PREVIOUS
+                )
         }
 
         /**
@@ -1666,6 +1634,4 @@ class ExoVideoPlaybackControlView @JvmOverloads constructor(
             return true
         }
     }
-
-
 }

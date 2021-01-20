@@ -12,7 +12,7 @@ internal object DummyData {
         "https:\\/\\/ulesson-staging.s3.eu-west-2.amazonaws.com\\/subject_icons\\/icons\\/defaults\\/thumb\\/subject.png",
         listOf(chapterRemoteModel),
 
-        )
+    )
 
     val chapterRemoteModel: ChapterRemoteModel
         get() = ChapterRemoteModel(

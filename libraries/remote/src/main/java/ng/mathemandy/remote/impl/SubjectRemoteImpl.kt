@@ -6,7 +6,7 @@ import ng.mathemandy.remote.ApiService
 import ng.mathemandy.remote.mapper.SubjectRemoteMapper
 import javax.inject.Inject
 
-class SubjectRemoteImpl  @Inject constructor(
+class SubjectRemoteImpl @Inject constructor(
     private val apiService: ApiService,
     private val subjectRemoteMapper: SubjectRemoteMapper
 ) : SubjectsRemote {

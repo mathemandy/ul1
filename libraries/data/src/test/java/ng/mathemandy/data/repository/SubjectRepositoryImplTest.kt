@@ -18,7 +18,7 @@ class SubjectRepositoryImplTest {
     private val subjectMapper =
         SubjectEntityMapper(ChapterEntityMapper(LessonEntityMapper()))
 
-    private  val fakeCache  = FakeSubjectLocalImpl()
+    private val fakeCache = FakeSubjectLocalImpl()
     private val subjectRepository =
         SubjectRepositoryImpl(FakeSubjectRemoteImpl(), fakeCache, subjectMapper)
 
@@ -38,7 +38,7 @@ class SubjectRepositoryImplTest {
         fakeCache.saveSubject(subjectEntity)
         subjectRepository.fetchSubjects().test {
             assertThat(expectItem().status).isEqualTo(Status.LOADING)
-            val  resource = expectItem()
+            val resource = expectItem()
             val status = resource.status
             val localData = resource.data
             assertThat(status).isEqualTo(Status.LOADING)
@@ -50,23 +50,23 @@ class SubjectRepositoryImplTest {
 
     @Test
     fun `check that fetchSubjects fetches always returns data from DB First when network Fails `() = runBlockingTest {
-         val subjectRepository =
+        val subjectRepository =
             SubjectRepositoryImpl(FakeErrorSubjectRemote(), fakeCache, subjectMapper)
 
         val subjectEntity = DummyData.subjectEntity
         fakeCache.saveSubject(subjectEntity)
         subjectRepository.fetchSubjects().test {
             assertThat(expectItem().status).isEqualTo(Status.LOADING)
-            val  resource = expectItem()
+            val resource = expectItem()
             val status = resource.status
             val localData = resource.data
             assertThat(status).isEqualTo(Status.LOADING)
             assertThat(localData?.first()).isEqualTo(subjectMapper.mapFromEntity(subjectEntity))
 
-            val  remoteResource = expectItem()
+            val remoteResource = expectItem()
             val remoteStatus = remoteResource.status
             val remoteData = remoteResource.data
-            val throwable  = remoteResource.cause
+            val throwable = remoteResource.cause
 
             assertThat(remoteStatus).isEqualTo(Status.ERROR)
             assertThat(throwable).hasMessageThat().isEqualTo(FakeErrorSubjectRemote.ERROR)
@@ -74,6 +74,4 @@ class SubjectRepositoryImplTest {
             expectComplete()
         }
     }
-
-
 }

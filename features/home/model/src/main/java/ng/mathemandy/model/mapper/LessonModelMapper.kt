@@ -5,7 +5,7 @@ import ng.mathemandy.model.LessonModel
 import ng.mathemandy.model.base.ModelMapper
 import javax.inject.Inject
 
-class LessonModelMapper @Inject constructor() : ModelMapper<LessonModel, Lesson>{
+class LessonModelMapper @Inject constructor() : ModelMapper<LessonModel, Lesson> {
     override fun mapToModel(domain: Lesson): LessonModel {
         return LessonModel(
             domain.id,

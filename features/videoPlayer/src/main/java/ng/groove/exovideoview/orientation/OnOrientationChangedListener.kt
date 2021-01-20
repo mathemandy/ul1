@@ -8,7 +8,6 @@ interface OnOrientationChangedListener {
     @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class SensorOrientationType
 
-
     fun onChanged(@SensorOrientationType orientation: Int)
 
     companion object {

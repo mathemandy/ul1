@@ -15,8 +15,7 @@ class RequestDispatcher : Dispatcher() {
                     .setBody(getJson("response/subject_response.json"))
             }
             else -> {
-                 throw IllegalArgumentException("Unknown Request Path ${request.path}")
-
+                throw IllegalArgumentException("Unknown Request Path ${request.path}")
             }
         }
     }

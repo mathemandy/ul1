@@ -5,7 +5,7 @@ import ng.mathemandy.model.SubjectModel
 import ng.mathemandy.model.base.ModelMapper
 import javax.inject.Inject
 
-class SubjectModelMapper @Inject constructor(private val chapterModelMapper: ChapterModelMapper) : ModelMapper<SubjectModel, Subject>{
+class SubjectModelMapper @Inject constructor(private val chapterModelMapper: ChapterModelMapper) : ModelMapper<SubjectModel, Subject> {
 
     override fun mapToModel(domain: Subject): SubjectModel {
         return SubjectModel(

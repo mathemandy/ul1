@@ -5,12 +5,10 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-
 
 fun ViewGroup.inflate(layout: Int): View {
     val layoutInflater: LayoutInflater =
@@ -25,12 +23,12 @@ fun Fragment.getDrawable(@DrawableRes id: Int): Drawable? {
     )
 }
 
-//fun Fragment.onBackPress(onBackPressed: OnBackPressedCallback.() -> Unit) {
+// fun Fragment.onBackPress(onBackPressed: OnBackPressedCallback.() -> Unit) {
 //    requireActivity().onBackPressedDispatcher.addCallback(
 //        viewLifecycleOwner,
 //        onBackPressed = onBackPressed
 //    )
-//}
+// }
 
 val Fragment.actionBar: androidx.appcompat.app.ActionBar?
     get() = (requireActivity() as AppCompatActivity).supportActionBar

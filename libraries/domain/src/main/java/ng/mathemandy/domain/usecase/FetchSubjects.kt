@@ -8,7 +8,7 @@ import ng.mathemandy.domain.resource.RepositoryResource
 import ng.mathemandy.domain.usecase.base.FlowUseCase
 import javax.inject.Inject
 
-class FetchSubjects  @Inject constructor(
+class FetchSubjects @Inject constructor(
     private val subjectRepository: SubjectRepository,
     postExecutionThread: PostExecutionThread
 ) : FlowUseCase<Unit, RepositoryResource<List<Subject>>>(postExecutionThread) {

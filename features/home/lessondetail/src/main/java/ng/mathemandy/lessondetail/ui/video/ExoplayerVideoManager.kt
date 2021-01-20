@@ -26,13 +26,11 @@ class ExoplayerVideoManager private constructor() {
     private var mResumePosition: Long = 0
     private var videoView: ExoVideoView? = null
 
-
     fun init(context: Context, videoMedia: List<String>, startWindow: Int) {
         mContext = context
         videos = videoMedia
         mResumeWindow = startWindow
     }
-
 
     fun prepareExoplayer(playerView: ExoVideoView?) {
         if (mContext == null || playerView == null) {
@@ -45,7 +43,7 @@ class ExoplayerVideoManager private constructor() {
 
             try {
 
-                val mediaSources = MutableList<MediaSource>(videos.size){
+                val mediaSources = MutableList<MediaSource>(videos.size) {
                     buildMediaSource(Uri.parse(videos[it]))
                 }
 
@@ -53,19 +51,16 @@ class ExoplayerVideoManager private constructor() {
                 val mediaSource = if (mediaSources.size == 1)
                     mediaSources[0] // [MAKES A SINGLE VIDEO MEDIA SOURCE]
                 else
-                    ConcatenatingMediaSource(*mediaSources.toTypedArray())   // [MAKES A PLAYLIST MEDIA SOURCE]
+                    ConcatenatingMediaSource(*mediaSources.toTypedArray()) // [MAKES A PLAYLIST MEDIA SOURCE]
 
                 // [MAKES VIDEO FILL SCREEN WITHOUT STRETCHING]
                 playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL)
                 player?.videoScalingMode = Renderer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
 
                 mediaSource?.let { player?.prepare(it) }
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
-
         }
 
         player?.clearVideoSurface()
@@ -73,22 +68,23 @@ class ExoplayerVideoManager private constructor() {
         player?.seekTo(mResumeWindow, player?.currentPosition ?: 0)
         playerView.setPlayer(player)
         isPlayerPlaying = true
-
     }
 
     private fun buildMediaSource(uri: Uri): MediaSource {
         val defaultBandwidthMeter = DefaultBandwidthMeter.Builder(mContext).build()
         // Produces DataSource instances through which media data is loaded.
-        val dataSourceFactory = DefaultDataSourceFactory(mContext,
-            Util.getUserAgent(mContext, BuildConfig.APPLICATION_ID), defaultBandwidthMeter)
+        val dataSourceFactory = DefaultDataSourceFactory(
+            mContext,
+            Util.getUserAgent(mContext, BuildConfig.APPLICATION_ID),
+            defaultBandwidthMeter
+        )
 
 //        val dataSourceFactory = RtmpDataSourceFactory()
 
 //        return ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
         return ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(uri)
+            .createMediaSource(uri)
     }
-
 
     fun releaseVideoPlayer() {
         if (player != null) {
@@ -120,7 +116,6 @@ class ExoplayerVideoManager private constructor() {
         if (Build.VERSION.SDK_INT > 23) {
             videoView?.resume()
         }
-
     }
 
     fun onResume() {
@@ -134,7 +129,6 @@ class ExoplayerVideoManager private constructor() {
             videoView?.pause()
         }
     }
-
 
     companion object : SingletonHolder<ExoplayerVideoManager>(::ExoplayerVideoManager)
 }

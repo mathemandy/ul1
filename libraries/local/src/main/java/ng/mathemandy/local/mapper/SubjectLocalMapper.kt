@@ -8,7 +8,6 @@ import javax.inject.Inject
 class SubjectLocalMapper @Inject constructor(private val chapterLocalMapper: ChapterLocalMapper) :
     LocalModelMapper<SubjectLocalModel, SubjectEntity> {
 
-
     override fun mapToModel(entity: SubjectEntity): SubjectLocalModel {
         return SubjectLocalModel(
             entity.id,

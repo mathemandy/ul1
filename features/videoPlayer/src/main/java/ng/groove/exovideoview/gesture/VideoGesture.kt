@@ -18,21 +18,21 @@ import ng.groove.exovideoview.ui.ExoVideoPlaybackControlView
 import ng.groove.exovideoview.utils.Permissions
 
 class VideoGesture(
-        private val context: Context,
-        private val onVideoGestureChangeListener: OnVideoGestureChangeListener?,
-        private val playerAccessor: ExoVideoPlaybackControlView.PlayerAccessor) : View.OnTouchListener {
+    private val context: Context,
+    private val onVideoGestureChangeListener: OnVideoGestureChangeListener?,
+    private val playerAccessor: ExoVideoPlaybackControlView.PlayerAccessor
+) : View.OnTouchListener {
 
     private val window: Timeline.Window
 
-    //touch
+    // touch
     private var mTouchAction = TOUCH_NONE
     private var mSurfaceYDisplayRange: Int = 0
     private var mInitTouchY: Float = 0.toFloat()
     private var touchX = -1f
     private var touchY = -1f
 
-
-    //Volume
+    // Volume
     private var mAudioManager: AudioManager? = null
     private var mAudioMax: Int = 0
     private var mVol: Float = 0.toFloat()
@@ -49,13 +49,11 @@ class VideoGesture(
         initVol()
     }
 
-
     private fun initVol() {
 
         /* Services and miscellaneous */
         mAudioManager = context.applicationContext.getSystemService(AUDIO_SERVICE) as AudioManager
         mAudioMax = mAudioManager!!.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -63,11 +61,9 @@ class VideoGesture(
         return if (!enabled) {
             false
         } else dispatchCenterWrapperTouchEvent(event)
-
     }
 
     private fun dispatchCenterWrapperTouchEvent(event: MotionEvent): Boolean {
-
 
         val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
@@ -90,8 +86,7 @@ class VideoGesture(
 
         //        Log.e("tag","x_c=" + x_changed + "screen_x =" + screen.xdpi +" screen_rawx" + event.getRawX());
         val coef = Math.abs(y_changed / x_changed)
-        val xgesturesize = (event.rawX - touchX) / screen.xdpi * 2.54f//2.54f
-
+        val xgesturesize = (event.rawX - touchX) / screen.xdpi * 2.54f // 2.54f
 
         val delta_y = Math.max(1f, (Math.abs(mInitTouchY - event.rawY) / screen.xdpi + 0.5f) * 2f)
 
@@ -115,16 +110,13 @@ class VideoGesture(
                     touchX = event.rawX
                     touchY = event.rawY
 
-
                     if (touchX.toInt() > 4 * screen.widthPixels / 7) {
                         doVolumeTouch(y_changed)
-
                     }
                     // Brightness (Up or Down - Left side)
                     if (touchX.toInt() < 3 * screen.widthPixels / 7) {
                         doBrightnessTouch(y_changed)
                     }
-
                 } else {
                     doSeekTouch(Math.round(delta_y), xgesturesize, false)
                 }
@@ -144,7 +136,6 @@ class VideoGesture(
             else -> {
             }
         }
-
 
         return mTouchAction != TOUCH_NONE
     }
@@ -195,7 +186,6 @@ class VideoGesture(
         }
     }
 
-
     private fun doBrightnessTouch(y_changed: Float) {
         if (mTouchAction != TOUCH_NONE && mTouchAction != TOUCH_BRIGHTNESS) {
             return
@@ -220,7 +210,6 @@ class VideoGesture(
         }
         val activity = context
 
-
         val lp = activity.window.attributes
         var brightness = Math.min(Math.max(lp.screenBrightness + delta, 0.01f), 1f)
 
@@ -231,7 +220,6 @@ class VideoGesture(
         brightness = Math.round(brightness * 100).toFloat()
 
         onBrightnessChanged(brightness.toInt())
-
     }
 
     private fun onBrightnessChanged(brightnessPercent: Int) {
@@ -246,18 +234,15 @@ class VideoGesture(
             coef = 1
         }
 
-
         // No seek action if coef > 0.5 and gesturesize < 1cm
 
         if (Math.abs(gesturesize) < 1 || !canSeek()) {
             return
         }
 
-
         if (mTouchAction != TOUCH_NONE && mTouchAction != TOUCH_SEEK) {
             return
         }
-
 
         mTouchAction = TOUCH_SEEK
         val player = playerAccessor.attachPlayer()
@@ -272,18 +257,17 @@ class VideoGesture(
             jump = (length - time).toInt()
         }
 
-
         if (jump < 0 && time + jump < 0) {
             jump = (-time).toInt()
         }
 
-        //Jump !
+        // Jump !
         //        if (seek && length > 0) {
         //            jump(time + jump);
         //        }
 
         if (length > 0) {
-            //Show the jump's size
+            // Show the jump's size
             seekAndShowJump(seek, time + jump, jump > 0)
         }
     }
@@ -300,7 +284,6 @@ class VideoGesture(
         }
     }
 
-
     private fun initBrightnessTouch() {
         if (context !is Activity) {
             return
@@ -315,14 +298,18 @@ class VideoGesture(
                 if (!Permissions.canWriteSettings(activity)) {
                     return
                 }
-                Settings.System.putInt(activity.contentResolver,
-                        Settings.System.SCREEN_BRIGHTNESS_MODE,
-                        Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
+                Settings.System.putInt(
+                    activity.contentResolver,
+                    Settings.System.SCREEN_BRIGHTNESS_MODE,
+                    Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+                )
                 //                restoreAutoBrightness = android.provider.Settings.System.getInt(activity.getContentResolver(),
                 //                        android.provider.Settings.System.SCREEN_BRIGHTNESS) / 255.0f;
             } else if (brightnesstemp == 0.6f) {
-                brightnesstemp = android.provider.Settings.System.getInt(activity.contentResolver,
-                        android.provider.Settings.System.SCREEN_BRIGHTNESS) / 255.0f
+                brightnesstemp = android.provider.Settings.System.getInt(
+                    activity.contentResolver,
+                    android.provider.Settings.System.SCREEN_BRIGHTNESS
+                ) / 255.0f
             }
         } catch (e: Settings.SettingNotFoundException) {
             e.printStackTrace()
@@ -359,7 +346,7 @@ class VideoGesture(
 
     companion object {
 
-        //Touch Events
+        // Touch Events
         private val TOUCH_NONE = 0
         private val TOUCH_VOLUME = 1
         private val TOUCH_BRIGHTNESS = 2

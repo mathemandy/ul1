@@ -1,10 +1,10 @@
 package ng.mathemandy.remote.utils
 
+import com.google.common.io.Resources
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import okhttp3.OkHttpClient
-import com.google.common.io.Resources
 import ng.mathemandy.remote.ApiService
+import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockWebServer
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

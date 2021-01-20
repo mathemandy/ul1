@@ -8,7 +8,6 @@ import ng.mathemandy.core.imageLoader.ImageLoader
 import ng.mathemandy.core.imageLoader.ImageLoaderImpl
 import javax.inject.Singleton
 
-
 @InstallIn(ApplicationComponent::class)
 @Module
 interface ImageLoaderModule {

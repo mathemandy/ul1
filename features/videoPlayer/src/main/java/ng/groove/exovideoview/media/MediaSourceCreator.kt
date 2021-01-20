@@ -5,8 +5,6 @@ import android.net.Uri
 import android.os.Handler
 import android.text.TextUtils
 import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
-import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.dash.DashMediaSource
@@ -18,7 +16,6 @@ import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.upstream.*
 import com.google.android.exoplayer2.util.Util
-
 
 class MediaSourceCreator @JvmOverloads constructor(private val context: Context, private val userAgent: String = "exo_video_view") {
 
@@ -44,18 +41,28 @@ class MediaSourceCreator @JvmOverloads constructor(private val context: Context,
         return eventLogger
     }
 
-
     fun buildMediaSource(uri: Uri, overrideExtension: String?): MediaSource {
         @C.ContentType val type = if (TextUtils.isEmpty(overrideExtension))
             Util.inferContentType(uri)
         else
             Util.inferContentType(".$overrideExtension")
         return when (type) {
-            C.TYPE_SS -> SsMediaSource(uri, buildDataSourceFactory(false),
-                    DefaultSsChunkSource.Factory(mediaDataSourceFactory), mainHandler, eventLogger)
-            C.TYPE_DASH -> DashMediaSource(uri, buildDataSourceFactory(false),
-                    DefaultDashChunkSource.Factory(mediaDataSourceFactory), mainHandler, eventLogger)
-            C.TYPE_HLS -> HlsMediaSource.Factory(mediaDataSourceFactory)
+            C.TYPE_SS -> SsMediaSource(
+                uri,
+                buildDataSourceFactory(false),
+                DefaultSsChunkSource.Factory(mediaDataSourceFactory),
+                mainHandler,
+                eventLogger
+            )
+            C.TYPE_DASH -> DashMediaSource(
+                uri,
+                buildDataSourceFactory(false),
+                DefaultDashChunkSource.Factory(mediaDataSourceFactory),
+                mainHandler,
+                eventLogger
+            )
+            C.TYPE_HLS ->
+                HlsMediaSource.Factory(mediaDataSourceFactory)
                     .createMediaSource(uri)
             C.TYPE_OTHER -> {
                 val pMediaSource = ProgressiveMediaSource.Factory(mediaDataSourceFactory)
@@ -67,18 +74,19 @@ class MediaSourceCreator @JvmOverloads constructor(private val context: Context,
         }
     }
 
-
     private fun buildDataSourceFactory(useBandwidthMeter: Boolean): DataSource.Factory {
         return buildDataSourceFactory(if (useBandwidthMeter) BANDWIDTH_METER else null)
     }
 
     private fun buildDataSourceFactory(bandwidthMeter: DefaultBandwidthMeter?): DataSource.Factory {
-        return DefaultDataSourceFactory(context, bandwidthMeter,
-                buildHttpDataSourceFactory(bandwidthMeter))
+        return DefaultDataSourceFactory(
+            context,
+            bandwidthMeter,
+            buildHttpDataSourceFactory(bandwidthMeter)
+        )
     }
 
     private fun buildHttpDataSourceFactory(bandwidthMeter: DefaultBandwidthMeter?): HttpDataSource.Factory {
         return DefaultHttpDataSourceFactory(userAgent, bandwidthMeter)
     }
-
 }

@@ -17,34 +17,35 @@ import javax.inject.Singleton
 class ImageLoaderImpl @Inject constructor() : ImageLoader {
 
     override fun loadImage(view: ImageView, progress: ProgressBar, url: String) {
-        Glide.with(view).load(url).listener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
-                progress.visibility = View.GONE
-                return false
-            }
+        Glide.with(view).load(url).listener(
+            object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    progress.visibility = View.GONE
+                    return false
+                }
 
-            override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
-            ): Boolean {
-                progress.visibility = View.GONE
-                return false
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    progress.visibility = View.GONE
+                    return false
+                }
             }
-        }).diskCacheStrategy(DiskCacheStrategy.ALL)
+        ).diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(view)
     }
 
     override fun loadImage(view: ImageView, url: String) {
-        Glide.with(view).load(url).
-        diskCacheStrategy(DiskCacheStrategy.ALL).into(view)
-
+        Glide.with(view).load(url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL).into(view)
     }
 }

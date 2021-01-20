@@ -2,8 +2,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-
-class  GridSpacingItemDecoration(spanCount: Int, spacing: Int, includeEdge: Boolean): RecyclerView.ItemDecoration(){
+class GridSpacingItemDecoration(spanCount: Int, spacing: Int, includeEdge: Boolean) : RecyclerView.ItemDecoration() {
     private var spanCount = 0
     private var spacing = 0
     private var includeEdge = false
@@ -12,7 +11,6 @@ class  GridSpacingItemDecoration(spanCount: Int, spacing: Int, includeEdge: Bool
         this.spanCount = spanCount
         this.spacing = spacing
         this.includeEdge = includeEdge
-
     }
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         val position = parent.getChildAdapterPosition(view) // item position
@@ -32,5 +30,4 @@ class  GridSpacingItemDecoration(spanCount: Int, spacing: Int, includeEdge: Bool
             }
         }
     }
-
 }

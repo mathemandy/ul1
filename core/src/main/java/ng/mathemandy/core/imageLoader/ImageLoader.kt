@@ -1,6 +1,5 @@
 package ng.mathemandy.core.imageLoader
 
-import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 
