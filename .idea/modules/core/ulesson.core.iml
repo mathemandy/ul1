@@ -86,6 +86,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../core/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../core/src/main/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../core/build/generated/source/kaptKotlin/debug" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../core/build/generated/source/kapt/debugUnitTest" isTestSource="true" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../../core/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../core/build" />
     </content>
