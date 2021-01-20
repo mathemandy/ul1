@@ -1,6 +1,6 @@
 
 
-[Android Build](https://github.com/mathemandy/ul1/workflows/.github/workflows/android_build.yml/badge.svg)
+[Android Build](https://github.com/actions/ul1/workflows/.github/workflows/android_build.yml/badge.svg)
 
 This project contains an implementation of MVVM based on requirement for an Assessment 
 
