@@ -52,6 +52,11 @@ This abstraction enables me to separate concern of the project into separate Mod
 - It shows data based on statistic - EMPTY , LOADING , OFFLINE,  LOADING_WIH_DATA and FAILED
 - the appropriate Ui is shown depending on the state of the data. 
 - Navigation Component is used to open the next Screen  - Lessons and the object is passed as a bundle. 
+- Two Recyclerviews were used in this  Screen. 
+- ##NB: 
+  The Icon field was also used here for the images which seemed different from what was on the design.  
+
+
 
 #### Feature/home/Lessons 
 - This is a Dynamic Feature Module that holds only a fragment (SubjectFragment). 
