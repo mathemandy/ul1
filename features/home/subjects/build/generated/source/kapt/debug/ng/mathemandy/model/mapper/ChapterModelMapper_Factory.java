@@ -13,23 +13,22 @@ import javax.inject.Provider;
     "rawtypes"
 })
 public final class ChapterModelMapper_Factory implements Factory<ChapterModelMapper> {
-  private final Provider<LessonModelMapper> lessonModelMapperProvider;
+  private final Provider<LessonModelMapper> arg0Provider;
 
-  public ChapterModelMapper_Factory(Provider<LessonModelMapper> lessonModelMapperProvider) {
-    this.lessonModelMapperProvider = lessonModelMapperProvider;
+  public ChapterModelMapper_Factory(Provider<LessonModelMapper> arg0Provider) {
+    this.arg0Provider = arg0Provider;
   }
 
   @Override
   public ChapterModelMapper get() {
-    return newInstance(lessonModelMapperProvider.get());
+    return newInstance(arg0Provider.get());
   }
 
-  public static ChapterModelMapper_Factory create(
-      Provider<LessonModelMapper> lessonModelMapperProvider) {
-    return new ChapterModelMapper_Factory(lessonModelMapperProvider);
+  public static ChapterModelMapper_Factory create(Provider<LessonModelMapper> arg0Provider) {
+    return new ChapterModelMapper_Factory(arg0Provider);
   }
 
-  public static ChapterModelMapper newInstance(LessonModelMapper lessonModelMapper) {
-    return new ChapterModelMapper(lessonModelMapper);
+  public static ChapterModelMapper newInstance(LessonModelMapper arg0) {
+    return new ChapterModelMapper(arg0);
   }
 }

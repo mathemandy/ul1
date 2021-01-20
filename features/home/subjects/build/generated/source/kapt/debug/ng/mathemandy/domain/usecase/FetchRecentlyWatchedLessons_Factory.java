@@ -15,31 +15,29 @@ import ng.mathemandy.domain.repository.RecentlyWatchedLessonRepository;
     "rawtypes"
 })
 public final class FetchRecentlyWatchedLessons_Factory implements Factory<FetchRecentlyWatchedLessons> {
-  private final Provider<RecentlyWatchedLessonRepository> recentlyWatchedLessonsRepositoryProvider;
+  private final Provider<RecentlyWatchedLessonRepository> arg0Provider;
 
-  private final Provider<PostExecutionThread> postExecutionThreadProvider;
+  private final Provider<PostExecutionThread> arg1Provider;
 
-  public FetchRecentlyWatchedLessons_Factory(
-      Provider<RecentlyWatchedLessonRepository> recentlyWatchedLessonsRepositoryProvider,
-      Provider<PostExecutionThread> postExecutionThreadProvider) {
-    this.recentlyWatchedLessonsRepositoryProvider = recentlyWatchedLessonsRepositoryProvider;
-    this.postExecutionThreadProvider = postExecutionThreadProvider;
+  public FetchRecentlyWatchedLessons_Factory(Provider<RecentlyWatchedLessonRepository> arg0Provider,
+      Provider<PostExecutionThread> arg1Provider) {
+    this.arg0Provider = arg0Provider;
+    this.arg1Provider = arg1Provider;
   }
 
   @Override
   public FetchRecentlyWatchedLessons get() {
-    return newInstance(recentlyWatchedLessonsRepositoryProvider.get(), postExecutionThreadProvider.get());
+    return newInstance(arg0Provider.get(), arg1Provider.get());
   }
 
   public static FetchRecentlyWatchedLessons_Factory create(
-      Provider<RecentlyWatchedLessonRepository> recentlyWatchedLessonsRepositoryProvider,
-      Provider<PostExecutionThread> postExecutionThreadProvider) {
-    return new FetchRecentlyWatchedLessons_Factory(recentlyWatchedLessonsRepositoryProvider, postExecutionThreadProvider);
+      Provider<RecentlyWatchedLessonRepository> arg0Provider,
+      Provider<PostExecutionThread> arg1Provider) {
+    return new FetchRecentlyWatchedLessons_Factory(arg0Provider, arg1Provider);
   }
 
-  public static FetchRecentlyWatchedLessons newInstance(
-      RecentlyWatchedLessonRepository recentlyWatchedLessonsRepository,
-      PostExecutionThread postExecutionThread) {
-    return new FetchRecentlyWatchedLessons(recentlyWatchedLessonsRepository, postExecutionThread);
+  public static FetchRecentlyWatchedLessons newInstance(RecentlyWatchedLessonRepository arg0,
+      PostExecutionThread arg1) {
+    return new FetchRecentlyWatchedLessons(arg0, arg1);
   }
 }

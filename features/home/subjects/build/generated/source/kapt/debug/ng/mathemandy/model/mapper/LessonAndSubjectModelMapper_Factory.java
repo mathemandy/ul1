@@ -13,30 +13,28 @@ import javax.inject.Provider;
     "rawtypes"
 })
 public final class LessonAndSubjectModelMapper_Factory implements Factory<LessonAndSubjectModelMapper> {
-  private final Provider<SubjectModelMapper> subjectModelMapperProvider;
+  private final Provider<SubjectModelMapper> arg0Provider;
 
-  private final Provider<LessonModelMapper> lessonModelMapperProvider;
+  private final Provider<LessonModelMapper> arg1Provider;
 
-  public LessonAndSubjectModelMapper_Factory(
-      Provider<SubjectModelMapper> subjectModelMapperProvider,
-      Provider<LessonModelMapper> lessonModelMapperProvider) {
-    this.subjectModelMapperProvider = subjectModelMapperProvider;
-    this.lessonModelMapperProvider = lessonModelMapperProvider;
+  public LessonAndSubjectModelMapper_Factory(Provider<SubjectModelMapper> arg0Provider,
+      Provider<LessonModelMapper> arg1Provider) {
+    this.arg0Provider = arg0Provider;
+    this.arg1Provider = arg1Provider;
   }
 
   @Override
   public LessonAndSubjectModelMapper get() {
-    return newInstance(subjectModelMapperProvider.get(), lessonModelMapperProvider.get());
+    return newInstance(arg0Provider.get(), arg1Provider.get());
   }
 
   public static LessonAndSubjectModelMapper_Factory create(
-      Provider<SubjectModelMapper> subjectModelMapperProvider,
-      Provider<LessonModelMapper> lessonModelMapperProvider) {
-    return new LessonAndSubjectModelMapper_Factory(subjectModelMapperProvider, lessonModelMapperProvider);
+      Provider<SubjectModelMapper> arg0Provider, Provider<LessonModelMapper> arg1Provider) {
+    return new LessonAndSubjectModelMapper_Factory(arg0Provider, arg1Provider);
   }
 
-  public static LessonAndSubjectModelMapper newInstance(SubjectModelMapper subjectModelMapper,
-      LessonModelMapper lessonModelMapper) {
-    return new LessonAndSubjectModelMapper(subjectModelMapper, lessonModelMapper);
+  public static LessonAndSubjectModelMapper newInstance(SubjectModelMapper arg0,
+      LessonModelMapper arg1) {
+    return new LessonAndSubjectModelMapper(arg0, arg1);
   }
 }
