@@ -9,6 +9,8 @@ ng/mathemandy/home/di/components/DaggerSubjectsComponent.java
  ng.mathemandy.home.di.components.DaggerSubjectsComponent$SwitchingProvider
 ng/mathemandy/home/BR.java
  ng.mathemandy.home.BR
+ng/mathemandy/model/mapper/LessonAndSubjectModelMapper_Factory.java
+ ng.mathemandy.model.mapper.LessonAndSubjectModelMapper_Factory
 ng/mathemandy/model/mapper/SubjectModelMapper_Factory.java
  ng.mathemandy.model.mapper.SubjectModelMapper_Factory
 ng/mathemandy/domain/usecase/FetchSubjects_Factory.java
@@ -32,5 +34,7 @@ ng/mathemandy/model/mapper/LessonModelMapper_Factory.java
  ng.mathemandy.model.mapper.LessonModelMapper_Factory$InstanceHolder
 ng/mathemandy/home/ui/RecentVideosAdapter_Factory.java
  ng.mathemandy.home.ui.RecentVideosAdapter_Factory
+ng/mathemandy/domain/usecase/FetchRecentlyWatchedLessons_Factory.java
+ ng.mathemandy.domain.usecase.FetchRecentlyWatchedLessons_Factory
 ng/mathemandy/home/databinding/FragmentSubjectsBindingImpl.java
  ng.mathemandy.home.databinding.FragmentSubjectsBindingImpl

@@ -6,6 +6,10 @@ drawable mask_group
 id advert_track_image
 id appbar
 id collapsingToolbar
+id empty_content_Layout_home
+id empty_content_Layout_recentlyWatched
+id error_content_Layout_home
+id error_content_Layout_recentlyWatched
 id guideline_end
 id guideline_end_recent
 id guideline_start
@@ -16,6 +20,7 @@ id parent_scroll
 id play_btn
 id progress
 id recentHeader
+id recentlyWatchedFlipper
 id recentlyWatchedVideos
 id recently_watched_rv
 id subjectContainer

@@ -1,3 +1,4 @@
+include ':libraries:local'
 include ':features:home:lessondetail'
 include ':features:home:model'
 include ':features:home:lessons'

@@ -18,6 +18,26 @@ class AppResource <out D> constructor(
         )
 
         @JvmStatic
+        fun <D> offline(
+            data: D,
+            message: String? = null
+        ): AppResource<D> = AppResource(
+            status = AppStatus.OFFLINE,
+            data = data,
+            message = message
+        )
+
+        @JvmStatic
+        fun <D> loadingWithInitialData(
+            data: D,
+            message: String? = null
+        ): AppResource<D> = AppResource(
+            status = AppStatus.LOADING_WITH_DATA,
+            data = data,
+            message = message
+        )
+
+        @JvmStatic
         fun <D> failed(
             message: String?
         ): AppResource<D> = AppResource(

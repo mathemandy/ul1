@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
                                                                    
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:tag="layout/fragment_subjects_0" xmlns:android="http://schemas.android.com/apk/res/android">
@@ -11,11 +10,10 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
+            android:background="@null"
             android:minHeight="@dimen/_100sdp"
             app:elevation="0dp"
-            android:background="@null"
-            app:liftOnScroll="true"
-            >
+            app:liftOnScroll="true">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbar"
@@ -44,145 +42,165 @@
             android:layout_height="match_parent"
             android:fillViewport="true"
             android:scrollbars="none"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
-            >
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:paddingBottom="@dimen/_30sdp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:focusableInTouchMode="true"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/subjectContainer"
+                android:layout_height="match_parent"
                 android:paddingBottom="@dimen/_30sdp">
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/guideline_start"
-                    app:layout_constraintGuide_begin="@dimen/_16sdp"
-                    android:layout_height="wrap_content"/>
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/guideline_end"
-                    app:layout_constraintGuide_end="@dimen/_16sdp"
-                    android:layout_height="wrap_content"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/subjectContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:paddingBottom="@dimen/_30sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ViewFlipper
-                    android:id="@+id/subjectsFlipper"
-                    app:layout_constraintStart_toEndOf="@id/guideline_start"
-                    app:layout_constraintEnd_toStartOf="@id/guideline_end"
-                    android:layout_width="0dp"
-                    android:minHeight="@dimen/_150sdp"
-                    android:layout_height="match_parent">
-                    <ProgressBar
-                        android:layout_gravity="center"
-                        style="@style/progressbarStyle"
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/subject_rv"
-                        android:nestedScrollingEnabled="false"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:spanCount="2"
-                        android:layout_width="match_parent"
-                        tools:itemCount="3"
-                        android:layout_height="match_parent"
-                        tools:listitem="@layout/subject_item" />
+                        app:layout_constraintGuide_begin="@dimen/_16sdp" />
 
-                </ViewFlipper>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/subjectContainer"
-                android:id="@+id/recentlyWatchedVideos"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textSize="@dimen/_24sdp"
-                    android:id="@+id/recentHeader"
-                    android:text="Recently watched topics"
-                    android:textColor="@color/primary_text_color"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/guideline_start_recent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/guideline_start_recent"
-                    app:layout_constraintGuide_begin="@dimen/_16sdp"
-                    android:layout_height="wrap_content"/>
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/guideline_end_recent"
-                    app:layout_constraintGuide_end="@dimen/_16sdp"
-                    android:layout_height="wrap_content"/>
-
-                <ViewFlipper
-                    app:layout_constraintTop_toBottomOf="@id/recentHeader"
-                    app:layout_constraintStart_toEndOf="@id/guideline_start_recent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline_end_recent"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:nestedScrollingEnabled="false"
-                        android:id="@+id/recently_watched_rv"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        tools:itemCount="1"
+                        app:layout_constraintGuide_end="@dimen/_16sdp" />
+
+                    <ViewFlipper
+                        android:id="@+id/subjectsFlipper"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        tools:listitem="@layout/recent_videos" />
+                        android:minHeight="@dimen/_150sdp"
+                        app:layout_constraintEnd_toStartOf="@id/guideline_end"
+                        app:layout_constraintStart_toEndOf="@id/guideline_start" android:tag="binding_1">
 
-                </ViewFlipper>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ProgressBar
+                            style="@style/progressbarStyle"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_gravity="center" />
 
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/subject_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="2"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/subject_item" />
+
+                        <include
+                            android:id="@+id/empty_content_Layout_home"
+                            layout="@layout/empty_content_layout" />
+                        <include
+                            android:id="@+id/error_content_Layout_home"
+                            layout="@layout/error_content_layout" />
+
+                    </ViewFlipper>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/recentlyWatchedVideos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/subjectContainer">
+
+                    <TextView
+                        android:id="@+id/recentHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recently watched topics"
+                        android:textColor="@color/primary_text_color"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintStart_toEndOf="@id/guideline_start_recent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_start_recent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="@dimen/_16sdp" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_end_recent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_end="@dimen/_16sdp" />
+
+                    <ViewFlipper
+                        android:id="@+id/recentlyWatchedFlipper"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:minHeight="@dimen/_150sdp"
+                        app:layout_constraintEnd_toStartOf="@id/guideline_end_recent"
+                        app:layout_constraintStart_toEndOf="@id/guideline_start_recent"
+                        app:layout_constraintTop_toBottomOf="@id/recentHeader" android:tag="binding_2">
+
+                        <ProgressBar
+                            style="@style/progressbarStyle"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_gravity="center" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recently_watched_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="1"
+                            tools:listitem="@layout/recent_videos" />
+
+                        <include
+                            android:id="@+id/empty_content_Layout_recentlyWatched"
+                            layout="@layout/empty_content_layout" />
+                        <include
+                            android:id="@+id/error_content_Layout_recentlyWatched"
+                            layout="@layout/error_content_layout" />
+
+                    </ViewFlipper>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_16sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/recentlyWatchedVideos"
-                    android:layout_width="0dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:clipToPadding="true"
                     app:cardCornerRadius="@dimen/_8sdp"
-                    android:layout_height="wrap_content">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recentlyWatchedVideos">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:background="@drawable/ic_button_art"
                         android:text="View All"
                         android:textAllCaps="true"
-                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/white"
-                        app:fontFamily="@font/mulish_bold"
-                        android:background="@drawable/ic_button_art"
-                        android:layout_width="match_parent"
+                        android:textSize="@dimen/_12ssp"
 
-                        android:layout_height="@dimen/_45sdp"/>
+                        app:fontFamily="@font/mulish_bold" />
                 </androidx.cardview.widget.CardView>
 
 

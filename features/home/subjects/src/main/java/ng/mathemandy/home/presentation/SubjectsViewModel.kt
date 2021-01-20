@@ -7,44 +7,115 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ng.mathemandy.core.ext.errorMessage
+import ng.mathemandy.domain.model.LessonAndSubject
 import ng.mathemandy.domain.model.Subject
 import ng.mathemandy.domain.resource.AppResource
+import ng.mathemandy.domain.resource.RepositoryResource
+import ng.mathemandy.domain.resource.Status
+import ng.mathemandy.domain.usecase.FetchRecentlyWatchedLessons
 import ng.mathemandy.domain.usecase.FetchSubjects
 import ng.mathemandy.model.SubjectModel
+import ng.mathemandy.model.LessonAndSubjectModel
+import ng.mathemandy.model.mapper.LessonAndSubjectModelMapper
 import ng.mathemandy.model.mapper.SubjectModelMapper
 import javax.inject.Inject
 
 class SubjectsViewModel @Inject constructor(
     private val subjectModelMapper: SubjectModelMapper,
-    private val fetchSubjectsUseCase: FetchSubjects
+    private val fetchSubjectsUseCase: FetchSubjects,
+    private val recentlyWatchedLessonsUseCase: FetchRecentlyWatchedLessons,
+    private val lessonAndSubjectModel : LessonAndSubjectModelMapper
 ) : ViewModel() {
 
     private val _subjectsLiveData = MutableLiveData<AppResource<List<SubjectModel>>>()
     val subjectsLiveData = _subjectsLiveData as LiveData<AppResource<List<SubjectModel>>>
 
-    private val subjects: Flow<List<Subject>>
+
+    private val _recentTopicsLiveData = MutableLiveData<AppResource<List<LessonAndSubjectModel>>>()
+    val recentTopicsLiveData =
+        _recentTopicsLiveData as LiveData<AppResource<List<LessonAndSubjectModel>>>
+
+
+    private val subjects: Flow<RepositoryResource<List<Subject>>>
         get() = fetchSubjectsUseCase()
 
+    private val recentlyWatchedLessons: Flow<List<LessonAndSubject>>
+        get() = recentlyWatchedLessonsUseCase()
 
     init {
         getSubjects()
+        getRecentlyWatchedLessons()
+
     }
 
     private fun getSubjects() {
         viewModelScope.launch {
-            subjects.onStart {
-                _subjectsLiveData.postValue(AppResource.loading())
+            subjects.collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        if (it.data?.isNotEmpty() == true) {
+                            _subjectsLiveData.postValue(
+                                AppResource.success(
+                                    subjectModelMapper.mapToModelList(
+                                        it.data!!
+                                    )
+                                )
+                            )
+                        } else {
+                            _subjectsLiveData.postValue(AppResource.empty())
+                        }
+                    }
+                    Status.ERROR -> {
+                        if (it.data?.isNotEmpty() == true) {
+                            _subjectsLiveData.postValue(
+                                AppResource.offline(
+                                    subjectModelMapper.mapToModelList(
+                                        it.data!!
+                                    ), it.cause?.errorMessage
+                                )
+                            )
+                        } else {
+                            _subjectsLiveData.postValue(AppResource.failed(it.cause?.errorMessage))
 
-            }.catch { cause: Throwable ->
-                _subjectsLiveData.postValue(AppResource.failed(cause.errorMessage))
+                        }
 
-            }.collect {
-                _subjectsLiveData.postValue(AppResource.success(subjectModelMapper.mapToModelList(it)))
-
+                    }
+                    Status.LOADING -> {
+                        if (it.data?.isNotEmpty() == true) {
+                            _subjectsLiveData.postValue(
+                                AppResource.loadingWithInitialData(
+                                    subjectModelMapper.mapToModelList(
+                                        it.data!!
+                                    )
+                                )
+                            )
+                        } else {
+                            _subjectsLiveData.postValue(AppResource.loading())
+                        }
+                    }
+                }
             }
-
         }
 
+    }
+
+    private fun getRecentlyWatchedLessons() {
+        viewModelScope.launch {
+            recentlyWatchedLessons.onStart {
+                _recentTopicsLiveData.postValue(AppResource.loading())
+
+            }.catch { cause: Throwable ->
+                _recentTopicsLiveData.postValue(AppResource.failed(cause.errorMessage))
+
+            }.collect {
+
+                if (it.isEmpty()) {
+                    _recentTopicsLiveData.postValue(AppResource.empty())
+                } else {
+                    _recentTopicsLiveData.postValue(AppResource.success(lessonAndSubjectModel.mapToModelList(it)))
+                }
+            }
+        }
 
     }
 }

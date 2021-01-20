@@ -99,6 +99,13 @@
                             tools:itemCount="3"
                             tools:listitem="@layout/subject_item" />
 
+                        <include
+                            android:id="@+id/empty_content_Layout_home"
+                            layout="@layout/empty_content_layout" />
+                        <include
+                            android:id="@+id/error_content_Layout_home"
+                            layout="@layout/error_content_layout" />
+
                     </ViewFlipper>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -136,11 +143,20 @@
                         app:layout_constraintGuide_end="@dimen/_16sdp" />
 
                     <ViewFlipper
+                        android:id="@+id/recentlyWatchedFlipper"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:minHeight="@dimen/_150sdp"
                         app:layout_constraintEnd_toStartOf="@id/guideline_end_recent"
                         app:layout_constraintStart_toEndOf="@id/guideline_start_recent"
                         app:layout_constraintTop_toBottomOf="@id/recentHeader">
+
+                        <ProgressBar
+                            style="@style/progressbarStyle"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_gravity="center" />
+
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recently_watched_rv"
@@ -151,6 +167,13 @@
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:itemCount="1"
                             tools:listitem="@layout/recent_videos" />
+
+                        <include
+                            android:id="@+id/empty_content_Layout_recentlyWatched"
+                            layout="@layout/empty_content_layout" />
+                        <include
+                            android:id="@+id/error_content_Layout_recentlyWatched"
+                            layout="@layout/error_content_layout" />
 
                     </ViewFlipper>
                 </androidx.constraintlayout.widget.ConstraintLayout>

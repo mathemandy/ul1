@@ -53,6 +53,7 @@ dependencies {
     implementation(project(":libraries:data"))
     implementation(project(":libraries:domain"))
     implementation(project(":libraries:remote"))
+    implementation(project(":libraries:local"))
     implementation(project(":features:home:model"))
     implementation(project(":features:videoPlayer"))
 
@@ -86,7 +87,6 @@ dependencies {
 
     api 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     api 'com.google.android.material:material:1.2.1'
-    api 'androidx.constraintlayout:constraintlayout:2.0.4'
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

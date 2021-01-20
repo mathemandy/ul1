@@ -19,6 +19,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import java.lang.Deprecated;
 import java.lang.Object;
+import ng.mathemandy.core.databinding.ErrorContentLayoutBinding;
 import ng.mathemandy.home.R;
 
 public abstract class FragmentSubjectsBinding extends ViewDataBinding {
@@ -27,6 +28,18 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
 
   @NonNull
   public final CollapsingToolbarLayout collapsingToolbar;
+
+  @NonNull
+  public final View emptyContentLayoutHome;
+
+  @NonNull
+  public final View emptyContentLayoutRecentlyWatched;
+
+  @NonNull
+  public final ErrorContentLayoutBinding errorContentLayoutHome;
+
+  @NonNull
+  public final ErrorContentLayoutBinding errorContentLayoutRecentlyWatched;
 
   @NonNull
   public final Guideline guidelineEnd;
@@ -47,6 +60,9 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
   public final TextView recentHeader;
 
   @NonNull
+  public final ViewFlipper recentlyWatchedFlipper;
+
+  @NonNull
   public final RecyclerView recentlyWatchedRv;
 
   @NonNull
@@ -65,20 +81,28 @@ public abstract class FragmentSubjectsBinding extends ViewDataBinding {
   public final Toolbar toolbar;
 
   protected FragmentSubjectsBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      AppBarLayout appbar, CollapsingToolbarLayout collapsingToolbar, Guideline guidelineEnd,
+      AppBarLayout appbar, CollapsingToolbarLayout collapsingToolbar, View emptyContentLayoutHome,
+      View emptyContentLayoutRecentlyWatched, ErrorContentLayoutBinding errorContentLayoutHome,
+      ErrorContentLayoutBinding errorContentLayoutRecentlyWatched, Guideline guidelineEnd,
       Guideline guidelineEndRecent, Guideline guidelineStart, Guideline guidelineStartRecent,
-      NestedScrollView parentScroll, TextView recentHeader, RecyclerView recentlyWatchedRv,
-      ConstraintLayout recentlyWatchedVideos, ConstraintLayout subjectContainer,
-      RecyclerView subjectRv, ViewFlipper subjectsFlipper, Toolbar toolbar) {
+      NestedScrollView parentScroll, TextView recentHeader, ViewFlipper recentlyWatchedFlipper,
+      RecyclerView recentlyWatchedRv, ConstraintLayout recentlyWatchedVideos,
+      ConstraintLayout subjectContainer, RecyclerView subjectRv, ViewFlipper subjectsFlipper,
+      Toolbar toolbar) {
     super(_bindingComponent, _root, _localFieldCount);
     this.appbar = appbar;
     this.collapsingToolbar = collapsingToolbar;
+    this.emptyContentLayoutHome = emptyContentLayoutHome;
+    this.emptyContentLayoutRecentlyWatched = emptyContentLayoutRecentlyWatched;
+    this.errorContentLayoutHome = errorContentLayoutHome;
+    this.errorContentLayoutRecentlyWatched = errorContentLayoutRecentlyWatched;
     this.guidelineEnd = guidelineEnd;
     this.guidelineEndRecent = guidelineEndRecent;
     this.guidelineStart = guidelineStart;
     this.guidelineStartRecent = guidelineStartRecent;
     this.parentScroll = parentScroll;
     this.recentHeader = recentHeader;
+    this.recentlyWatchedFlipper = recentlyWatchedFlipper;
     this.recentlyWatchedRv = recentlyWatchedRv;
     this.recentlyWatchedVideos = recentlyWatchedVideos;
     this.subjectContainer = subjectContainer;

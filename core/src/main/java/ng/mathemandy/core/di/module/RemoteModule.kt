@@ -8,7 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import ng.mathemandy.core.BuildConfig
-import ng.mathemandy.data.contract.SubjectsRemote
+import ng.mathemandy.data.contract.remote.SubjectsRemote
 import ng.mathemandy.remote.ApiService
 import ng.mathemandy.remote.ApiServiceFactory
 import ng.mathemandy.remote.impl.SubjectRemoteImpl

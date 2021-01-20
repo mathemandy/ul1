@@ -8,6 +8,7 @@ import javax.annotation.Generated;
 import javax.inject.Provider;
 import ng.mathemandy.core.di.components.CoreComponent;
 import ng.mathemandy.core.factory.ViewModelFactory;
+import ng.mathemandy.domain.usecase.FetchRecentlyWatchedLessons;
 import ng.mathemandy.domain.usecase.FetchSubjects;
 import ng.mathemandy.home.presentation.SubjectsViewModel;
 import ng.mathemandy.home.ui.RecentVideosAdapter;
@@ -15,6 +16,7 @@ import ng.mathemandy.home.ui.SubjectsAdapter;
 import ng.mathemandy.home.ui.SubjectsFragment;
 import ng.mathemandy.home.ui.SubjectsFragment_MembersInjector;
 import ng.mathemandy.model.mapper.ChapterModelMapper;
+import ng.mathemandy.model.mapper.LessonAndSubjectModelMapper;
 import ng.mathemandy.model.mapper.LessonModelMapper;
 import ng.mathemandy.model.mapper.SubjectModelMapper;
 import ng.mathemandy.ulesson.di.AppComponent;
@@ -68,8 +70,14 @@ public final class DaggerSubjectsComponent implements SubjectsComponent {
   private FetchSubjects getFetchSubjects() {
     return new FetchSubjects(Preconditions.checkNotNull(coreComponent.getSubjectRepository(), "Cannot return null from a non-@Nullable component method"), Preconditions.checkNotNull(coreComponent.getPostExecutionThread(), "Cannot return null from a non-@Nullable component method"));}
 
+  private FetchRecentlyWatchedLessons getFetchRecentlyWatchedLessons() {
+    return new FetchRecentlyWatchedLessons(Preconditions.checkNotNull(coreComponent.getRecentlyWatchedLessonRepository(), "Cannot return null from a non-@Nullable component method"), Preconditions.checkNotNull(coreComponent.getPostExecutionThread(), "Cannot return null from a non-@Nullable component method"));}
+
+  private LessonAndSubjectModelMapper getLessonAndSubjectModelMapper() {
+    return new LessonAndSubjectModelMapper(getSubjectModelMapper(), new LessonModelMapper());}
+
   private SubjectsViewModel getSubjectsViewModel() {
-    return new SubjectsViewModel(getSubjectModelMapper(), getFetchSubjects());}
+    return new SubjectsViewModel(getSubjectModelMapper(), getFetchSubjects(), getFetchRecentlyWatchedLessons(), getLessonAndSubjectModelMapper());}
 
   private Provider<SubjectsViewModel> getSubjectsViewModelProvider() {
     Object local = subjectsViewModelProvider;

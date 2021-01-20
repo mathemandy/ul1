@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ng.mathemandy.core.imageLoader.ImageLoader
 import ng.mathemandy.home.R
 import ng.mathemandy.model.LessonModel
+import ng.mathemandy.model.LessonAndSubjectModel
 import java.util.*
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ typealias RecentVideoClickListener = (LessonModel) -> Unit
 
 
 class RecentVideosAdapter @Inject constructor(private val imageLoader: ImageLoader) :
-    ListAdapter<LessonModel, RecentVideosAdapter.RecentVideosViewHolder>(
+    ListAdapter<LessonAndSubjectModel, RecentVideosAdapter.RecentVideosViewHolder>(
         RecentVideosDC()
     ) {
 
@@ -39,7 +40,7 @@ class RecentVideosAdapter @Inject constructor(private val imageLoader: ImageLoad
     }
 
 
-    fun swapData(data: List<LessonModel>, layoutId: Int?) {
+    fun swapData(data: List<LessonAndSubjectModel>, layoutId: Int?) {
         if (layoutId != null) {
             this.layoutId = layoutId
         }
@@ -63,7 +64,7 @@ class RecentVideosAdapter @Inject constructor(private val imageLoader: ImageLoad
         }
 
 
-        fun bind(imageLoader: ImageLoader, clickListener: RecentVideoClickListener?, item: LessonModel) = with(itemView) {
+        fun bind(imageLoader: ImageLoader, clickListener: RecentVideoClickListener?, item: LessonAndSubjectModel) = with(itemView) {
             val rnd = Random()
            val currentColor: Int = cardColor[rnd.nextInt(10)]
             val imageView  = itemView.findViewById<ImageView>(R.id.advert_track_image)
@@ -74,27 +75,30 @@ class RecentVideosAdapter @Inject constructor(private val imageLoader: ImageLoad
             val subjectTitle  =
                 itemView.findViewById<TextView>(R.id.subject_title)
 
-            lessonTitle.text =  item.name
-            subjectTitle.text =  "Mathematics"
+            val lesson = item.lesson
+            val subject = item.subject
+
+            lessonTitle.text =  lesson?.name
+            subjectTitle.text =  subject.name
             subjectTitle.setTextColor(currentColor)
 
-            val uri  = item.icon.replaceFirst("\\*$", "")
-            imageLoader.loadImage(imageView, uri)
+            val uri  = lesson?.icon?.replaceFirst("\\*$", "")
+            uri?.let { imageLoader.loadImage(imageView, it) }
 
             itemView.setOnClickListener {
-                clickListener?.invoke(item)
+                lesson?.let { it1 -> clickListener?.invoke(it1) }
             }
 
         }
     }
 
-    private class RecentVideosDC : DiffUtil.ItemCallback<LessonModel>() {
+    private class RecentVideosDC : DiffUtil.ItemCallback<LessonAndSubjectModel>() {
 
-        override fun areContentsTheSame(oldItem: LessonModel, newItem: LessonModel): Boolean =
+        override fun areContentsTheSame(oldItem: LessonAndSubjectModel, newItem: LessonAndSubjectModel): Boolean =
             oldItem == newItem
 
-        override fun areItemsTheSame(oldItem: LessonModel, newItem: LessonModel): Boolean =
-            oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: LessonAndSubjectModel, newItem: LessonAndSubjectModel): Boolean =
+            oldItem.lesson?.id == newItem.lesson?.id
 
     }
 }

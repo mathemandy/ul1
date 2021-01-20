@@ -15,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/ulesson.libraries.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/ulesson.libraries.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/data/ulesson.libraries.data.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/data/ulesson.libraries.data.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/domain/ulesson.libraries.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/domain/ulesson.libraries.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/local/ulesson.libraries.local.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/local/ulesson.libraries.local.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/libraries/remote/ulesson.libraries.remote.iml" filepath="$PROJECT_DIR$/.idea/modules/libraries/remote/ulesson.libraries.remote.iml" />
     </modules>
   </component>

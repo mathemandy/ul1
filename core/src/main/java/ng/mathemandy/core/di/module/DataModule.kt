@@ -4,7 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import ng.mathemandy.data.repository.RecentlyWatchedLessonRepositoryImpl
 import ng.mathemandy.data.repository.SubjectRepositoryImpl
+import ng.mathemandy.domain.repository.RecentlyWatchedLessonRepository
 import ng.mathemandy.domain.repository.SubjectRepository
 import javax.inject.Singleton
 
@@ -14,4 +16,7 @@ interface DataModule {
 
     @get:[Binds Singleton]
     val SubjectRepositoryImpl.subjectRepository: SubjectRepository
+
+    @get:[Binds Singleton]
+    val RecentlyWatchedLessonRepositoryImpl.lessonAndSubjectRepository: RecentlyWatchedLessonRepository
 }

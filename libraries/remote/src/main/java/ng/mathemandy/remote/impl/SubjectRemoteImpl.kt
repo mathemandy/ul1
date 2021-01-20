@@ -1,10 +1,9 @@
 package ng.mathemandy.remote.impl
 
-import ng.mathemandy.data.contract.SubjectsRemote
+import ng.mathemandy.data.contract.remote.SubjectsRemote
 import ng.mathemandy.data.model.SubjectEntity
 import ng.mathemandy.remote.ApiService
 import ng.mathemandy.remote.mapper.SubjectRemoteMapper
-import ng.mathemandy.remote.model.SubjectRemoteModel
 import javax.inject.Inject
 
 class SubjectRemoteImpl  @Inject constructor(

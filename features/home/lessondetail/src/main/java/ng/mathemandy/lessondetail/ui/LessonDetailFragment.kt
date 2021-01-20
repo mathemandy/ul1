@@ -52,6 +52,12 @@ class LessonDetailFragment : Fragment() {
 
     private val viewModel: LessonDetailViewModel by viewModels { factory }
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.saveLesson(lesson)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,15 +78,8 @@ class LessonDetailFragment : Fragment() {
         startListener()
     }
 
-
     private fun startListener() {
-
         ExoplayerVideoManager.getInstance().getPlayer()?.addListener(object : Player.EventListener {
-            override fun onIsLoadingChanged(isLoading: Boolean) {
-
-
-            }
-
             override fun onPlaybackStateChanged(state: Int) {
                 binding.videoView.keepScreenOn =
                     !(state == Player.STATE_IDLE || state == Player.STATE_ENDED)
@@ -94,8 +93,7 @@ class LessonDetailFragment : Fragment() {
         inject(this)
     }
 
-
-    fun startVideo() {
+    private fun startVideo() {
         ExoplayerVideoManager.getInstance().onNewIntent()
         ExoplayerVideoManager.getInstance().init(
             requireContext(), listOf(
@@ -106,7 +104,6 @@ class LessonDetailFragment : Fragment() {
         ExoplayerVideoManager.getInstance().gotoForeground()
     }
 
-
     private fun initViews() {
         binding.lessonTitle.text = lesson.name
         binding.lessonSubtitle.text = "Rational Numbers"
@@ -114,7 +111,6 @@ class LessonDetailFragment : Fragment() {
 
 
     private fun initVideoView() {
-
 
         binding.videoView.isPortrait =
             resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
