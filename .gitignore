@@ -1,2 +1,6 @@
 .idea/
 .gradle/
+/data/build/
+/domain/build/
+/local/build/
+/remote/build/
