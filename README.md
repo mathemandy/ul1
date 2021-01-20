@@ -43,4 +43,13 @@ This abstraction enables me to separate concern of the project into separate Mod
 - The function emits a Loading signal first, the tries to get data from local and emits it to the UI. After that it tries to fetch new content from the remote source based on the result in ``shouldFetch` block.
 - This data received from the network is stored directly to the db and emitted back to the UI again. 
 
+#### Domain
+- This layer holds interfaces  of implementation classes, models  and  useCases.
+
+#### Feature/home/subjects 
+- This is a Dynamic Feature Module that holds only a fragment. 
+- The data that shows on the UI is gotten from the cache. 
+- It shows data based on statistic - EMPTY , LOADING , OFFLINE,  LOADING_WIH_DATA and FAILED
+- the appropriate Ui is shown depending on the state of the data. 
+- Navigation Component is used to open the next Screen  - Lessons and the object is passed as a bundle. 
 
